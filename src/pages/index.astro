@@ -1,17 +1,29 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Promedico Wellness Group | Private Earwax Removal in Portsmouth"
+  description="Clinic appointments in Portsmouth, with home visit ear care across Portsmouth, Southampton, Havant, Fareham, Waterlooville and nearby areas."
+>
+  <section class="section">
+    <div class="container">
+      <p>Portsmouth &amp; Surrounding Areas</p>
+      <h1>Private Earwax Removal in Portsmouth</h1>
+      <p>
+        Clinic appointments available in Portsmouth, with professional home visit ear care
+        services across Portsmouth, Southampton, Havant, Fareham, Waterlooville and nearby areas.
+      </p>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+        <Button href="/earwax-removal-portsmouth" variant="primary">
+          View Portsmouth Service
+        </Button>
+        <Button href="/earwax-removal-southampton" variant="secondary">
+          View Southampton Home Visits
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

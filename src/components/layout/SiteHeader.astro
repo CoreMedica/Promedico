@@ -1,0 +1,39 @@
+---
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/earwax-removal-portsmouth", label: "Earwax Removal Portsmouth" },
+  { href: "/earwax-removal-southampton", label: "Earwax Removal Southampton" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" }
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand" aria-label="Promedico Wellness Group home">
+      <span class="site-header__brand-text">Promedico Wellness Group</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <ul class="site-nav__list">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href;
+          return (
+            <li class="site-nav__item">
+              <a
+                href={item.href}
+                class:list={["site-nav__link", { "is-active": isActive }]}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
+</header>
