@@ -13,6 +13,12 @@ const navItems = [
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" }
 ];
+const currentPath = Astro.url.pathname;
+
+  const isActive = (href: string) => {
+    if(href == "/") return currentPath === "/";
+    return currentPath.startsWith(href);
+  };
 ---
 
 
@@ -48,11 +54,11 @@ const navItems = [
 
       <nav class="site-nav" id="site-navigation" aria-label="Primary">
         <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link" href="/">Home</a></li>
+          <li class="site-nav__item"><a class={`site-nav__link ${isActive("/") ? "is-active" : ""}`} aria-current={isActive("/") ? "page" : undefined} href="/">Home</a></li>
 
           <li class="site-nav__item site-nav__item--has-children">
             <button
-              class="site-nav__link site-nav__link--button"
+              class={'site-nav__link site-nav__link--button ${isActive("/services/ear-care") ? "is-active" : ""}'}
               type="button"
               aria-expanded="false"
               aria-controls="ear-care-submenu"
@@ -60,14 +66,14 @@ const navItems = [
               Ear Care
             </button>
             <ul class="site-nav__submenu" id="ear-care-submenu">
-              <li><a href="/services/ear-care/portsmouth">Portsmouth</a></li>
-              <li><a href="/services/ear-care/southampton">Southampton</a></li>
+              <li><a href="/services/ear-care/portsmouth" class={'isActive("/services/ear-care/portsmouth") ? "is-active" : ""'} aria-current={isActive("/services/ear-care/portsmouth") ? "page" : undefined}>Portsmouth</a></li>
+              <li><a href="/services/ear-care/southampton" class={'isActive("/services/ear-care/portsmouth") ? "is-active" : ""'} aria-current={isActive("/services/ear-care/southampton") ? "page" : undefined}>Southampton</a></li>
             </ul>
           </li>
 
-          <li class="site-nav__item"><a class="site-nav__link" href="/about">About</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="/blog">Blog</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="/contact">Contact</a></li>
+          <li class="site-nav__item"><a class={`site-nav__link ${isActive("/about") ? "is-active" : ""}`} aria-current={isActive("/about") ? "page" : undefined} href="/about">About</a></li>
+          <li class="site-nav__item"><a class={`site-nav__link ${isActive("/blog") ? "is-active" : ""}`} aria-current={isActive("/blog") ? "page" : undefined} href="/blog">Blog</a></li>
+          <li class="site-nav__item"><a class={`site-nav__link ${isActive("/contact") ? "is-active" : ""}`} aria-current={isActive("/contact") ? "page" : undefined} href="/contact">Contact</a></li>
         </ul>
       </nav>
       <div class="site-header__cta">
@@ -85,6 +91,7 @@ const navItems = [
   const overlay = header?.querySelector(".nav-overlay");
   const submenuButton = header?.querySelector(".site-nav__link--button");
   const submenu = header?.querySelector("#ear-care-submenu");
+  
 
   const closeMenu = () => {
     toggle?.classList.remove("is-open");
