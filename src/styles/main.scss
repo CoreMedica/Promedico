@@ -1,23 +1,39 @@
-@use "abstracts/tokens";
-@use "abstracts/mixins";
+// 1. Abstracts — variables and tools first (no CSS output)
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
 
-//@use "base/reset";
-@use "base/globals";
-@use "base/typography";
+// 2. Base — reset and global typography
+@use 'base/reset';
+@use 'base/typography';
 
-@use "layout/grid";
-@use "layout/sections";
-@use "layout/header";
-@use "layout/footer";
+// 3. Layout — structural shells
+@use 'layout/container';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'components/buttons';
+@use 'components/breadcrumb';
+@use 'components/faq';
+@use 'components/modal';
+@use 'components/nav';
+@use 'components/review-card';
+@use 'components/section-header';
+@use 'components/utilities';
+@use 'components/hero';
+@use 'components/cards';
+@use 'components/pricing';
+@use 'components/callouts';
+@use 'components/steps';
+@use 'components/cta-band';
 
-@use "components/buttons";
-@use "components/cards";
-@use "components/forms";
-@use "components/nav";
 
-@use "pages/home";
-@use "pages/service";
-@use "pages/about";
-@use "pages/contact";
 
-@use "utilities/spacing";
+
+
+// 5. Page-specific styles
+@use 'pages/homepage';
+//@use 'pages/services';
+@use 'pages/earwax';
+//@use 'pages/hayfever';
+//@use 'pages/wellness';
+//@use 'pages/weight-management';
+@use 'pages/about';

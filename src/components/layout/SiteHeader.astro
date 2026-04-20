@@ -15,26 +15,23 @@ const navItems = [
 ];
 ---
 
-<header class="site-header">
-  <div class="site-header__topbar">
-    <div class="container site-header__topbar-inner">
-      <p class="site-header__service-area">
-        Serving Portsmouth and Southampton
-      </p>
 
-      <div class="site-header__utility-links">
-        <a href="/contact">Contact</a>
-        <a href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984" target="_blank" rel="noreferrer">
-          Book Online
-        </a>
-      </div>
+  <div class="header-topbar">
+        <div class="container">
+            <div class="header-topbar__item">
+                <i class="fa-sharp fa-thin fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:reception@coremedica.co.uk">reception@coremedica.co.uk</a>
+            </div>
+            <div class="header-topbar__item">
+                <i class="fa-sharp fa-thin fa-phone"></i>
+                <a href="tel:07777100716">07777 100716</a>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="site-header__main">
-    <div class="container site-header__main-inner">
+<header class="site-header" id="siteHeader" role="banner">
+    <div class="container">
       <a class="site-header__logo" href="/" aria-label="Promedico Wellness Group home">
-        <img src="/ProMedico-Logo-text.webp" alt="Promedico Wellness Group" />
+        <img src="/images/ProMedico-Logo-text.webp" alt="Promedico Wellness Group" />
       </a>
 
       <button
@@ -73,17 +70,10 @@ const navItems = [
           <li class="site-nav__item"><a class="site-nav__link" href="/contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="site-header__cta">
+                <a href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984" target="_blank" class="site-header__cta-link">Book Online</a>
+            </div>
     </div>
-
-    <a
-      class="site-header__cta"
-      href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
-      target="_blank"
-      rel="noreferrer"
-    >
-      Book Now
-    </a>
-  </div>
 
   <div class="nav-overlay" hidden></div>
 </header>
