@@ -1,0 +1,45 @@
+// ─────────────────────────────────────────────
+// COREMEDICA WELLNESS — MAIN STYLESHEET
+// Compiled: assets/css/main.css (dev)
+//           assets/css/main.min.css (prod)
+// ─────────────────────────────────────────────
+
+// 1. Abstracts — variables and tools first (no CSS output)
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+// 2. Base — reset and global typography
+@use 'base/reset';
+@use 'base/typography';
+
+// 3. Layout — structural shells
+@use 'layout/container';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'components/buttons';
+@use 'components/breadcrumb';
+@use 'components/faq';
+@use 'components/modal';
+@use 'components/nav';
+@use 'components/review-card';
+@use 'components/section-header';
+@use 'components/utilities';
+@use 'components/hero';
+@use 'components/cards';
+@use 'components/pricing';
+@use 'components/callouts';
+@use 'components/steps';
+@use 'components/cta-band';
+
+
+
+
+
+// 5. Page-specific styles
+@use 'pages/homepage';
+//@use 'pages/services';
+@use 'pages/earwax';
+//@use 'pages/hayfever';
+//@use 'pages/wellness';
+//@use 'pages/weight-management';
+@use 'pages/about';

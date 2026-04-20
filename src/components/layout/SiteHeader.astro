@@ -1,39 +1,65 @@
----
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/earwax-removal-portsmouth", label: "Earwax Removal Portsmouth" },
-  { href: "/earwax-removal-southampton", label: "Earwax Removal Southampton" },
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" }
-];
+<!-- Skip to main content (accessibility) -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-const currentPath = Astro.url.pathname;
----
+    <!-- Overlay behind mobile nav panel -->
+    <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
-<header class="site-header">
-  <div class="container site-header__inner">
-    <a href="/" class="site-header__brand" aria-label="Promedico Wellness Group home">
-      <span class="site-header__brand-text">Promedico Wellness Group</span>
-    </a>
+    <!-- Top utility bar -->
+    <div class="header-topbar">
+        <div class="container">
+            <div class="header-topbar__item">
+                <i class="fa-sharp fa-thin fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:reception@coremedica.co.uk">reception@coremedica.co.uk</a>
+            </div>
+            <div class="header-topbar__item">
+                <i class="fa-sharp fa-thin fa-phone"></i>
+                <a href="tel:07777100716">07777 100716</a>
+            </div>
+        </div>
+    </div>
+    <header class="site-header" id="siteHeader" role="banner">
+        <div class="container">
 
-    <nav class="site-nav" aria-label="Primary navigation">
-      <ul class="site-nav__list">
-        {navItems.map((item) => {
-          const isActive = currentPath === item.href;
-          return (
-            <li class="site-nav__item">
-              <a
-                href={item.href}
-                class:list={["site-nav__link", { "is-active": isActive }]}
-                aria-current={isActive ? "page" : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  </div>
-</header>
+            <a href="/" class="site-header__logo" aria-label="CoreMedica Wellness Group — Home">
+                <img src="/images/ProMedico-Logo-text.webp"
+                    alt="Promedico Wellness Group">
+            </a>
+
+            <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+                <ul class="site-nav__list" role="list">
+                    <li class="site-nav__item">
+                        <a href="/" class="site-nav__link">Home</a>
+                    </li>
+                    <li class="site-nav__item">
+                        <a href="/about/" class="site-nav__link">About</a>
+                    </li>
+                    <li class="site-nav__item">
+                        <a href="/services/ear-care/" class="site-nav__link">Ear Care</a>
+                    </li>
+                    
+
+                    <li class="site-nav__item">
+                        <a href="/blog/" class="site-nav__link">Blog</a>
+                    </li>
+                    <li class="site-nav__item">
+                        <a href="/contact/" class="site-nav__link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="site-header__cta">
+                <a href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984" target="_blank" class="site-header__cta-link">Book Online</a>
+            </div>
+
+            <button class="nav-toggle"
+                id="navToggle"
+                aria-controls="siteNav"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div><!-- /.container -->
+    </header>

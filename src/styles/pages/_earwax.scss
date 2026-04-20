@@ -1,0 +1,285 @@
+// ─────────────────────────────────────────────
+// EARWAX SERVICE PAGES  (_earwax.scss)
+// Used by: hub, southampton, portsmouth pages
+// ─────────────────────────────────────────────
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+
+.svc-procedures {
+  background-color: $color-footer-light;
+  padding: $space-3xl 0;
+}
+
+// ── WHAT TO EXPECT (dark) ────────────────────
+
+.svc-expect {
+  background-color: $color-header-bg;
+  padding: $space-3xl 0;
+}
+
+
+
+
+// ── WHY COREMEDICA (footer-light) ────────────
+
+.svc-why {
+  background-color: $color-footer-light;
+  padding: $space-3xl 0;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: $space-3xl;
+    align-items: start;
+    margin-top: $space-2xl;
+
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+      gap: $space-2xl;
+    }
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: $space-sm;
+  }
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 2rem;
+    line-height: 1.25;
+    color: $color-text-dark;
+    margin-bottom: $space-lg;
+
+    @include respond-to(mobile) { font-size: 1.625rem; }
+  }
+  &__text {
+    p {
+      font-size: 0.9375rem;
+      line-height: 1.8;
+      color: $color-text-dark;
+      margin-bottom: $space-md;
+
+      &:last-of-type { margin-bottom: $space-xl; }
+
+      &.light {
+        color: $color-text-light;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-md;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include respond-to(mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__stat {
+    background-color: $color-white;
+    border: 1px solid $color-border-light;
+    border-radius: 8px;
+    padding: $space-lg $space-md;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $space-xs;
+  }
+
+  &__stat-value {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 1.875rem;
+    color: $color-teal;
+    line-height: 1.1;
+  }
+
+  &__stat-unit {
+    font-size: 1rem;
+    margin-left: 2px;
+  }
+
+  &__stat-label {
+    font-size: 0.775rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(30,30,30,0.6);
+    line-height: 1.3;
+  }
+}
+
+.svc-why__text--light {
+  & p {
+    color: $color-text-light;
+  }
+}
+
+
+// ── AREA COVERAGE (white) ────────────────────
+
+.svc-areas {
+  background-color: $color-white;
+  padding: $space-3xl 0;
+}
+
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-md;
+  margin-top: $space-2xl;
+
+  @include respond-to(tablet)  { grid-template-columns: repeat(3, 1fr); }
+  @include respond-to(mobile)  { grid-template-columns: repeat(2, 1fr); }
+}
+
+.area-item {
+  @include flex-row(center, flex-start, $space-sm);
+  padding: $space-md;
+  background-color: $color-footer-light;
+  border-radius: 6px;
+  border: 1px solid $color-border-light;
+  font-size: 0.875rem;
+  color: $color-text-dark;
+
+  svg, .fa-sharp {
+    width: 15px;
+    height: 15px;
+    color: $color-teal;
+    flex-shrink: 0;
+  }
+
+  .fa-sharp {
+    color: $color-teal;
+  }
+}
+
+.svc-areas__note {
+  margin-top: $space-xl;
+  font-size: 0.875rem;
+  color: rgba(30,30,30,0.6);
+  text-align: center;
+  line-height: 1.6;
+}
+
+// ── PATIENT REVIEWS ──────────────────────────
+// .review-card and .review-card--dark live in _review-card.scss
+
+.svc-reviews {
+  background-color: $color-header-bg;
+  padding: $space-3xl 0;
+}
+
+// ── FAQ ──────────────────────────────────────
+// .faq-section, .faq-list, .faq-item live in _faq.scss
+
+//.svc-faq {
+  // Uses .faq-section--light modifier for footer-light background
+//}
+
+
+// ── BOOKING / MAP CTA ────────────────────────
+
+
+
+
+// ── HUB PAGE — LOCATION CARDS ────────────────
+
+.earwax-hub {
+  &__location-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-xl;
+    margin-top: $space-2xl;
+
+    @include respond-to(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.location-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid $color-border-light;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+  }
+
+  &__header {
+    background-color: $color-header-bg;
+    padding: $space-xl;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: $space-sm;
+  }
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 1.625rem;
+    color: $color-text-light;
+  }
+
+  &__body {
+    padding: $space-xl;
+    background-color: $color-white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__text {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: $color-text-dark;
+    margin-bottom: $space-lg;
+  }
+
+  &__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    margin-bottom: $space-xl;
+
+    li {
+      @include flex-row(center, flex-start, $space-sm);
+      font-size: 0.875rem;
+      color: $color-text-dark;
+    }
+
+    svg {
+      width: 15px;
+      height: 15px;
+      color: $color-teal;
+      flex-shrink: 0;
+    }
+  }
+
+  .btn {
+    margin-top: auto;
+    text-align: center;
+  }
+}

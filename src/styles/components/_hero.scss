@@ -1,0 +1,185 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── HERO ────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  background-color: $color-header-bg;
+  overflow: hidden;
+  padding: 7rem 0 5rem;
+
+  @include respond-to(tablet) {
+    padding: 5rem 0 4rem;
+  }
+
+  @include respond-to(mobile) {
+    padding: 3.5rem 0 3rem;
+  }
+
+  // Subtle geometric SVG background texture
+  &__bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 75% 50%, rgba(58, 124, 140, 0.15) 0%, transparent 55%),
+      radial-gradient(circle at 20% 80%, rgba(106, 143, 79, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    color: $color-gold;
+  }
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.2;
+    color: $color-text-light;
+    margin-bottom: 1.25rem;
+  }
+
+  &__heading-accent {
+    color: $color-teal;
+  }
+
+  &__subheading {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    line-height: 1.75;
+    color: rgba(244, 244, 244, 0.8);
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  &__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    margin-bottom: 2.25rem;
+  }
+
+  // Inline trust bullets
+  &__trust-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+
+  &__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: rgba(244, 244, 244, 0.75);
+    font-family: $font-body;
+  }
+
+  &__trust-icon {
+    width: 16px;
+    height: 16px;
+    fill: $color-teal;
+    flex-shrink: 0;
+  }
+
+  // Animated chevron scroll cue
+  &__scroll-cue {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: heroScrollBounce 2s ease-in-out infinite;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: rgba(244, 244, 244, 0.3);
+    }
+  }
+}
+
+@keyframes heroScrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+// ── SERVICE HERO (dark) ──────────────────────
+
+.svc-hero {
+  background-color: $color-header-bg;
+  padding: $space-3xl 0 $space-2xl;
+
+  &__inner {
+    max-width: 800px;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: $space-md;
+  }
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 2.75rem;
+    line-height: 1.15;
+    color: $color-text-light;
+    margin-bottom: $space-lg;
+
+    @include respond-to(tablet) { font-size: 2.25rem; }
+    @include respond-to(mobile) { font-size: 1.75rem; }
+  }
+
+  &__heading-accent {
+    color: $color-gold;
+  }
+
+  &__subheading {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgba(244,244,244,0.8);
+    max-width: 680px;
+    margin-bottom: $space-xl;
+
+    @include respond-to(mobile) { font-size: 1rem; }
+  }
+
+  &__ctas {
+    @include flex-row(center, flex-start, $space-md);
+    flex-wrap: wrap;
+    margin-bottom: $space-2xl;
+  }
+
+  &__trust-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-md $space-xl;
+    padding-top: $space-xl;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  &__trust-item {
+    @include flex-row(center, flex-start, $space-sm);
+    font-size: 0.875rem;
+    color: rgba(244,244,244,0.7);
+  }
+
+  &__trust-icon, .fa-sharp {
+    width: 18px;
+    height: 18px;
+    color: $color-teal;
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,69 @@
+@use '../abstracts/variables' as *;
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+    padding: 0.65rem $space-xl;
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: $radius-pill;
+    transition: $transition-base;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn--primary {
+    background-color: $color-btn-primary;
+    color: $color-text-dark;
+    border-color: $color-btn-primary;
+
+    &:hover,
+    &:focus-visible {
+        background-color: $color-btn-hover;
+        border-color: $color-btn-hover;
+        color: $color-text-light;
+    }
+}
+
+.btn--outline {
+    background-color: transparent;
+    border-color: $color-gold;
+    color: $color-gold;
+
+    &:hover,
+    &:focus-visible {
+        background-color: $color-gold;
+        color: $color-text-dark;
+    }
+}
+
+.btn--ghost {
+    background-color: transparent;
+    border-color: rgba($color-text-light, 0.4);
+    color: $color-text-light;
+
+    &:hover,
+    &:focus-visible {
+        border-color: $color-text-light;
+        background-color: rgba($color-text-light, 0.1);
+    }
+}
+
+.btn--outline-light {
+  background-color: transparent;
+  border-color: rgba(244, 244, 244, 0.5);
+  color: $color-text-light;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba(244, 244, 244, 0.1);
+    border-color: $color-text-light;
+    color: $color-text-light;
+  }
+}

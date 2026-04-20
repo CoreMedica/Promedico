@@ -1,0 +1,246 @@
+// ─────────────────────────────────────────────
+// REVIEW CARDS
+// Base component + light/dark variants
+// Used on: homepage, all service pages
+// ─────────────────────────────────────────────
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ── Section wrapper ──────────────────────────
+
+.reviews-section {
+  background-color: $color-footer-light;
+  padding: 5rem 0;
+
+  @include respond-to(tablet) { padding: 3.5rem 0; }
+  @include respond-to(mobile) { padding: 2.5rem 0; }
+}
+
+// Dark background variant (service pages)
+.reviews-section--dark {
+  background-color: $color-header-bg;
+}
+
+// ── Homepage layout (featured + grid) ────────
+
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Featured card ─────────────────────────────
+
+.review-featured {
+  background-color: $color-header-bg;
+  border-radius: 8px;
+  padding: 2.25rem 2rem;
+  position: sticky;
+  top: 2rem;
+  color: $color-text-light;
+
+  @include respond-to(tablet) {
+    position: static;
+  }
+
+  &__stars {
+    color: $color-gold;
+    font-size: 1.125rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+  }
+
+  &__quote {
+    width: 32px;
+    height: auto;
+    fill: rgba(200, 154, 90, 0.35);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    margin: 0 0 1.5rem;
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      font-style: italic;
+      color: rgba(244, 244, 244, 0.9);
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  &__cite {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    cite {
+      font-style: normal;
+      font-family: $font-heading;
+      font-weight: $font-weight-heading;
+      font-size: 0.9375rem;
+      color: $color-gold;
+    }
+  }
+
+  &__source {
+    font-size: 0.8125rem;
+    color: rgba(244, 244, 244, 0.45);
+  }
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: rgba(244, 244, 244, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.25rem;
+    margin-top: 1.5rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      color: $color-teal;
+    }
+  }
+}
+
+// ── Review grid ───────────────────────────────
+
+.reviews-grid-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reviews-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @include respond-to(tablet) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-to(mobile) { grid-template-columns: 1fr; }
+
+  &__more {
+    text-align: center;
+  }
+}
+
+// Service page grid (no featured card alongside)
+.reviews-grid--standalone {
+  margin-top: $space-2xl;
+  max-width: none;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// ── Base card ─────────────────────────────────
+
+.review-card {
+  background-color: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(15, 42, 46, 0.08);
+  }
+
+  &--hidden {
+    display: none;
+
+    &.is-visible {
+      display: flex;
+      animation: reviewReveal 0.25s ease forwards;
+    }
+  }
+
+  &__stars {
+    color: $color-gold;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+  }
+
+  &__text {
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.875rem;
+
+    p {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: rgba(30, 30, 30, 0.75);
+      margin: 0;
+      font-style: italic;
+    }
+  }
+
+  &__cite {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    cite {
+      font-style: normal;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: $color-text-dark;
+    }
+  }
+
+  &__source {
+    font-size: 0.75rem;
+    color: rgba(30, 30, 30, 0.4);
+  }
+
+  // ── Dark variant (service pages on dark bg) ──
+  &--dark {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+
+    &:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .review-card__text p {
+      color: rgba(244, 244, 244, 0.85);
+    }
+
+    .review-card__cite cite {
+      color: $color-text-light;
+    }
+
+    .review-card__source {
+      color: rgba(244, 244, 244, 0.4);
+    }
+  }
+}
+
+@keyframes reviewReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

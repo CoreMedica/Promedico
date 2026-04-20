@@ -1,0 +1,52 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Text alignment
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+
+// Colour helpers
+.text-gold    { color: $color-gold; }
+.text-teal    { color: $color-teal; }
+.text-muted   { color: rgba($color-text-dark, 0.55); }
+.text-light   { color: $color-text-light; }
+
+// Display
+.d-none       { display: none; }
+.d-block      { display: block; }
+
+// Spacing helpers (margin-top scale)
+.mt-sm   { margin-top: $space-sm; }
+.mt-md   { margin-top: $space-md; }
+.mt-lg   { margin-top: $space-lg; }
+.mt-xl   { margin-top: $space-xl; }
+.mt-2xl  { margin-top: $space-2xl; }
+
+// Accessible visually-hidden
+.sr-only, .visually-hidden  { @include visually-hidden; }
+
+// Font Awesome global defaults
+.fa-regular,
+.fa-solid,
+.fa-kit {
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+// Sized variants — apply these classes where needed
+.icon--sm  { font-size: 1rem; }
+.icon--md  { font-size: 1.25rem; }
+.icon--lg  { font-size: 1.5rem; }
+.icon--xl  { font-size: 2rem; }
+.icon--xxl { font-size: 2.5rem; }
+.icon--xxxl { font-size: 3rem; }
+
+
+// Spacing Utilities (margin-bottom scale)
+.mb--sm   { margin-bottom: $space-sm; }
+.mb--md   { margin-bottom: $space-md; }
+.mb--lg   { margin-bottom: $space-lg; }
+.mb--xl   { margin-bottom: $space-xl; }

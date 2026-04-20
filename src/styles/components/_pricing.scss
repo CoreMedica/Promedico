@@ -1,0 +1,125 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ── PRICING (white) ───────────────────────────
+
+.svc-pricing {
+  background-color: $color-white;
+  padding: $space-3xl 0;
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-lg;
+  margin-top: $space-2xl;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // Two-card layout — Portsmouth (home visits only)
+  &--two-col {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-to(mobile) {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+    }
+  }
+}
+
+.pricing-card {
+  border: 1px solid $color-border-light;
+  border-radius: 8px;
+  padding: $space-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  background-color: $color-white;
+  transition: box-shadow 0.25s ease;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+  }
+
+  &--featured {
+    border-color: $color-teal;
+    border-width: 2px;
+
+    &::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $color-teal;
+      color: $color-text-light;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 3px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+  }
+
+  &__label {
+    font-size: 0.775rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(30,30,30,0.5);
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 1.2rem;
+    color: $color-text-dark;
+    line-height: 1.2;
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    margin: $space-sm 0;
+
+    .price-currency {
+      font-size: 1.25rem;
+      color: $color-teal;
+      align-self: flex-start;
+      margin-top: 6px;
+    }
+
+    .price-amount {
+      font-family: $font-heading;
+      font-weight: $font-weight-heading;
+      font-size: 2.5rem;
+      color: $color-teal;
+      line-height: 1;
+    }
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: rgba(30,30,30,0.65);
+    border-top: 1px solid $color-border-light;
+    padding-top: $space-sm;
+    flex: 1;
+  }
+
+  .btn {
+    margin-top: $space-md;
+    text-align: center;
+  }
+}
+

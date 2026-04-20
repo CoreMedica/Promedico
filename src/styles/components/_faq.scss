@@ -1,0 +1,124 @@
+// ─────────────────────────────────────────────
+// FAQ ACCORDION
+// Used on: homepage and all service pages
+// ─────────────────────────────────────────────
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.faq-section {
+  background-color: $color-white;
+  padding: 5rem 0;
+
+  @include respond-to(tablet) { padding: 3.5rem 0; }
+  @include respond-to(mobile) { padding: 2.5rem 0; }
+
+  // Light bg variant
+  &--light {
+    background-color: $color-footer-light;
+  }
+}
+
+.faq-grid {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid $color-border-light;
+}
+
+.faq-item {
+  border-bottom: 1px solid $color-border-light;
+
+  &__question {
+    margin: 0;
+  }
+
+  &__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 1rem;
+    color: $color-text-dark;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: $color-teal;
+    }
+
+    &[aria-expanded='true'] {
+      color: $color-teal;
+
+      .faq-item__icon::before { transform: rotate(45deg); }
+      .faq-item__icon::after  { transform: rotate(-45deg) translate(0, 1px); }
+    }
+  }
+
+  // Plus/minus icon — pure CSS
+  &__icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: currentColor;
+      border-radius: 2px;
+      transition: transform 0.2s ease;
+    }
+
+    &::before {
+      width: 18px;
+      height: 2px;
+      top: 8px;
+      left: 0;
+    }
+
+    &::after {
+      width: 2px;
+      height: 18px;
+      top: 0;
+      left: 8px;
+    }
+  }
+
+  &__answer {
+    margin: 0;
+    overflow: hidden;
+
+    &:not([hidden]) {
+      animation: faqOpen 0.2s ease forwards;
+    }
+  }
+
+  &__answer-inner {
+    padding: 0 1.5rem 1.25rem 0;
+
+    p {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: rgba(30, 30, 30, 0.75);
+      margin: 0;
+    }
+  }
+}
+
+@keyframes faqOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

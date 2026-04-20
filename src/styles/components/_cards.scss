@@ -1,0 +1,474 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.service-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-card {
+  background-color: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 8px;
+  padding: 2rem 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(15, 42, 46, 0.1);
+    transform: translateY(-3px);
+  }
+
+  &__icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: rgba(58, 124, 140, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: $color-teal;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: $color-text-dark;
+    margin-bottom: 0.625rem;
+    text-align: center;
+  }
+
+  &__text {
+    //font-size: 0.9375rem;
+    line-height: 1.65;
+    color: rgba(30, 30, 30, 0.7);
+    margin-bottom: 1rem;
+  }
+
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+
+    li {
+      //font-size: 0.8125rem;
+      color: rgba(30, 30, 30, 0.6);
+      padding: 0.2rem 0 0.2rem 1.1rem;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $color-gold;
+      }
+    }
+  }
+
+  &__link {
+    align-self: flex-start;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.15s ease;
+    }
+
+    &:hover svg {
+      transform: translateX(3px);
+    }
+  }
+}
+
+
+// ── PROCEDURE CARDS (footer-light) ───────────
+
+.procedure-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-xl;
+  margin-top: $space-2xl;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.procedure-card {
+  background-color: $color-white;
+  border-radius: 8px;
+  border: 1px solid $color-border-light;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  &__icon-wrap {
+    background-color: $color-header-bg;
+    padding: $space-xl $space-xl $space-lg;
+    display: flex;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    color: $color-teal;
+  }
+
+  &__body {
+    padding: $space-xl;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: $space-sm;
+  }
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 1.5rem;
+    color: $color-text-dark;
+    margin-bottom: $space-md;
+  }
+
+  &__text {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: $color-text-dark;
+    margin-bottom: $space-lg;
+  }
+
+  &__benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    margin-top: auto;
+
+    li {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: $color-text-dark;
+      padding-left: $space-md;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.5em;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $color-teal;
+      }
+    }
+  }
+}
+
+// ── Injection cards (unique to wellness page) ─
+
+.wellness-injections {
+    padding: $space-3xl 0;
+    background-color: $color-footer-light;
+}
+
+.injection-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-xl;
+    margin-top: $space-2xl;
+
+    @include respond-to(mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.injection-card {
+    background-color: $color-white;
+    border: 1px solid $color-border-light;
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    &__icon-wrap {
+        width: 52px;
+        height: 52px;
+        border-radius: $radius-md;
+        background-color: rgba(58, 124, 140, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__icon {
+        font-size: 1.4rem;
+        color: $color-teal;
+    }
+
+    &__name {
+        font-family: $font-heading;
+        font-weight: $font-weight-heading;
+        font-size: 1.15rem;
+        color: $color-text-dark;
+        margin: 0;
+    }
+
+    &__description {
+        font-size: 0.9375rem;
+        line-height: 1.7;
+        color: rgba(30, 30, 30, 0.75);
+        margin: 0;
+        flex: 1;
+    }
+
+    &__pricing {
+        display: flex;
+        gap: $space-md;
+        flex-wrap: wrap;
+        padding-top: $space-md;
+        border-top: 1px solid $color-border-light;
+    }
+
+    &__price-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__price-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: rgba(30, 30, 30, 0.5);
+        font-weight: 600;
+    }
+
+    &__price-value {
+        font-family: $font-heading;
+        font-weight: $font-weight-heading;
+        font-size: 1.25rem;
+        color: $color-gold;
+    }
+}
+
+.programme-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xl;
+    margin-top: $space-2xl;
+
+    @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.programme-feature {
+    background-color: $color-white;
+    border: 1px solid $color-border-light;
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    &__icon-wrap {
+        width: 52px;
+        height: 52px;
+        border-radius: $radius-md;
+        background-color: rgba(58, 124, 140, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__icon {
+        font-size: 1.4rem;
+        color: $color-teal;
+    }
+
+    &__heading {
+        font-family: $font-heading;
+        font-weight: $font-weight-heading;
+        font-size: 1.1rem;
+        color: $color-text-dark;
+        margin: 0;
+    }
+
+    &__text {
+        font-size: 0.9375rem;
+        line-height: 1.7;
+        color: rgba(30, 30, 30, 0.75);
+        margin: 0;
+        flex: 1;
+    }
+}
+
+.eligibility-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-xl;
+    margin-top: $space-2xl;
+
+    @include respond-to(mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.eligibility-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    display: flex;
+    gap: $space-md;
+    align-items: flex-start;
+
+    &__icon-wrap {
+        width: 44px;
+        height: 44px;
+        border-radius: $radius-md;
+        background-color: rgba(200, 154, 90, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__icon {
+        font-size: 1.2rem;
+        color: $color-gold;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+    }
+
+    &__heading {
+        font-family: $font-heading;
+        font-weight: $font-weight-heading;
+        font-size: 1rem;
+        color: $color-text-light;
+        margin: 0;
+    }
+
+    &__text {
+        font-size: 0.9375rem;
+        line-height: 1.7;
+        color: rgba(244, 244, 244, 0.7);
+        margin: 0;
+    }
+}
+
+.symptom-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xl;
+    margin-top: $space-2xl;
+
+    @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-lg;
+    }
+
+    @include respond-to(mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.symptom-card {
+    background-color: $color-white;
+    border: 1px solid $color-border-light;
+    border-radius: $radius-md;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    transition: box-shadow 0.25s ease;
+
+    &:hover {
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+    }
+
+    &__icon {
+        width: 36px;
+        height: 36px;
+        color: $color-teal;
+        flex-shrink: 0;
+    }
+
+    &__heading {
+        font-family: $font-heading;
+        font-weight: $font-weight-heading;
+        font-size: 1.0625rem;
+        color: $color-text-dark;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    &__text {
+        font-size: 0.875rem;
+        line-height: 1.75;
+        color: rgba(30, 30, 30, 0.7);
+        margin: 0;
+    }
+}

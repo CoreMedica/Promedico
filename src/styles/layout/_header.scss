@@ -1,0 +1,128 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins'    as *;
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: $color-header-bg;
+    height: $header-height-desktop;
+    transition: $transition-base;
+    overflow: visible; // allow dropdowns to overflow
+    
+    // Topbar is outside sticky positioning — only the main bar sticks
+    &.is-scrolled {
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+    }
+    @include respond-to(mobile) {
+        height: $header-height-mobile;
+    }
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: visible;
+    }
+}
+.site-nav {
+    flex: 0 0 auto;
+    margin-left: auto;
+    margin-right: 160px; // space for CTA;
+}
+// ─── Logo ─────────────────────────────────────
+.site-header__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    img {
+        height: 70px;
+        width: auto;
+
+        @include respond-to(mobile) {
+            height: 36px;
+        }
+    }
+}
+
+// ─── Book CTA (desktop, beside nav) ───────────
+.site-header__cta {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: calc($header-height-desktop + 24px); // extends 24px below header
+    z-index: 10;
+
+    @include respond-to(tablet) {
+        display: none;
+    }
+}
+
+.site-header__cta-link {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: $space-1xl;
+    width: 140px;
+    height: 100%;
+    background-color: $color-teal;
+    color: $color-text-light;
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.25s ease;
+
+    // Square top, triangle pointing down at the bottom
+    clip-path: polygon(
+        0% 0%,                          // top-left
+        100% 0%,                        // top-right
+        100% calc(100% - 24px),         // bottom-right (before triangle)
+        50% 100%,                       // triangle apex (bottom centre)
+        0% calc(100% - 24px)            // bottom-left (before triangle)
+    );
+
+    &:hover {
+        background-color: $color-btn-hover;
+        color: $color-text-light;
+    }
+}
+// ─── Top utility bar ──────────────────────────
+.header-topbar {
+    background-color: $color-footer-light;
+    border-bottom: 1px solid rgba($color-text-light, 0.08);
+    padding-block: $space-xs;
+    font-size: 0.95rem;
+
+    .container {
+        @include flex-row(center, flex-end, $space-lg);
+    }
+
+    @include respond-to(mobile) {
+        display: none;
+    }
+}
+
+.header-topbar__item {
+    @include flex-row(center, flex-start, $space-xs);
+    color: rgba($color-text-dark, 0.65);
+    transition: color 0.2s ease;
+
+    svg {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
+        stroke: $color-btn-hover;
+    }
+
+    a {
+        color: inherit;
+
+        &:hover {
+            color: $color-btn-hover;
+        }
+    }
+}

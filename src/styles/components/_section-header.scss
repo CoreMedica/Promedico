@@ -1,0 +1,43 @@
+// ─────────────────────────────────────────────
+// SECTION HEADER
+// Shared centred heading + lead paragraph block
+// Used on: all pages
+// ─────────────────────────────────────────────
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+
+  &__heading {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: $color-text-dark;
+    margin-bottom: 0.75rem;
+
+    &--light {
+      color: $color-text-light;
+    }
+  }
+
+  &__lead {
+    font-size: 1.0625rem;
+    color: rgba(30, 30, 30, 0.7);
+    line-height: 1.7;
+  }
+
+  // Light variant — for use on dark backgrounds
+  &--light {
+    .section-header__heading {
+      color: $color-text-light;
+    }
+
+    .section-header__lead {
+      color: rgba(244, 244, 244, 0.75);
+    }
+  }
+}

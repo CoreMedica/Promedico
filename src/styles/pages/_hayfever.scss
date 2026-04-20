@@ -1,0 +1,14 @@
+// ─────────────────────────────────────────────
+// HAYFEVER & ALLERGY SERVICE PAGE (_hayfever.scss)
+// Used by: hayfever-allergy-southampton.php
+// ─────────────────────────────────────────────
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ── SYMPTOMS GRID (footer-light) ─────────────
+
+.hayfever-symptoms {
+    background-color: $color-footer-light;
+    padding: $space-3xl 0;
+}

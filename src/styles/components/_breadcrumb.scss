@@ -1,0 +1,40 @@
+// ─────────────────────────────────────────────
+// BREADCRUMB
+// Used on: all service and content pages
+// ─────────────────────────────────────────────
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.breadcrumb {
+  margin-bottom: $space-lg;
+
+  &__list {
+    @include flex-row(center, flex-start, $space-sm);
+    list-style: none;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    color: rgba(244, 244, 244, 0.55);
+
+    li + li::before {
+      content: '/';
+      margin-right: $space-xs;
+    }
+  }
+
+  a {
+    color: rgba(244, 244, 244, 0.55);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-gold;
+      text-decoration: underline;
+    }
+  }
+
+  [aria-current='page'] {
+    color: $color-gold;
+  }
+}

@@ -1,0 +1,94 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins'    as *;
+
+.site-footer {
+    background-color: $color-footer-bg;
+    color: $color-text-light;
+}
+
+// ─── Upper zone — links/brand/contact ─────────
+.footer-upper {
+    padding-block: $space-3xl;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: $space-2xl;
+
+    @include respond-to(tablet) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include respond-to(mobile) {
+        grid-template-columns: 1fr;
+        gap: $space-xl;
+    }
+}
+
+.footer-brand {
+    img {
+        height: 48px;
+        width: auto;
+        margin-bottom: $space-md;
+    }
+
+    p {
+        color: rgba($color-text-light, 0.65);
+        font-size: 0.9rem;
+        max-width: 28ch;
+    }
+}
+
+.footer-nav__heading {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $color-gold;
+    margin-bottom: $space-md;
+}
+
+.footer-nav__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+}
+
+.footer-nav__link {
+    font-size: 0.9rem;
+    color: rgba($color-text-light, 0.65);
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: $color-text-light;
+    }
+}
+
+// ─── Lower zone — legal / copyright ───────────
+.footer-lower {
+    border-top: 1px solid rgba($color-text-light, 0.1);
+    padding-block: $space-lg;
+    @include flex-row(center, space-between);
+    flex-wrap: wrap;
+    gap: $space-sm;
+
+    @include respond-to(mobile) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.footer-legal {
+    font-size: 0.8rem;
+    color: rgba($color-text-light, 0.45);
+
+    a {
+        color: rgba($color-text-light, 0.55);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $color-text-light;
+        }
+    }
+}
