@@ -1,65 +1,135 @@
-<!-- Skip to main content (accessibility) -->
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+---
+const navItems = [
+  { label: "Home", href: "/" },
+  {
+    label: "Ear Care",
+    href: "/services/ear-care",
+    children: [
+      { label: "Portsmouth", href: "/services/ear-care/portsmouth" },
+      { label: "Southampton", href: "/services/ear-care/southampton" }
+    ]
+  },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" }
+];
+---
 
-    <!-- Overlay behind mobile nav panel -->
-    <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container site-header__topbar-inner">
+      <p class="site-header__service-area">
+        Serving Portsmouth and Southampton
+      </p>
 
-    <!-- Top utility bar -->
-    <div class="header-topbar">
-        <div class="container">
-            <div class="header-topbar__item">
-                <i class="fa-sharp fa-thin fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:reception@coremedica.co.uk">reception@coremedica.co.uk</a>
-            </div>
-            <div class="header-topbar__item">
-                <i class="fa-sharp fa-thin fa-phone"></i>
-                <a href="tel:07777100716">07777 100716</a>
-            </div>
-        </div>
+      <div class="site-header__utility-links">
+        <a href="/contact">Contact</a>
+        <a href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984" target="_blank" rel="noreferrer">
+          Book Online
+        </a>
+      </div>
     </div>
-    <header class="site-header" id="siteHeader" role="banner">
-        <div class="container">
+  </div>
 
-            <a href="/" class="site-header__logo" aria-label="CoreMedica Wellness Group — Home">
-                <img src="/images/ProMedico-Logo-text.webp"
-                    alt="Promedico Wellness Group">
-            </a>
+  <div class="site-header__main">
+    <div class="container site-header__main-inner">
+      <a class="site-header__logo" href="/" aria-label="Promedico Wellness Group home">
+        <img src="/images/logo.svg" alt="Promedico Wellness Group" />
+      </a>
 
-            <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
-                <ul class="site-nav__list" role="list">
-                    <li class="site-nav__item">
-                        <a href="/" class="site-nav__link">Home</a>
-                    </li>
-                    <li class="site-nav__item">
-                        <a href="/about/" class="site-nav__link">About</a>
-                    </li>
-                    <li class="site-nav__item">
-                        <a href="/services/ear-care/" class="site-nav__link">Ear Care</a>
-                    </li>
-                    
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-                    <li class="site-nav__item">
-                        <a href="/blog/" class="site-nav__link">Blog</a>
-                    </li>
-                    <li class="site-nav__item">
-                        <a href="/contact/" class="site-nav__link">Contact</a>
-                    </li>
-                </ul>
-            </nav>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link" href="/">Home</a></li>
 
-            <div class="site-header__cta">
-                <a href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984" target="_blank" class="site-header__cta-link">Book Online</a>
-            </div>
-
-            <button class="nav-toggle"
-                id="navToggle"
-                aria-controls="siteNav"
-                aria-expanded="false"
-                aria-label="Open navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
+          <li class="site-nav__item site-nav__item--has-children">
+            <button
+              class="site-nav__link site-nav__link--button"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ear-care-submenu"
+            >
+              Ear Care
             </button>
+            <ul class="site-nav__submenu" id="ear-care-submenu">
+              <li><a href="/services/ear-care/portsmouth">Portsmouth</a></li>
+              <li><a href="/services/ear-care/southampton">Southampton</a></li>
+            </ul>
+          </li>
 
-        </div><!-- /.container -->
-    </header>
+          <li class="site-nav__item"><a class="site-nav__link" href="/about">About</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="/blog">Blog</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <a
+      class="site-header__cta"
+      href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Book Now
+    </a>
+  </div>
+
+  <div class="nav-overlay" hidden></div>
+</header>
+
+<script>
+  const header = document.querySelector(".site-header");
+  const toggle = header?.querySelector(".nav-toggle");
+  const nav = header?.querySelector(".site-nav");
+  const overlay = header?.querySelector(".nav-overlay");
+  const submenuButton = header?.querySelector(".site-nav__link--button");
+  const submenu = header?.querySelector("#ear-care-submenu");
+
+  const closeMenu = () => {
+    toggle?.classList.remove("is-open");
+    nav?.classList.remove("is-open");
+    overlay?.classList.remove("is-visible");
+    overlay?.setAttribute("hidden", "");
+    toggle?.setAttribute("aria-expanded", "false");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = nav?.classList.toggle("is-open");
+    toggle.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    overlay?.classList.toggle("is-visible", !!isOpen);
+
+    if (isOpen) {
+      overlay?.removeAttribute("hidden");
+    } else {
+      overlay?.setAttribute("hidden", "");
+    }
+  });
+
+  overlay?.addEventListener("click", closeMenu);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+      submenuButton?.setAttribute("aria-expanded", "false");
+      submenu?.classList.remove("is-open");
+    }
+  });
+
+  submenuButton?.addEventListener("click", () => {
+    const expanded = submenuButton.getAttribute("aria-expanded") === "true";
+    submenuButton.setAttribute("aria-expanded", String(!expanded));
+    submenu?.classList.toggle("is-open", !expanded);
+  });
+</script>

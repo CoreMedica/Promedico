@@ -1,327 +1,168 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins'    as *;
+@use "../abstracts/mixins" as *;
 
-// ─── Primary Navigation ───────────────────────
 .site-nav {
-    @include respond-to(tablet) {
-        // Off-canvas panel on tablet/mobile
-        position: fixed;
-        inset: 0 0 0 auto;
-        width: min(320px, 85vw);
-        background-color: $color-header-bg;
-        padding: $space-3xl $space-xl $space-xl;
-        overflow-y: auto;
-        transform: translateX(100%);
-        transition: transform 0.35s ease;
-        z-index: 300;
-        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+  margin-left: auto;
+  margin-right: 10rem;
 
-        &.is-open {
-            transform: translateX(0);
-        }
+  @include down(desktop) {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(22rem, 86vw);
+    padding: 6rem 1.5rem 1.5rem;
+    background: var(--color-teal);
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+    z-index: 1200;
+    overflow-y: auto;
+    margin-right: 0;
+
+    &.is-open {
+      transform: translateX(0);
     }
+  }
 }
 
 .site-nav__list {
-    @include flex-row(center, flex-start, $space-xl);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    @include respond-to(tablet) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-    }
+  @include down(desktop) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
 }
 
 .site-nav__item {
-    position: relative;
+  position: relative;
+  width: auto;
 
-    @include respond-to(tablet) {
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-        &:first-child {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-    }
+  @include down(desktop) {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
 }
 
 .site-nav__link {
-    display: block;
-    font-family: $font-heading;
-    font-weight: $font-weight-heading;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: $color-text-light;
-    padding-block: $space-sm;
-    position: relative;
-    transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: none;
+  border: 0;
+  cursor: pointer;
 
-    // Animated underline on desktop
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: $color-gold;
-        transition: width 0.25s ease;
-    }
-
-    &:hover,
-    &.is-active {
-        color: $color-gold;
-
-        &::after {
-            width: 100%;
-        }
-    }
-
-    @include respond-to(tablet) {
-        font-size: 1rem;
-        padding-block: $space-md;
-        letter-spacing: 0.02em;
-
-        &::after { display: none; }
-
-        &:hover,
-        &.is-active {
-            color: $color-gold;
-        }
-    }
+  @include down(desktop) {
+    color: var(--color-white);
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
 }
 
-// ─── Hamburger Toggle ─────────────────────────
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 300;
-    padding: 0;
+.site-nav__submenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  min-width: 14rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+  display: none;
+  z-index: 1300;
 
-    @include respond-to(tablet) {
-        display: flex;
+  li a {
+    display: block;
+    padding: 0.65rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  li a:hover,
+  li a:focus-visible {
+    background: var(--color-bg-alt);
+  }
+
+  &.is-open {
+    display: block;
+  }
+
+  @include down(desktop) {
+    position: static;
+    min-width: 100%;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 0 0 0.75rem 1rem;
+
+    li a {
+      color: var(--color-white);
+      padding: 0.5rem 0;
+      background: none;
     }
+  }
+}
+
+.nav-toggle {
+  display: none;
+
+  @include down(desktop) {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    z-index: 1301;
 
     span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background-color: $color-text-light;
-        border-radius: 2px;
-        transition: $transition-base;
-        transform-origin: center;
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background: var(--color-text);
+      transition: transform var(--transition-base), opacity var(--transition-base);
     }
 
-    // Animate to X when open
-    &.is-open {
-        span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
+    &.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
     }
+
+    &.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
 }
 
-// ─── Overlay (mobile, behind panel) ───────────
 .nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  z-index: 1100;
 
-    &.is-visible {
-        display: block;
-        opacity: 1;
-    }
-}
-
-// ─── Mega dropdown (Services) ─────────────────
-.site-nav__item--mega {
-    position: static; // relative to header, not the li
-}
-
-.mega-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 600px; // was 0
-    right: 0;
-    max-width: 400px; // remove when adding services back in
-    background-color: $color-header-bg;
-    border-top: 2px solid $color-gold;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-    z-index: 200;
-    padding-block: $space-2xl;
-
-    // Bridge the gap between the nav link and the panel
-    // so the cursor doesn't lose hover state
-    &::before {
-        content: '';
-        position: absolute;
-        top: -12px;
-        left: 0;
-        right: 0;
-        height: 12px;
-    }
-
-    &.is-open {
-        display: block;
-    }
-}
-
-.mega-menu__grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr); // was repeat(4, 1fr);
-    gap: $space-xl;
-
-    @include respond-to(tablet) {
-        grid-template-columns: repeat(1, 1fr); // was repeat(2, 1fr);
-    }
-}
-
-.mega-menu__card {
-    padding: $space-lg;
-    border: 1px solid rgba($color-text-light, 0.08);
-    border-radius: $radius-md;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-
-    &:hover {
-        border-color: $color-gold;
-        background-color: rgba($color-text-light, 0.03);
-    }
-}
-
-.mega-menu__icon {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto $space-md;
-    //margin-bottom: $space-md;
-    color: $color-gold;
-
-    svg {
-        width: 100%;
-        height: 100%;
-        stroke: currentColor;
-        fill: none;
-    }
-}
-
-.mega-menu__title {
-    font-family: $font-heading;
-    font-weight: $font-weight-heading;
-    font-size: 1rem;
-    color: $color-text-light;
-    margin-bottom: $space-sm;
-    text-align: center;
-}
-
-.mega-menu__desc {
-    font-size: 0.82rem;
-    color: rgba($color-text-light, 0.6);
-    line-height: 1.5;
-    margin-bottom: $space-md;
-}
-
-.mega-menu__links {
-    display: flex;
-    flex-direction: column;
-    gap: $space-xs;
-    border-top: 1px solid rgba($color-text-light, 0.1);
-    padding-top: $space-sm;
-}
-
-.mega-menu__link {
-    font-size: 0.82rem;
-    color: $color-gold;
-    transition: color 0.2s ease;
-
-    &::before {
-        content: '→ ';
-    }
-
-    &:hover {
-        color: $color-text-light;
-    }
-}
-
-// ─── Mega trigger chevron ─────────────────────
-.site-nav__link--has-mega {
-    @include flex-row(center, flex-start, $space-xs);
-
-    .nav-chevron {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-right: 1.5px solid currentColor;
-        border-bottom: 1.5px solid currentColor;
-        transform: rotate(45deg) translateY(-2px);
-        transition: transform 0.2s ease;
-        flex-shrink: 0;
-        margin-left: 5px;
-    }
-
-    &[aria-expanded="true"] .nav-chevron {
-        transform: rotate(-135deg) translateY(-2px);
-    }
-}
-
-// Mobile: mega menu becomes a flat list inside the slide panel
-@include respond-to(tablet) {
-    .mega-menu {
-        position: static;
-        display: none;        // ← keep hidden until JS opens it
-        box-shadow: none;
-        border-top: none;
-        border-left: 2px solid $color-gold;
-        padding: $space-sm 0 $space-sm $space-md;
-        margin-top: 0;
-        background: transparent;
-
-        &.is-open {           // ← only show when JS says so
-            display: block;
-        }
-    }
-
-    .mega-menu__grid {
-        grid-template-columns: 1fr;
-        gap: $space-sm;
-    }
-
-    .mega-menu__card {
-        border: none;
-        padding: $space-sm 0;
-        border-radius: 0;
-
-        &:hover {
-            background: transparent;
-            border-color: transparent;
-        }
-    }
-
-    .mega-menu__icon,
-    .mega-menu__desc {
-        display: none;
-    }
-
-    .mega-menu__title {
-        font-size: 0.9rem;
-        margin-bottom: $space-xs;
-    }
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
