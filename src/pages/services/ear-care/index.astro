@@ -1,0 +1,94 @@
+---
+import ServiceLayout from "../../../layouts/ServiceLayout.astro";
+import ServiceExpect from "../../../components/service/ServiceExpect.astro";
+---
+
+<ServiceLayout
+  title="Ear Care Services | Promedico Wellness Group"
+  description="Professional ear care services from Promedico Wellness Group, including Portsmouth clinic appointments, Portsmouth home visits, and Southampton home visits."
+  eyebrow="Ear Care Services"
+  heading="Professional Ear Care"
+  headingAccent="for Portsmouth and Southampton"
+  subheading="Safe, effective earwax removal with clinic and home visit options, designed to make access to ear care straightforward and convenient."
+  trustItems={[
+    "Portsmouth clinic appointments",
+    "Portsmouth home visits",
+    "Southampton home visits"
+  ]}
+  bookingEyebrow="Book an appointment"
+  bookingTitle="Need to arrange your visit?"
+  bookingText="Choose the service area that suits you best, then book online or contact us if you would like help before booking."
+  bookingMeta={[
+    { text: "Portsmouth clinic appointments available" },
+    { text: "Home visits available in Portsmouth and Southampton" },
+    { text: "Questions? Contact us", href: "/contact" }
+  ]}
+  bookingPrimaryText="Book Online"
+  bookingPrimaryHref="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+  bookingSecondaryText="Contact Us"
+  bookingSecondaryHref="/contact"
+>
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__heading">Choose your ear care service</h2>
+        <p class="section-header__lead">
+          We currently offer earwax removal in Portsmouth and Southampton, with options for clinic appointments and home visits depending on location.
+        </p>
+      </div>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <h3>Portsmouth</h3>
+          <p>
+            Earwax removal in Portsmouth with both clinic appointments and home visits available.
+          </p>
+          <a class="btn btn--primary" href="/services/ear-care/portsmouth">
+            View Portsmouth Service
+          </a>
+        </li>
+
+        <li class="service-card">
+          <h3>Southampton</h3>
+          <p>
+            Earwax removal in Southampton offered as a convenient home visit service.
+          </p>
+          <a class="btn btn--primary" href="/services/ear-care/southampton">
+            View Southampton Service
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <ServiceExpect
+    intro="We begin with a careful assessment of the ears and carry out treatment where appropriate, explaining the process clearly throughout."
+    items={[
+      {
+        title: "Initial assessment",
+        text: "We assess the ears carefully and confirm whether treatment is suitable."
+      },
+      {
+        title: "Treatment where appropriate",
+        text: "Earwax removal is carried out carefully and professionally using the appropriate approach."
+      },
+      {
+        title: "Clear aftercare advice",
+        text: "We explain the outcome and answer any questions before the appointment ends."
+      }
+    ]}
+    ctaText="Contact Us"
+    ctaHref="/contact"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__heading">Which option is right for you?</h2>
+        <p class="section-header__lead">
+          If you are unsure whether to choose Portsmouth or Southampton, or whether a clinic appointment or home visit is more suitable, contact us and we will be happy to help.
+        </p>
+      </div>
+    </div>
+  </section>
+</ServiceLayout>

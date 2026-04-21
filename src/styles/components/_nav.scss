@@ -1,154 +1,303 @@
 @use '../abstracts/variables' as *;
-@use '../abstracts/mixins'    as *;
+@use '../abstracts/mixins' as *;
 
 // ─── Primary Navigation ───────────────────────
 .site-nav {
-    @include respond-to(tablet) {
-        // Off-canvas panel on tablet/mobile
-        position: fixed;
-        inset: 0 0 0 auto;
-        width: min(320px, 85vw);
-        background-color: $color-header-bg;
-        padding: $space-3xl $space-xl $space-xl;
-        overflow-y: auto;
-        transform: translateX(100%);
-        transition: transform 0.35s ease;
-        z-index: 300;
-        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+  @include respond-to(tablet) {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(320px, 85vw);
+    background-color: $color-header-bg;
+    padding: $space-3xl $space-xl $space-xl;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    z-index: 300;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
 
-        &.is-open {
-            transform: translateX(0);
-        }
+    &.is-open {
+      transform: translateX(0);
     }
+  }
 }
 
 .site-nav__list {
-    @include flex-row(center, flex-start, $space-xl);
+  @include flex-row(center, flex-start, $space-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    @include respond-to(tablet) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-    }
+  @include respond-to(tablet) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
 }
 
 .site-nav__item {
-    position: relative;
+  position: relative;
 
-    @include respond-to(tablet) {
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  @include respond-to(tablet) {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-        &:first-child {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
+    &:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
+  }
 }
 
-.site-nav__link {
-    display: block;
-    font-family: $font-heading;
-    font-weight: $font-weight-heading;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: $color-text-light;
-    padding-block: $space-sm;
-    position: relative;
-    transition: color 0.2s ease;
+// ─── Parent row (link + toggle) ───────────────
+.site-nav__item-head {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}
 
-    // Animated underline on desktop
+.site-nav__item--has-children {
+  @include respond-to(tablet) {
+    .site-nav__item-head {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .site-nav__link {
+      flex: 1;
+    }
+  }
+}
+
+// ─── Links ────────────────────────────────────
+.site-nav__link {
+  display: block;
+  font-family: $font-heading;
+  font-weight: $font-weight-heading;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $color-text-light;
+  padding-block: $space-sm;
+  position: relative;
+  transition: color 0.2s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color-gold;
+    transition: width 0.25s ease;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &.is-active {
+    color: $color-gold;
+
     &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: $color-gold;
-        transition: width 0.25s ease;
+      width: 100%;
+    }
+  }
+
+  @include respond-to(tablet) {
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    padding-block: $space-md;
+
+    &::after {
+      display: none;
     }
 
     &:hover,
+    &:focus-visible,
     &.is-active {
+      color: $color-gold;
+    }
+  }
+}
+
+// ─── Submenu Toggle ───────────────────────────
+.site-nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+
+  span {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid rgba(244, 244, 244, 0.9);
+    border-bottom: 2px solid rgba(244, 244, 244, 0.9);
+    transform: rotate(45deg);
+    margin-top: -0.2rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    span {
+      border-right-color: $color-gold;
+      border-bottom-color: $color-gold;
+    }
+  }
+
+  &[aria-expanded="true"] {
+    span {
+      transform: rotate(225deg);
+      margin-top: 0.1rem;
+      border-right-color: $color-gold;
+      border-bottom-color: $color-gold;
+    }
+  }
+}
+
+// ─── Submenu ──────────────────────────────────
+.site-nav__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+
+  // Desktop dropdown
+  @media (min-width: ($bp-tablet + 1)) {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 0;
+    min-width: 220px;
+    background-color: $color-white;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: $radius-md;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    padding: $space-sm 0;
+    z-index: 250;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      display: block;
+      padding: 0.7rem $space-md;
+      font-family: $font-body;
+      font-size: 0.95rem;
+      font-weight: $font-weight-body;
+      text-decoration: none;
+      color: rgba(244, 244, 244, 0.82);
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover,
+      &:focus-visible,
+      &.is-active {
+        background-color: rgba(255, 255, 255, 0.04);
         color: $color-gold;
-
-        &::after {
-            width: 100%;
-        }
+      }
     }
 
-    @include respond-to(tablet) {
-        font-size: 1rem;
-        padding-block: $space-md;
-        letter-spacing: 0.02em;
-
-        &::after { display: none; }
-
-        &:hover,
-        &.is-active {
-            color: $color-gold;
-        }
+    &.is-open {
+      display: block;
     }
+  }
+
+  // Mobile / tablet collapsible
+  @include respond-to(tablet) {
+    position: static;
+    width: 100%;
+    padding: 0 0 $space-md $space-md;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      display: block;
+      padding: 0.55rem 0;
+      font-family: $font-body;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: rgba(244, 244, 244, 0.78);
+      transition: color 0.2s ease;
+
+      &:hover,
+      &:focus-visible,
+      &.is-active {
+        color: $color-gold;
+      }
+    }
+
+    &.is-open {
+      display: block;
+    }
+  }
 }
 
 // ─── Hamburger Toggle ─────────────────────────
 .nav-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 300;
-    padding: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 300;
+  padding: 0;
 
-    @include respond-to(tablet) {
-        display: flex;
+  @include respond-to(tablet) {
+    display: flex;
+  }
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: $color-text-light;
+    border-radius: 2px;
+    transition: $transition-base;
+    transform-origin: center;
+  }
+
+  &.is-open {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
     }
 
-    span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background-color: $color-text-light;
-        border-radius: 2px;
-        transition: $transition-base;
-        transform-origin: center;
+    span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
     }
 
-    // Animate to X when open
-    &.is-open {
-        span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
+  }
 }
 
 // ─── Overlay (mobile, behind panel) ───────────
 .nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 
-    &.is-visible {
-        display: block;
-        opacity: 1;
-    }
+  &.is-visible {
+    display: block;
+    opacity: 1;
+  }
 }
-

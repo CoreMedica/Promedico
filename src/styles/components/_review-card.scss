@@ -9,14 +9,6 @@
 
 // ── Section wrapper ──────────────────────────
 
-.reviews-section {
-  background-color: $color-footer-light;
-  padding: 5rem 0;
-
-  @include respond-to(tablet) { padding: 3.5rem 0; }
-  @include respond-to(mobile) { padding: 2.5rem 0; }
-}
-
 // Dark background variant (service pages)
 .reviews-section--dark {
   background-color: $color-header-bg;

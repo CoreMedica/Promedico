@@ -1,14 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-.how-it-works {
-  background-color: $color-footer-light;
-  padding: 5rem 0;
-
-  @include respond-to(tablet) { padding: 3.5rem 0; }
-  @include respond-to(mobile) { padding: 2.5rem 0; }
-}
-
 .hiw-steps {
   list-style: none;
   padding: 0;

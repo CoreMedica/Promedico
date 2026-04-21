@@ -57,19 +57,47 @@ const currentPath = Astro.url.pathname;
           <li class="site-nav__item"><a class={`site-nav__link ${isActive("/") ? "is-active" : ""}`} aria-current={isActive("/") ? "page" : undefined} href="/">Home</a></li>
 
           <li class="site-nav__item site-nav__item--has-children">
-            <button
-              class={'site-nav__link site-nav__link--button ${isActive("/services/ear-care") ? "is-active" : ""}'}
-              type="button"
-              aria-expanded="false"
-              aria-controls="ear-care-submenu"
-            >
-              Ear Care
-            </button>
-            <ul class="site-nav__submenu" id="ear-care-submenu">
-              <li><a href="/services/ear-care/portsmouth" class={'isActive("/services/ear-care/portsmouth") ? "is-active" : ""'} aria-current={isActive("/services/ear-care/portsmouth") ? "page" : undefined}>Portsmouth</a></li>
-              <li><a href="/services/ear-care/southampton" class={'isActive("/services/ear-care/portsmouth") ? "is-active" : ""'} aria-current={isActive("/services/ear-care/southampton") ? "page" : undefined}>Southampton</a></li>
-            </ul>
-          </li>
+  <div class="site-nav__item-head">
+    <a
+      class={`site-nav__link ${isActive("/services/ear-care") ? "is-active" : ""}`}
+      href="/services/ear-care"
+      aria-current={isActive("/services/ear-care") ? "page" : undefined}
+    >
+      Ear Care
+    </a>
+
+    <button
+      class="site-nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="ear-care-submenu"
+      aria-label="Toggle Ear Care submenu"
+    >
+      <span></span>
+    </button>
+  </div>
+
+  <ul class="site-nav__submenu" id="ear-care-submenu">
+    <li>
+      <a
+        class={isActive("/services/ear-care/portsmouth") ? "is-active" : ""}
+        href="/services/ear-care/portsmouth"
+        aria-current={isActive("/services/ear-care/portsmouth") ? "page" : undefined}
+      >
+        Portsmouth
+      </a>
+    </li>
+    <li>
+      <a
+        class={isActive("/services/ear-care/southampton") ? "is-active" : ""}
+        href="/services/ear-care/southampton"
+        aria-current={isActive("/services/ear-care/southampton") ? "page" : undefined}
+      >
+        Southampton
+      </a>
+    </li>
+  </ul>
+</li>
 
           <li class="site-nav__item"><a class={`site-nav__link ${isActive("/about") ? "is-active" : ""}`} aria-current={isActive("/about") ? "page" : undefined} href="/about">About</a></li>
           <li class="site-nav__item"><a class={`site-nav__link ${isActive("/blog") ? "is-active" : ""}`} aria-current={isActive("/blog") ? "page" : undefined} href="/blog">Blog</a></li>
@@ -89,7 +117,7 @@ const currentPath = Astro.url.pathname;
   const toggle = header?.querySelector(".nav-toggle");
   const nav = header?.querySelector(".site-nav");
   const overlay = header?.querySelector(".nav-overlay");
-  const submenuButton = header?.querySelector(".site-nav__link--button");
+  const submenuButton = header?.querySelector(".site-nav__toggle");
   const submenu = header?.querySelector("#ear-care-submenu");
   
 
@@ -129,4 +157,17 @@ const currentPath = Astro.url.pathname;
     submenuButton.setAttribute("aria-expanded", String(!expanded));
     submenu?.classList.toggle("is-open", !expanded);
   });
+
+  document.addEventListener("click", (event) => {
+  const target = event.target;
+
+  if (!(target instanceof Element)) return;
+
+  const clickedInsideNav = target.closest(".site-nav");
+
+  if (!clickedInsideNav) {
+    submenuButton?.setAttribute("aria-expanded", "false");
+    submenu?.classList.remove("is-open");
+  }
+});
 </script>
