@@ -7,4 +7,9 @@ export default defineConfig({
   output: "static",
   integrations: [react(), sitemap()],
   trailingSlash: "never",
+  vite: {
+    css: {
+      devSourcemap: true
+    }
+  }
 });

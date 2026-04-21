@@ -33,6 +33,12 @@
       max-width: 440px;
     }
   }
+  &--one-col {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .pricing-card {

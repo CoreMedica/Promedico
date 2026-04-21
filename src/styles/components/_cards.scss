@@ -125,8 +125,8 @@
 
 .procedure-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: $space-xl;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-lg;
   margin-top: $space-2xl;
 
   @include respond-to(tablet) {
@@ -141,9 +141,18 @@
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.25s ease;
+  padding: $space-xl;
 
   &:hover {
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  &__step {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-teal;
+    margin-bottom: $space-sm;
   }
 
   &__icon-wrap {
@@ -172,7 +181,7 @@
     margin-bottom: $space-sm;
   }
 
-  &__heading {
+  &__title {
     font-family: $font-heading;
     font-weight: $font-weight-heading;
     font-size: 1.5rem;

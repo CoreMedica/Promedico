@@ -1,0 +1,194 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface PricingItem {
+  label?: string;
+  name: string;
+  price: string;
+  description?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  featured?: boolean;
+}
+
+interface BookingMetaItem {
+  text: string;
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+
+  eyebrow?: string;
+  heading: string;
+  headingAccent?: string;
+  subheading?: string;
+  trustItems?: string[];
+
+  pricingTitle?: string;
+  pricingIntro?: string;
+  pricingItems?: PricingItem[];
+  pricingColumns?: "one" |"two" | "three";
+
+  bookingEyebrow?: string;
+  bookingTitle?: string;
+  bookingText?: string;
+  bookingMeta?: BookingMetaItem[];
+  bookingPrimaryText?: string;
+  bookingPrimaryHref?: string;
+  bookingSecondaryText?: string;
+  bookingSecondaryHref?: string;
+  bookingNoMap?: boolean;
+}
+
+const {
+  title,
+  description = "",
+
+  eyebrow,
+  heading,
+  headingAccent,
+  subheading,
+  trustItems = [],
+
+  pricingTitle,
+  pricingIntro,
+  pricingItems = [],
+  pricingColumns = "one",
+
+  bookingEyebrow,
+  bookingTitle,
+  bookingText,
+  bookingMeta = [],
+  bookingPrimaryText,
+  bookingPrimaryHref,
+  bookingSecondaryText,
+  bookingSecondaryHref,
+  bookingNoMap = true
+} = Astro.props;
+
+const pricingGridClassMap = {
+  one: "pricing-cards pricing-cards--one-col",
+  two: "pricing-cards pricing-cards--two-col",
+  three: "pricing-cards"
+};
+
+const pricingGridClass = pricingGridClassMap[pricingColumns];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="svc-hero">
+    <div class="container">
+      <div class="svc-hero__inner">
+        {eyebrow && <p class="svc-hero__eyebrow">{eyebrow}</p>}
+
+        <h1 class="svc-hero__heading">
+          {heading}
+          {headingAccent && (
+            <>
+              <br />
+              <span class="svc-hero__heading-accent">{headingAccent}</span>
+            </>
+          )}
+        </h1>
+
+        {subheading && <p class="svc-hero__subheading">{subheading}</p>}
+
+        {trustItems.length > 0 && (
+          <ul class="svc-hero__trust-list">
+            {trustItems.map((item) => (
+              <li class="svc-hero__trust-item">{item}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <slot />
+
+  {pricingItems.length > 0 && (
+    <section class="svc-pricing">
+      <div class="container">
+        {(pricingTitle || pricingIntro) && (
+          <div class="section-header section-header--center">
+            {pricingTitle && <h2>{pricingTitle}</h2>}
+            {pricingIntro && <p>{pricingIntro}</p>}
+          </div>
+        )}
+
+        <div class={pricingGridClass}>
+          {pricingItems.map((item) => (
+            <article class={`pricing-card${item.featured ? " pricing-card--featured" : ""}`}>
+              {item.label && <p class="pricing-card__label">{item.label}</p>}
+
+              <h3 class="pricing-card__name">{item.name}</h3>
+
+              <div class="pricing-card__price">
+                <span class="price-currency">£</span>
+                <span class="price-amount">{item.price}</span>
+              </div>
+
+              {item.description && (
+                <p class="pricing-card__description">{item.description}</p>
+              )}
+
+              {item.buttonText && item.buttonHref && (
+                <a class="btn btn--primary" href={item.buttonHref}>
+                  {item.buttonText}
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {(bookingTitle || bookingText || bookingMeta.length > 0) && (
+    <section class="svc-booking">
+      <div class="container">
+        <div class={`svc-booking__inner${bookingNoMap ? " svc-booking__inner--no-map" : ""}`}>
+          <div class="svc-booking__content">
+            {bookingEyebrow && <p class="svc-booking__eyebrow">{bookingEyebrow}</p>}
+            {bookingTitle && <h2 class="svc-booking__heading">{bookingTitle}</h2>}
+            {bookingText && <p class="svc-booking__text">{bookingText}</p>}
+
+            {bookingMeta.length > 0 && (
+              <ul class="svc-booking__meta">
+                {bookingMeta.map((item) => (
+                  <li>
+                    {item.href ? <a href={item.href}>{item.text}</a> : item.text}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {(bookingPrimaryHref || bookingSecondaryHref) && (
+              <div class="svc-booking__ctas">
+                {bookingPrimaryHref && bookingPrimaryText && (
+                  <a class="btn btn--primary" href={bookingPrimaryHref}>
+                    {bookingPrimaryText}
+                  </a>
+                )}
+
+                {bookingSecondaryHref && bookingSecondaryText && (
+                  <a class="btn btn--outline" href={bookingSecondaryHref}>
+                    {bookingSecondaryText}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          {!bookingNoMap && (
+            <div class="svc-booking__map">
+              <slot name="booking-map" />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

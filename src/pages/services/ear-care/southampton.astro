@@ -1,0 +1,60 @@
+---
+import ServiceLayout from "../../../layouts/ServiceLayout.astro";
+import ServiceExpect from "../../../components/service/ServiceExpect.astro";
+---
+
+<ServiceLayout
+  title="Earwax Removal Southampton | Promedico Wellness Group"
+  description="Professional home visit earwax removal in Southampton. Safe, effective ear care in the comfort of your home."
+  eyebrow="Southampton Ear Care"
+  heading="Professional Earwax Removal"
+  headingAccent="in Southampton"
+  subheading="Safe, effective home visit earwax removal across Southampton, delivered in the comfort of your own home."
+  trustItems={["Home visits across Southampton", "Professional ear care", "Convenient in-home appointments"]}
+  pricingTitle="Pricing"
+  pricingIntro="Clear pricing for home visit earwax removal in Southampton."
+  pricingColumns="one"
+  pricingItems={[
+    {
+      label: "Home Visit",
+      name: "Home Visit Appointment",
+      price: "80",
+      description: "Professional earwax removal in your home across Southampton.",
+      buttonText: "Book Online",
+      buttonHref: "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984",
+      featured: true
+    }
+  ]}
+  bookingEyebrow="Book a home visit"
+  bookingTitle="Need to arrange your appointment?"
+  bookingText="Book your Southampton home visit online, or contact us if you would like to discuss availability before booking."
+  bookingMeta={[
+    { text: "Home visits available across Southampton" },
+    { text: "Convenient in-home appointments" },
+    { text: "Questions? Contact us", href: "/contact" }
+  ]}
+  bookingPrimaryText="Book Online"
+  bookingPrimaryHref="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+  bookingSecondaryText="Contact Us"
+  bookingSecondaryHref="/contact"
+>
+  <ServiceExpect
+    intro="We attend your home, assess the ears carefully, and carry out treatment where appropriate."
+    items={[
+      {
+        title: "Home visit arrival",
+        text: "We attend your appointment at home and talk through the process before beginning."
+      },
+      {
+        title: "Assessment and treatment",
+        text: "Your ears are assessed carefully and treatment is carried out where appropriate."
+      },
+      {
+        title: "Advice before we leave",
+        text: "We explain the result and provide any relevant aftercare guidance."
+      }
+    ]}
+    ctaText="Contact Us"
+    ctaHref="/contact"
+  />
+</ServiceLayout>

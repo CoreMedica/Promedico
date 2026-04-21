@@ -1,0 +1,47 @@
+---
+interface ExpectItem {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  title?: string;
+  intro?: string;
+  items: ExpectItem[];
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  title = "What to expect",
+  intro,
+  items,
+  ctaText,
+  ctaHref
+} = Astro.props;
+---
+
+<section class="section svc-expect">
+  <div class="container">
+    <div class="section-header">
+      <h2>{title}</h2>
+      {intro && <p>{intro}</p>}
+    </div>
+
+    <div class="procedure-cards">
+      {items.map((item, index) => (
+        <article class="procedure-card">
+          <p class="procedure-card__step">Step {index + 1}</p>
+          <h3 class="procedure-card__title">{item.title}</h3>
+          <p class="procedure-card__text">{item.text}</p>
+        </article>
+      ))}
+    </div>
+
+    {ctaText && ctaHref && (
+      <div class="svc-expect__cta">
+        <a class="btn btn--outline" href={ctaHref}>{ctaText}</a>
+      </div>
+    )}
+  </div>
+</section>

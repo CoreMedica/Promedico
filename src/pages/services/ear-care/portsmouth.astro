@@ -1,0 +1,68 @@
+---
+import ServiceLayout from "../../../layouts/ServiceLayout.astro";
+import ServiceExpect from "../../../components/service/ServiceExpect.astro";
+---
+
+<ServiceLayout
+  title="Earwax Removal Portsmouth | Promedico Wellness Group"
+  description="Professional earwax removal in Portsmouth, including clinic appointments and home visits."
+  eyebrow="Portsmouth Ear Care"
+  heading="Professional Earwax Removal"
+  headingAccent="in Portsmouth"
+  subheading="Safe, effective earwax removal with clinic appointments and home visits across Portsmouth."
+  trustItems={["Clinic appointments", "Home visits available", "Professional ear care"]}
+  pricingTitle="Pricing"
+  pricingIntro="Clear pricing for Portsmouth appointments and home visits."
+  pricingColumns="two"
+  pricingItems={[
+    {
+      label: "Clinic",
+      name: "Clinic Appointment",
+      price: "60",
+      description: "Earwax removal at our Portsmouth clinic.",
+      buttonText: "Book Online",
+      buttonHref: "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+    },
+    {
+      label: "Home Visit",
+      name: "Home Visit Appointment",
+      price: "80",
+      description: "Professional earwax removal in your home.",
+      buttonText: "Book Online",
+      buttonHref: "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984",
+      featured: true
+    }
+  ]}
+  bookingEyebrow="Book an appointment"
+  bookingTitle="Need to arrange your visit?"
+  bookingText="Choose the option that suits you best and book online in just a few steps."
+  bookingMeta={[
+    { text: "Portsmouth clinic appointments available" },
+    { text: "Home visits available across Portsmouth" },
+    { text: "Questions? Contact us", href: "/contact" }
+  ]}
+  bookingPrimaryText="Book Online"
+  bookingPrimaryHref="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+  bookingSecondaryText="Contact Us"
+  bookingSecondaryHref="/contact"
+>
+  <ServiceExpect
+    intro="We begin with an assessment of the ears and then carry out treatment where appropriate."
+    items={[
+      {
+        title: "Initial assessment",
+        text: "We examine the ears carefully and confirm whether treatment is appropriate."
+      },
+      {
+        title: "Treatment",
+        text: "Where suitable, earwax removal is carried out carefully and professionally."
+      },
+      {
+        title: "Aftercare advice",
+        text: "We explain the outcome and answer any questions you may have before you leave."
+      }
+    ]}
+    ctaText="Contact Us"
+    ctaHref="/contact"
+  />
+</ServiceLayout>

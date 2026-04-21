@@ -15,7 +15,10 @@
 // ── WHAT TO EXPECT (dark) ────────────────────
 
 .svc-expect {
-  background-color: $color-header-bg;
+  background: linear-gradient(
+    to bottom,
+    $color-bg-alt 0%,
+    rgba(239, 237, 232, 0.85) 100%);
   padding: $space-3xl 0;
 }
 
