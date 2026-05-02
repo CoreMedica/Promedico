@@ -2,11 +2,187 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Contact | Promedico Wellness Group">
+<BaseLayout
+  title="Contact Promedico Wellness Group"
+  description="Contact Promedico Wellness Group for professional ear care appointments, home visits, and general enquiries."
+>
+  <section class="svc-hero">
+    <div class="container">
+      <div class="svc-hero__inner">
+        <p class="svc-hero__eyebrow">Contact Promedico</p>
+
+        <h1 class="svc-hero__heading">
+          Get in
+          <br />
+          <span class="svc-hero__heading-accent">Touch</span>
+        </h1>
+
+        <p class="svc-hero__subheading">
+          If you have a question about appointments, home visits, or booking options, you can contact us using the form below.
+        </p>
+
+        <ul class="svc-hero__trust-list">
+          <li class="svc-hero__trust-item">Clinic and home visit enquiries</li>
+          <li class="svc-hero__trust-item">Portsmouth and Southampton coverage</li>
+          <li class="svc-hero__trust-item">Professional, practitioner-led care</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__heading">How can we help?</h2>
+        <p class="section-header__lead">
+          Use the contact form for general enquiries. If you are ready to arrange an appointment, you can also book online directly.
+        </p>
+      </div>
+
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>Book online</h3>
+          <p>
+            The quickest way to arrange an appointment is to use our online booking system.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Book Online
+          </a>
+        </div>
+
+        <div class="service-card">
+          <h3>General enquiries</h3>
+          <p>
+            If you are unsure which service is right for you, or have a question before booking, send us a message below.
+          </p>
+          <a class="btn btn--outline" href="#contact-form">
+            Go to Contact Form
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
-      <h1>Contact</h1>
-      <p>Page in development.</p>
+      <div class="section-header">
+        <h2 class="section-header__heading">Send us a message</h2>
+        <p class="section-header__lead">
+          We will respond as soon as we can regarding appointments, service areas, and general questions.
+        </p>
+      </div>
+
+      <form
+        id="contact-form"
+        class="contact-form"
+        action="/php/contact.php"
+        method="POST"
+        novalidate
+      >
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" />
+          </div>
+
+          <div class="form-field">
+            <label for="service">Service area</label>
+            <select id="service" name="service">
+              <option value="">Please select</option>
+              <option value="portsmouth">Portsmouth</option>
+              <option value="southampton">Southampton</option>
+              <option value="not-sure">Not sure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Your message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="7"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-field form-field--checkbox">
+          <input type="checkbox" id="consent" name="consent" value="yes" required />
+          <label for="consent">
+            I consent to Promedico Wellness Group using the details provided to respond to my enquiry.
+          </label>
+        </div>
+
+        <input type="hidden" name="form_name" value="contact" />
+
+        <div class="contact-form__actions">
+          <button type="submit" class="btn btn--primary">Send Enquiry</button>
+          <a
+            class="btn btn--outline"
+            href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Book Online Instead
+          </a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__heading">Before you contact us</h2>
+        <p class="section-header__lead">
+          A few common points to help you choose the right next step.
+        </p>
+      </div>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <h3>Need an appointment quickly?</h3>
+          <p>
+            Use the online booking system for the fastest route to arranging an appointment.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>Not sure which location to choose?</h3>
+          <p>
+            Contact us and we can help you decide whether Portsmouth or Southampton is the right option.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>Asking about a home visit?</h3>
+          <p>
+            Please include your area in the message so we can advise on availability.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>General questions</h3>
+          <p>
+            We are happy to help with queries about service areas, appointments, and booking options.
+          </p>
+        </li>
+      </ul>
     </div>
   </section>
 </BaseLayout>

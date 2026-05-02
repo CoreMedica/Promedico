@@ -1,12 +1,119 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceLayout from "../layouts/ServiceLayout.astro";
 ---
 
-<BaseLayout title="About | Promedico Wellness Group">
+<ServiceLayout
+  title="About Promedico Wellness Group | Professional Ear Care"
+  description="Promedico Wellness Group provides practitioner-led private healthcare services, delivered by an experienced Advanced Clinical Practitioner with over 15 years of NHS and urgent care experience."
+  eyebrow="About Promedico"
+  heading="Experienced, Practitioner-Led"
+  headingAccent="Private Healthcare"
+  subheading="Promedico Wellness Group provides safe, professional ear care and healthcare services, delivered by an experienced Advanced Clinical Practitioner with a strong background in NHS and urgent care settings."
+  trustItems={[
+    "Advanced Clinical Practitioner-led care",
+    "HCPC Registered Paramedic",
+    "Independent Prescriber"
+  ]}
+  bookingEyebrow="Book an appointment"
+  bookingTitle="Ready to arrange your visit?"
+  bookingText="If you are looking for professional, clinically-led ear care, you can book online or contact us for further information."
+  bookingMeta={[
+    { text: "Clinic and home visit options available" },
+    { text: "Serving Portsmouth and Southampton" },
+    { text: "Questions? Contact us", href: "/contact" }
+  ]}
+  bookingPrimaryText="Book Online"
+  bookingPrimaryHref="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+  bookingSecondaryText="Contact Us"
+  bookingSecondaryHref="/contact"
+>
+
+  <!-- ── INTRO ───────────────────────────── -->
   <section class="section">
     <div class="container">
-      <h1>About</h1>
-      <p>Page in development.</p>
+      <div class="section-header">
+        <h2 class="section-header__heading">A clinical approach to private care</h2>
+        <p class="section-header__lead">
+          Promedico Wellness Group is built on a foundation of clinical experience across primary care, urgent care, and paramedicine. Our focus is on delivering safe, appropriate, and professional treatment in a private setting.
+        </p>
+      </div>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ── PRACTITIONER ────────────────────── -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__heading">Your practitioner</h2>
+        <p class="section-header__lead">
+          All care is delivered by an experienced Advanced Clinical Practitioner with extensive NHS and urgent care experience.
+        </p>
+      </div>
+
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>Jacqueline Allen</h3>
+          <p>
+            Jacqueline is a highly experienced Advanced Clinical Practitioner with over 15 years of clinical experience across general practice, urgent care, and paramedicine.
+          </p>
+          <p>
+            She has worked extensively in NHS environments, including urgent treatment centres, primary care, and ambulance services, managing a wide range of acute and chronic conditions.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Clinical qualifications</h3>
+          <p>
+            Jacqueline holds a Master’s degree in Advanced Clinical Practice and is a Level 7 independent and supplementary prescriber.
+          </p>
+          <p>
+            She is a HCPC registered paramedic and is trained in advanced clinical assessment, diagnosis, treatment, and referral across a broad range of patient presentations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY CHOOSE US ───────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__heading">Why choose Promedico</h2>
+        <p class="section-header__lead">
+          Our approach combines clinical expertise with a focus on safe, patient-centred care.
+        </p>
+      </div>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <h3>Practitioner-led care</h3>
+          <p>
+            All assessments and treatments are carried out by a qualified Advanced Clinical Practitioner, not a technician-led service.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>Extensive clinical experience</h3>
+          <p>
+            Over 15 years of experience across NHS, urgent care, and primary care settings ensures a safe and informed approach to treatment.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>Independent prescribing</h3>
+          <p>
+            As an independent prescriber, Jacqueline is qualified to assess, treat, and prescribe where clinically appropriate, supporting a broader scope of care.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>Convenient care options</h3>
+          <p>
+            We offer both clinic appointments and home visits, making access to care straightforward and flexible.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</ServiceLayout>

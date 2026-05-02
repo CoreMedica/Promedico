@@ -1,0 +1,78 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+.contact-form {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  label {
+    font-weight: 600;
+    color: $color-text-dark;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    border: 1px solid $color-border-light;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    font: inherit;
+    color: $color-text-dark;
+    background-color: $color-white;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 180px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid rgba(58, 124, 140, 0.2);
+    outline-offset: 0;
+    border-color: $color-teal;
+  }
+
+  &--checkbox {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    input {
+      width: auto;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    label {
+      font-weight: 400;
+      line-height: 1.6;
+    }
+  }
+}
+
+.contact-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
