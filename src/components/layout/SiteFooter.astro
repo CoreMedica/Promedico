@@ -1,14 +1,51 @@
 <footer class="site-footer">
   <div class="container">
-    <p>© {new Date().getFullYear()} Promedico Wellness Group</p>
+    <div class="footer-upper">
+      <div class="footer-brand">
+        <img src="/images/ProMedico-Logo-text.webp" alt="Promedico Wellness Group" />
+        <p>
+          Practitioner-led private healthcare and professional ear care services for Portsmouth and Southampton.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer services navigation">
+        <h2 class="footer-nav__heading">Services</h2>
+        <ul class="footer-nav__list">
+          <li>
+            <a class="footer-nav__link" href="/services/ear-care">Ear Care</a>
+          </li>
+          <li>
+            <a class="footer-nav__link" href="/services/ear-care/portsmouth">Portsmouth Ear Care</a>
+          </li>
+          <li>
+            <a class="footer-nav__link" href="/services/ear-care/southampton">Southampton Ear Care</a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="footer-nav" aria-label="Footer site navigation">
+        <h2 class="footer-nav__heading">Promedico</h2>
+        <ul class="footer-nav__list">
+          <li>
+            <a class="footer-nav__link" href="/about">About</a>
+          </li>
+          <li>
+            <a class="footer-nav__link" href="/blog">Blog</a>
+          </li>
+          <li>
+            <a class="footer-nav__link" href="/contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-lower">
+      <p class="footer-legal">
+        © {new Date().getFullYear()} Promedico Wellness Group. All rights reserved.
+      </p>
+      <p class="footer-legal">
+        Private healthcare services in Portsmouth and Southampton.
+      </p>
+    </div>
   </div>
 </footer>
-<script>
-  const toggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('.site-header__nav');
-
-  toggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('active');
-    toggle.setAttribute('aria-expanded', isOpen);
-  });
-</script>

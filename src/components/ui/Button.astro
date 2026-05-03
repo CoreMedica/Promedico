@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: "primary" | "secondary" | "text";
+  variant?: "primary" | "outline" | "ghost" | "outline-light";
   type?: "button" | "submit" | "reset";
   target?: string;
   rel?: string;
@@ -20,6 +20,10 @@ const {
 } = Astro.props;
 
 const classes = `btn btn--${variant} ${className}`.trim();
+
+const safeRel = target === "_blank"
+  ? rel ?? "noreferrer"
+  : rel;
 ---
 
 {
@@ -28,7 +32,7 @@ const classes = `btn btn--${variant} ${className}`.trim();
       href={href}
       class={classes}
       target={target}
-      rel={rel}
+      rel={safeRel}
       aria-label={ariaLabel}
     >
       <slot />

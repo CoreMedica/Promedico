@@ -1,29 +1,324 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Button from "../components/ui/Button.astro";
+
+const bookingUrl =
+  "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
+
+const pageTitle =
+  "Earwax Removal Portsmouth & Southampton | Promedico Wellness Group";
+
+const pageDescription =
+  "Practitioner-led earwax removal in Portsmouth and Southampton. Clinic appointments in Portsmouth and home visits available across Portsmouth and Southampton.";
 ---
 
-<BaseLayout
-  title="Promedico Wellness Group | Private Earwax Removal in Portsmouth"
-  description="Clinic appointments in Portsmouth, with home visit ear care across Portsmouth, Southampton, Havant, Fareham, Waterlooville and nearby areas."
->
-  <section class="section">
-    <div class="container">
-      <p>Portsmouth &amp; Surrounding Areas</p>
-      <h1>Private Earwax Removal in Portsmouth</h1>
-      <p>
-        Clinic appointments available in Portsmouth, with professional home visit ear care
-        services across Portsmouth, Southampton, Havant, Fareham, Waterlooville and nearby areas.
-      </p>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main id="main-content">
+    <section class="hero hero--home" aria-labelledby="hero-heading">
+      <div class="hero__bg-pattern" aria-hidden="true"></div>
 
-      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
-        <Button href="/earwax-removal-portsmouth" variant="primary">
-          View Portsmouth Service
-        </Button>
-        <Button href="/earwax-removal-southampton" variant="secondary">
-          View Southampton Home Visits
-        </Button>
+      <div class="container">
+        <div class="hero__inner">
+          <p class="hero__eyebrow">Portsmouth &amp; Southampton Ear Care</p>
+
+          <h1 class="hero__heading" id="hero-heading">
+            Expert Earwax Removal,<br />
+            <span class="hero__heading-accent">at Home or in Clinic</span>
+          </h1>
+
+          <p class="hero__subheading">
+            Practitioner-led ear care across Portsmouth and Southampton, with clinic appointments
+            in Portsmouth and home visits available in both areas.
+          </p>
+
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+              Book Online
+            </a>
+
+            <a class="btn btn--outline-light" href="/services/ear-care">
+              View Ear Care Services
+            </a>
+          </div>
+
+          <ul class="hero__trust-list" aria-label="Promedico key trust points">
+            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
+            <li class="hero__trust-item">HCPC Registered Paramedic</li>
+            <li class="hero__trust-item">Clinic appointments and home visits</li>
+            <li class="hero__trust-item">Clear, safe and patient-centred approach</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="services-section" aria-labelledby="service-choice-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="service-choice-heading">
+            Ear Care in Portsmouth and Southampton
+          </h2>
+
+          <p class="section-header__lead">
+            Promedico provides earwax removal through clinic appointments and home visits,
+            depending on your location and preference.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Portsmouth Ear Care</h3>
+
+              <p class="service-card__text">
+                Clinic appointments and home visits are available across Portsmouth, giving you
+                flexibility depending on what works best for you.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Clinic appointments available</li>
+                <li>Home visits available</li>
+                <li>Assessment and treatment where appropriate</li>
+              </ul>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/portsmouth">
+                View Portsmouth Services
+              </a>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Southampton Ear Care</h3>
+
+              <p class="service-card__text">
+                Home visit earwax removal is available across Southampton and surrounding areas,
+                delivered in a familiar and comfortable setting.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Home visits across Southampton</li>
+                <li>Care delivered in your own home</li>
+                <li>Convenient and accessible appointments</li>
+              </ul>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
+                View Southampton Services
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ear-care-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="ear-care-heading">
+            Professional Earwax Removal with Clear Clinical Assessment
+          </h2>
+
+          <p class="section-header__lead">
+            Blocked ears, reduced hearing, fullness, discomfort or wax build-up can affect daily
+            life. Promedico provides structured ear assessment and earwax removal where appropriate.
+          </p>
+        </header>
+
+        <div class="procedure-cards">
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <h3 class="procedure-card__heading">Assessment First</h3>
+              <p class="procedure-card__text">
+                Appointments begin with an ear assessment to check whether wax is present and
+                whether removal is suitable.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <h3 class="procedure-card__heading">Appropriate Treatment</h3>
+              <p class="procedure-card__text">
+                Where treatment is appropriate, clinically recognised methods such as microsuction
+                may be used.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <h3 class="procedure-card__heading">Clear Advice</h3>
+              <p class="procedure-card__text">
+                If treatment is not suitable, you will be given clear advice on the next appropriate
+                step.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" aria-labelledby="practitioner-heading">
+      <div class="container">
+        <div class="about-section__inner">
+          <div class="about-section__text">
+            <p class="about-section__eyebrow">Practitioner-led care</p>
+
+            <h2 class="about-section__heading" id="practitioner-heading">
+              Care Led by Clinical Experience
+            </h2>
+
+            <p class="about-section__lead">
+              Promedico ear care is delivered by Jacqueline Allen, an Advanced Clinical Practitioner
+              with over 15 years’ experience across primary care, urgent care and paramedicine.
+            </p>
+
+            <p>
+              Jacqueline is an HCPC Registered Paramedic and independent and supplementary
+              prescriber, with an MSc Advanced Clinical Practice background. Her experience across
+              NHS, urgent care and primary care settings supports safe assessment, appropriate
+              decision-making and clear patient communication.
+            </p>
+
+            <p>
+              Earwax removal should not be treated as a purely mechanical procedure. Good care
+              starts with assessment, suitability, consent and aftercare.
+            </p>
+
+            <a class="btn btn--outline" href="/about">
+              Learn More About Promedico
+            </a>
+          </div>
+
+          
+            <img
+              src="/images/team/jacqueline-allen.webp"
+              alt="Jacqueline Allen, Advanced Clinical Practitioner at Promedico Wellness Group"
+              width="700"
+              height="900"
+              loading="lazy"
+              class="about-intro__panel--image"
+            />
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" aria-labelledby="expect-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="expect-heading">
+            What to Expect at Your Appointment
+          </h2>
+
+          <p class="section-header__lead">
+            Your appointment follows a clear process designed around safety, comfort and appropriate
+            care.
+          </p>
+        </header>
+
+        <div class="procedure-cards">
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Step 1</p>
+              <h3 class="procedure-card__heading">Assessment</h3>
+              <p class="procedure-card__text">
+                Your symptoms will be discussed and your ears examined to check whether wax is
+                present and whether removal is appropriate.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Step 2</p>
+              <h3 class="procedure-card__heading">Treatment Where Suitable</h3>
+              <p class="procedure-card__text">
+                If treatment is suitable, earwax removal will be carried out using an appropriate
+                method, such as microsuction.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Step 3</p>
+              <h3 class="procedure-card__heading">Aftercare Advice</h3>
+              <p class="procedure-card__text">
+                You will receive clear aftercare advice, including guidance on managing symptoms and
+                reducing future build-up where possible.
+              </p>
+            </div>
+          </article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="why-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="why-heading">
+            Why Choose Promedico?
+          </h2>
+
+          <p class="section-header__lead">
+            Safe, professional and patient-centred ear care for people who want a clear clinical
+            approach without unnecessary complexity.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Practitioner-Led Care</h3>
+              <p class="service-card__text">
+                Appointments are delivered by an experienced Advanced Clinical Practitioner, not
+                treated as a rushed retail-style service.
+              </p>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Clinic and Home Visit Options</h3>
+              <p class="service-card__text">
+                Choose the setting that suits you, with clinic appointments in Portsmouth and home
+                visits across Portsmouth and Southampton.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="svc-booking" aria-labelledby="booking-heading">
+      <div class="container">
+        <div class="svc-booking__inner svc-booking__inner--no-map">
+          <div>
+            <p class="svc-booking__eyebrow">Book your appointment</p>
+
+            <h2 class="svc-booking__heading" id="booking-heading">
+              Book Your Ear Care Appointment
+            </h2>
+
+            <p class="svc-booking__text">
+              Book online for clinic appointments or home visits, or contact Promedico if you need
+              help choosing the right option.
+            </p>
+
+            <div class="svc-booking__ctas">
+              <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+                Book Online
+              </a>
+
+              <a class="btn btn--outline-light" href="/contact">
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

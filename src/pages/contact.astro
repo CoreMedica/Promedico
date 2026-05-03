@@ -76,13 +76,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           We will respond as soon as we can regarding appointments, service areas, and general questions.
         </p>
       </div>
-
+      <div
+  id="form-alert"
+  class="form-alert"
+  hidden
+></div>
       <form
         id="contact-form"
         class="contact-form"
         action="/php/contact.php"
         method="POST"
-        novalidate
       >
         <div class="form-grid">
           <div class="form-field">
@@ -185,4 +188,69 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </ul>
     </div>
   </section>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
+  const alert = document.getElementById("form-alert");
+
+  const messages = {
+    success: {
+      type: "success",
+      title: "Your enquiry has been sent",
+      text: "Thank you for contacting Promedico Wellness Group. We will respond as soon as we can."
+    },
+    "missing-fields": {
+      type: "error",
+      title: "Some required details are missing",
+      text: "Please check the form and complete your name, email address, message, and consent."
+    },
+    "invalid-email": {
+      type: "error",
+      title: "Please check your email address",
+      text: "The email address entered does not appear to be valid."
+    },
+    "message-too-long": {
+      type: "error",
+      title: "Your message is too long",
+      text: "Please shorten your message and try again."
+    },
+    "send-failed": {
+      type: "error",
+      title: "Your enquiry could not be sent",
+      text: "There was a problem sending your enquiry. Please try again, or contact us another way."
+    },
+    "invalid-method": {
+      type: "error",
+      title: "Invalid form request",
+      text: "Please use the contact form on this page to send your enquiry."
+    },
+    "invalid-form": {
+      type: "error",
+      title: "Invalid form submission",
+      text: "Please refresh the page and try again."
+    },
+    "invalid-service": {
+      type: "error",
+      title: "Invalid service option",
+      text: "Please select a valid service area and try again."
+    },
+    "invalid-length": {
+      type: "error",
+      title: "Some details are too long",
+      text: "Please shorten the relevant fields and try again."
+    }
+  };
+
+  if (status && alert && Object.prototype.hasOwnProperty.call(messages, status)) {
+    const message = messages[status];
+
+    alert.classList.add(`form-alert--${message.type}`);
+    alert.setAttribute("role", message.type === "error" ? "alert" : "status");
+    alert.innerHTML = `
+      <h3 class="form-alert__title">${message.title}</h3>
+      <p class="form-alert__text">${message.text}</p>
+    `;
+    alert.hidden = false;
+  }
+</script>
 </BaseLayout>

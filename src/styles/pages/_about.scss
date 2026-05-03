@@ -32,6 +32,11 @@
       border: 1px solid $color-border-light;
       border-radius: 8px;
       padding: $space-xl;
+
+      &--image {
+        max-height: 400px;
+        width: auto;
+      }
     }
 
     &__facts {

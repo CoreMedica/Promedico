@@ -1,15 +1,24 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
+
 .contact-form {
   max-width: 860px;
   margin: 0 auto;
+  background-color: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-md;
+  padding: $space-2xl;
+
+  @include respond-to(mobile) {
+    padding: $space-xl;
+  }
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: $space-lg;
+  margin-bottom: $space-lg;
 
   @include respond-to(tablet) {
     grid-template-columns: 1fr;
@@ -19,11 +28,11 @@
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: $space-sm;
+  margin-bottom: $space-lg;
 
   label {
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
     color: $color-text-dark;
   }
 
@@ -32,40 +41,54 @@
   textarea {
     width: 100%;
     border: 1px solid $color-border-light;
-    border-radius: 8px;
-    padding: 0.9rem 1rem;
-    font: inherit;
+    border-radius: $radius-sm;
+    padding: 0.9rem $space-md;
+    font-family: $font-body;
+    font-size: 1rem;
     color: $color-text-dark;
     background-color: $color-white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  textarea {
-    resize: vertical;
-    min-height: 180px;
+  input:hover,
+  select:hover,
+  textarea:hover {
+    border-color: rgba(58, 124, 140, 0.45);
   }
 
   input:focus,
   select:focus,
   textarea:focus {
-    outline: 2px solid rgba(58, 124, 140, 0.2);
-    outline-offset: 0;
+    outline: none;
     border-color: $color-teal;
+    box-shadow: 0 0 0 3px rgba(58, 124, 140, 0.15);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 180px;
+    line-height: 1.7;
+  }
+
+  select {
+    cursor: pointer;
   }
 
   &--checkbox {
     flex-direction: row;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: $space-sm;
 
     input {
       width: auto;
-      margin-top: 0.2rem;
+      margin-top: 0.3rem;
       flex-shrink: 0;
     }
 
     label {
-      font-weight: 400;
+      font-weight: $font-weight-body;
       line-height: 1.6;
+      color: rgba(30, 30, 30, 0.75);
     }
   }
 }
@@ -73,6 +96,54 @@
 .contact-form__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: $space-md;
+  margin-top: $space-xl;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.form-alert {
+  max-width: 860px;
+  margin: 0 auto $space-lg;
+  border-radius: $radius-md;
+  padding: $space-lg;
+  border: 1px solid $color-border-light;
+  background-color: $color-white;
+
+  &__title {
+    font-family: $font-heading;
+    font-weight: $font-weight-heading;
+    font-size: 1.15rem;
+    margin-bottom: $space-xs;
+  }
+
+  &__text {
+    margin-bottom: 0;
+    color: rgba(30, 30, 30, 0.75);
+  }
+
+  &--success {
+    border-color: rgba(58, 124, 140, 0.35);
+    background-color: rgba(58, 124, 140, 0.08);
+
+    .form-alert__title {
+      color: $color-teal;
+    }
+  }
+
+  &--error {
+    border-color: rgba(160, 30, 30, 0.25);
+    background-color: rgba(160, 30, 30, 0.06);
+
+    .form-alert__title {
+      color: rgba(160, 30, 30, 0.95);
+    }
+  }
 }

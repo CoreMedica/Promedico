@@ -10,12 +10,14 @@ interface Props {
   items: ExpectItem[];
   ctaText?: string;
   ctaHref?: string;
+  closingSentence?: string;
 }
 
 const {
-  title = "What to expect",
+  title = "What to Expect at Your Appointment",
   intro,
   items,
+  closingSentence,
   ctaText,
   ctaHref
 } = Astro.props;
@@ -37,7 +39,7 @@ const {
         </article>
       ))}
     </div>
-
+    <p class="procedure-cards__closing">{closingSentence}</p>
     {ctaText && ctaHref && (
       <div class="svc-expect__cta">
         <a class="btn btn--outline" href={ctaHref}>{ctaText}</a>
