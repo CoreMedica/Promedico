@@ -1,256 +1,375 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const bookingUrl =
+  "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
+
+const pageTitle = "Contact Promedico Wellness Group | Ear Care Portsmouth & Southampton";
+
+const pageDescription =
+  "Contact Promedico Wellness Group for practitioner-led ear care appointments, Portsmouth clinic appointments, home visits, and general enquiries.";
 ---
 
-<BaseLayout
-  title="Contact Promedico Wellness Group"
-  description="Contact Promedico Wellness Group for professional ear care appointments, home visits, and general enquiries."
->
-  <section class="svc-hero">
-    <div class="container">
-      <div class="svc-hero__inner">
-        <p class="svc-hero__eyebrow">Contact Promedico</p>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main id="main-content">
+    <section class="hero hero--image hero--contact" aria-labelledby="contact-hero-heading">
+      <div class="hero__bg-pattern" aria-hidden="true"></div>
 
-        <h1 class="svc-hero__heading">
-          Get in
-          <br />
-          <span class="svc-hero__heading-accent">Touch</span>
-        </h1>
+      <div class="container">
+        <div class="hero__inner">
+          <p class="hero__eyebrow">Contact Promedico</p>
 
-        <p class="svc-hero__subheading">
-          If you have a question about appointments, home visits, or booking options, you can contact us using the form below.
-        </p>
+          <h1 class="hero__heading" id="contact-hero-heading">
+            Contact Promedico<br />
+            <span class="hero__heading-accent">Wellness Group</span>
+          </h1>
 
-        <ul class="svc-hero__trust-list">
-          <li class="svc-hero__trust-item">Clinic and home visit enquiries</li>
-          <li class="svc-hero__trust-item">Portsmouth and Southampton coverage</li>
-          <li class="svc-hero__trust-item">Professional, practitioner-led care</li>
+          <p class="hero__subheading">
+            Contact us about ear care appointments, Portsmouth clinic bookings, home visits across
+            Portsmouth and Southampton, or general questions before booking.
+          </p>
+
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+              Book Online
+            </a>
+
+            <a class="btn btn--outline-light" href="#contact-form">
+              Send an Enquiry
+            </a>
+          </div>
+
+          <ul class="hero__trust-list" aria-label="Promedico contact options">
+            <li class="hero__trust-item">Portsmouth clinic enquiries</li>
+            <li class="hero__trust-item">Home visit enquiries</li>
+            <li class="hero__trust-item">Portsmouth and Southampton coverage</li>
+            <li class="hero__trust-item">Practitioner-led ear care</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" aria-labelledby="contact-options-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="contact-options-heading">
+            How Can We Help?
+          </h2>
+
+          <p class="section-header__lead">
+            Use the contact form for general enquiries. If you are ready to arrange an appointment,
+            online booking is usually the quickest route.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Book Online</h3>
+
+              <p class="service-card__text">
+                The quickest way to arrange an ear care appointment is to use the online booking
+                system.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Portsmouth clinic appointments</li>
+                <li>Portsmouth home visits</li>
+                <li>Southampton home visits</li>
+              </ul>
+
+              <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+                Book Online
+              </a>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">General Enquiries</h3>
+
+              <p class="service-card__text">
+                If you are unsure which option is right for you, or you have a question before
+                booking, send us a message using the form below.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Ask about appointment options</li>
+                <li>Check home visit coverage</li>
+                <li>Ask a question before booking</li>
+              </ul>
+
+              <a class="btn btn--outline service-card__link" href="#contact-form">
+                Go to Contact Form
+              </a>
+            </div>
+          </li>
         </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section--light">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-header__heading">How can we help?</h2>
-        <p class="section-header__lead">
-          Use the contact form for general enquiries. If you are ready to arrange an appointment, you can also book online directly.
-        </p>
-      </div>
+    <section class="section" aria-labelledby="clinic-location-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="clinic-location-heading">
+            Portsmouth Clinic Location
+          </h2>
 
-      <div class="service-cards">
-        <div class="service-card">
-          <h3>Book online</h3>
-          <p>
-            The quickest way to arrange an appointment is to use our online booking system.
+          <p class="section-header__lead">
+            Clinic appointments are available at Somerstown Central Community Hub in Southsea,
+            Portsmouth. Home visits are also available across Portsmouth and Southampton.
           </p>
-          <a
-            class="btn btn--primary"
-            href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Book Online
-          </a>
-        </div>
+        </header>
 
-        <div class="service-card">
-          <h3>General enquiries</h3>
-          <p>
-            If you are unsure which service is right for you, or have a question before booking, send us a message below.
+        <div class="about-intro__grid">
+          <div class="about-intro__content">
+            <p>
+              The Portsmouth clinic is based at:
+            </p>
+
+            <p>
+              <strong>
+                Somerstown Central Community Hub<br />
+                Winston Churchill Avenue<br />
+                Southsea<br />
+                Portsmouth<br />
+                PO5 4JJ
+              </strong>
+            </p>
+
+            <p>
+              Please use the online booking system for appointments where possible. If you are
+              enquiring about a home visit, include your area or postcode in your message so we can
+              advise on availability.
+            </p>
+
+            <div class="contact-form__actions">
+              <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+                Book Online
+              </a>
+
+              <a class="btn btn--outline" href="#contact-form">
+                Send an Enquiry
+              </a>
+            </div>
+          </div>
+
+          <figure class="about-intro__panel">
+            <img
+              class="about-intro__panel--image"
+              src="/images/contact/somerstown-central-hub.webp"
+              alt="Somerstown Central Community Hub in Southsea, Portsmouth"
+              width="850"
+              height="478"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" aria-labelledby="message-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="message-heading">
+            Send Us a Message
+          </h2>
+
+          <p class="section-header__lead">
+            Use the form below for appointment questions, home visit enquiries, service area
+            queries, or anything you would like to clarify before booking.
           </p>
-          <a class="btn btn--outline" href="#contact-form">
-            Go to Contact Form
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+        </header>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-header__heading">Send us a message</h2>
-        <p class="section-header__lead">
-          We will respond as soon as we can regarding appointments, service areas, and general questions.
-        </p>
-      </div>
-      <div
-  id="form-alert"
-  class="form-alert"
-  hidden
-></div>
-      <form
-        id="contact-form"
-        class="contact-form"
-        action="/php/contact.php"
-        method="POST"
-      >
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="name">Full name</label>
-            <input type="text" id="name" name="name" autocomplete="name" required />
+        <div id="form-alert" class="form-alert" hidden></div>
+
+        <form
+          id="contact-form"
+          class="contact-form"
+          action="/php/contact.php"
+          method="POST"
+        >
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+            </div>
+
+            <div class="form-field">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+
+            <div class="form-field">
+              <label for="service">Enquiry type</label>
+              <select id="service" name="service">
+                <option value="">Please select</option>
+                <option value="portsmouth">Portsmouth clinic appointment</option>
+                <option value="portsmouth-home">Portsmouth home visit</option>
+                <option value="southampton">Southampton home visit</option>
+                <option value="not-sure">Not sure</option>
+              </select>
+            </div>
           </div>
 
           <div class="form-field">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" autocomplete="email" required />
+            <label for="message">Your message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="7"
+              required
+            ></textarea>
           </div>
 
-          <div class="form-field">
-            <label for="phone">Phone number</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel" />
+          <div class="form-field form-field--checkbox">
+            <input type="checkbox" id="consent" name="consent" value="yes" required />
+            <label for="consent">
+              I consent to Promedico Wellness Group using the details provided to respond to my
+              enquiry.
+            </label>
           </div>
 
-          <div class="form-field">
-            <label for="service">Service area</label>
-            <select id="service" name="service">
-              <option value="">Please select</option>
-              <option value="portsmouth">Portsmouth</option>
-              <option value="southampton">Southampton</option>
-              <option value="not-sure">Not sure</option>
-            </select>
+          <input type="hidden" name="form_name" value="contact" />
+
+          <div class="contact-form__actions">
+            <button type="submit" class="btn btn--primary">Send Enquiry</button>
+
+            <a class="btn btn--outline" href={bookingUrl} target="_blank" rel="noopener">
+              Book Online Instead
+            </a>
           </div>
-        </div>
-
-        <div class="form-field">
-          <label for="message">Your message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="7"
-            required
-          ></textarea>
-        </div>
-
-        <div class="form-field form-field--checkbox">
-          <input type="checkbox" id="consent" name="consent" value="yes" required />
-          <label for="consent">
-            I consent to Promedico Wellness Group using the details provided to respond to my enquiry.
-          </label>
-        </div>
-
-        <input type="hidden" name="form_name" value="contact" />
-
-        <div class="contact-form__actions">
-          <button type="submit" class="btn btn--primary">Send Enquiry</button>
-          <a
-            class="btn btn--outline"
-            href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Book Online Instead
-          </a>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <section class="section section--light">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-header__heading">Before you contact us</h2>
-        <p class="section-header__lead">
-          A few common points to help you choose the right next step.
-        </p>
+        </form>
       </div>
+    </section>
 
-      <ul class="service-cards">
-        <li class="service-card">
-          <h3>Need an appointment quickly?</h3>
-          <p>
-            Use the online booking system for the fastest route to arranging an appointment.
+    <section class="section" aria-labelledby="before-contact-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="before-contact-heading">
+            Before You Contact Us
+          </h2>
+
+          <p class="section-header__lead">
+            A few common points to help you choose the right next step.
           </p>
-        </li>
+        </header>
 
-        <li class="service-card">
-          <h3>Not sure which location to choose?</h3>
-          <p>
-            Contact us and we can help you decide whether Portsmouth or Southampton is the right option.
-          </p>
-        </li>
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Need an Appointment Quickly?</h3>
 
-        <li class="service-card">
-          <h3>Asking about a home visit?</h3>
-          <p>
-            Please include your area in the message so we can advise on availability.
-          </p>
-        </li>
+              <p class="service-card__text">
+                Use the online booking system for the fastest route to arranging an appointment.
+              </p>
+            </div>
+          </li>
 
-        <li class="service-card">
-          <h3>General questions</h3>
-          <p>
-            We are happy to help with queries about service areas, appointments, and booking options.
-          </p>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <script>
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get("status");
-  const alert = document.getElementById("form-alert");
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Not Sure Which Option to Choose?</h3>
 
-  const messages = {
-    success: {
-      type: "success",
-      title: "Your enquiry has been sent",
-      text: "Thank you for contacting Promedico Wellness Group. We will respond as soon as we can."
-    },
-    "missing-fields": {
-      type: "error",
-      title: "Some required details are missing",
-      text: "Please check the form and complete your name, email address, message, and consent."
-    },
-    "invalid-email": {
-      type: "error",
-      title: "Please check your email address",
-      text: "The email address entered does not appear to be valid."
-    },
-    "message-too-long": {
-      type: "error",
-      title: "Your message is too long",
-      text: "Please shorten your message and try again."
-    },
-    "send-failed": {
-      type: "error",
-      title: "Your enquiry could not be sent",
-      text: "There was a problem sending your enquiry. Please try again, or contact us another way."
-    },
-    "invalid-method": {
-      type: "error",
-      title: "Invalid form request",
-      text: "Please use the contact form on this page to send your enquiry."
-    },
-    "invalid-form": {
-      type: "error",
-      title: "Invalid form submission",
-      text: "Please refresh the page and try again."
-    },
-    "invalid-service": {
-      type: "error",
-      title: "Invalid service option",
-      text: "Please select a valid service area and try again."
-    },
-    "invalid-length": {
-      type: "error",
-      title: "Some details are too long",
-      text: "Please shorten the relevant fields and try again."
-    }
-  };
+              <p class="service-card__text">
+                Contact us and we can help you decide whether a Portsmouth clinic appointment,
+                Portsmouth home visit or Southampton home visit is the right option.
+              </p>
+            </div>
+          </li>
 
-  if (status && alert && Object.prototype.hasOwnProperty.call(messages, status)) {
-    const message = messages[status];
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Asking About a Home Visit?</h3>
 
-    alert.classList.add(`form-alert--${message.type}`);
-    alert.setAttribute("role", message.type === "error" ? "alert" : "status");
-    alert.innerHTML = `
-      <h3 class="form-alert__title">${message.title}</h3>
-      <p class="form-alert__text">${message.text}</p>
-    `;
-    alert.hidden = false;
-  }
-</script>
+              <p class="service-card__text">
+                Please include your area or postcode in the message so we can advise on availability.
+              </p>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">General Questions</h3>
+
+              <p class="service-card__text">
+                We can help with queries about service areas, appointment types and booking options.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get("status");
+      const alert = document.getElementById("form-alert");
+
+      const messages = {
+        success: {
+          type: "success",
+          title: "Your enquiry has been sent",
+          text: "Thank you for contacting Promedico Wellness Group. We will respond as soon as we can."
+        },
+        "missing-fields": {
+          type: "error",
+          title: "Some required details are missing",
+          text: "Please check the form and complete your name, email address, message, and consent."
+        },
+        "invalid-email": {
+          type: "error",
+          title: "Please check your email address",
+          text: "The email address entered does not appear to be valid."
+        },
+        "message-too-long": {
+          type: "error",
+          title: "Your message is too long",
+          text: "Please shorten your message and try again."
+        },
+        "send-failed": {
+          type: "error",
+          title: "Your enquiry could not be sent",
+          text: "There was a problem sending your enquiry. Please try again, or contact us another way."
+        },
+        "invalid-method": {
+          type: "error",
+          title: "Invalid form request",
+          text: "Please use the contact form on this page to send your enquiry."
+        },
+        "invalid-form": {
+          type: "error",
+          title: "Invalid form submission",
+          text: "Please refresh the page and try again."
+        },
+        "invalid-service": {
+          type: "error",
+          title: "Invalid service option",
+          text: "Please select a valid service area and try again."
+        },
+        "invalid-length": {
+          type: "error",
+          title: "Some details are too long",
+          text: "Please shorten the relevant fields and try again."
+        }
+      };
+
+      if (status && alert && Object.prototype.hasOwnProperty.call(messages, status)) {
+        const message = messages[status as keyof typeof messages];
+
+        alert.classList.add(`form-alert--${message.type}`);
+        alert.setAttribute("role", message.type === "error" ? "alert" : "status");
+        alert.innerHTML = `
+          <h3 class="form-alert__title">${message.title}</h3>
+          <p class="form-alert__text">${message.text}</p>
+        `;
+        alert.hidden = false;
+      }
+    </script>
+  </main>
 </BaseLayout>

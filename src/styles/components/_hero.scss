@@ -183,3 +183,81 @@
     flex-shrink: 0;
   }
 }
+
+// ─── HERO IMAGE MODIFIERS ────────────────────────────────────
+// Shared image treatment for pages using the main .hero system.
+
+.hero--image {
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+
+.hero--home {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba($color-header-bg, 0.94) 0%,
+      rgba($color-header-bg, 0.84) 48%,
+      rgba($color-header-bg, 0.48) 100%
+    ),
+    url("/images/home/home-hero-ear-care.webp");
+  background-position: top right;
+
+  @include respond-to(tablet) {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba($color-header-bg, 0.94) 0%,
+        rgba($color-header-bg, 0.88) 100%
+      ),
+      url("/images/home/home-hero-ear-care.webp");
+    background-position: top center;
+  }
+}
+
+.hero--about {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba($color-header-bg, 0.94) 0%,
+      rgba($color-header-bg, 0.84) 48%,
+      rgba($color-header-bg, 0.48) 100%
+    ),
+    url("/images/about/about-hero-ear-care.webp");
+  background-position: center right;
+
+  @include respond-to(tablet) {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba($color-header-bg, 0.94) 0%,
+        rgba($color-header-bg, 0.88) 100%
+      ),
+      url("/images/about/about-hero-ear-care.webp");
+    background-position: center;
+  }
+}
+
+.hero--contact {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba($color-header-bg, 0.94) 0%,
+      rgba($color-header-bg, 0.84) 48%,
+      rgba($color-header-bg, 0.48) 100%
+    ),
+    url("/images/contact/somerstown-central-hub.webp");
+  background-position: center right;
+
+  @include respond-to(tablet) {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba($color-header-bg, 0.94) 0%,
+        rgba($color-header-bg, 0.88) 100%
+      ),
+      url("/images/contact/somerstown-central-hub.webp");
+    background-position: center;
+  }
+}
