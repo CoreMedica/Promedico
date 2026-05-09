@@ -32,6 +32,21 @@
     transform: translateY(-3px);
   }
 
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Optional horizontal header layout:
+  // Use when the icon should sit on the same line as the card title.
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    margin-bottom: $space-md;
+  }
+
   &__icon-wrap {
     width: 52px;
     height: 52px;
@@ -44,6 +59,18 @@
     color: $color-teal;
     flex-shrink: 0;
     align-self: center;
+
+    .fa-thin {
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+  }
+
+  &__header &__icon-wrap {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0;
+    align-self: auto;
   }
 
   &__icon {
@@ -51,12 +78,6 @@
     height: 30px;
     fill: currentColor;
     stroke: none;
-  }
-
-  &__body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
   }
 
   &__heading {
@@ -68,8 +89,13 @@
     text-align: center;
   }
 
+  &__header &__heading {
+    margin-bottom: 0;
+    text-align: left;
+    flex: 1;
+  }
+
   &__text {
-    //font-size: 0.9375rem;
     line-height: 1.65;
     color: rgba(30, 30, 30, 0.7);
     margin-bottom: 1rem;
@@ -81,7 +107,6 @@
     margin: 0 0 1.25rem;
 
     li {
-      //font-size: 0.8125rem;
       color: rgba(30, 30, 30, 0.6);
       padding: 0.2rem 0 0.2rem 1.1rem;
       position: relative;
@@ -142,11 +167,20 @@
   border: 1px solid $color-border-light;
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
   padding: $space-xl;
+  height: 100%;
 
   &:hover {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
   }
 
   &__step {
@@ -157,38 +191,56 @@
     margin-bottom: $space-sm;
   }
 
-  &__icon-wrap {
-    background-color: $color-header-bg;
-    padding: $space-xl $space-xl $space-lg;
-    display: flex;
-    align-items: center;
-    border-radius: 8px 8px 0 0;
-  }
-
-  &__icon {
-    width: 48px;
-    height: 48px;
-    color: $color-teal;
-  }
-
-  &__body {
-    padding: $space-xl;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
   &__eyebrow {
     @include eyebrow;
     margin-bottom: $space-sm;
   }
 
+  // Optional horizontal header layout:
+  // Use when the icon should sit on the same line as the procedure title.
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    margin-bottom: $space-md;
+  }
+
+  &__icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba(58, 124, 140, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-teal;
+    flex-shrink: 0;
+
+    .fa-thin {
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    color: $color-teal;
+    flex-shrink: 0;
+  }
+
   &__title {
     font-family: $font-heading;
     font-weight: $font-weight-heading;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    line-height: 1.25;
     color: $color-text-dark;
     margin-bottom: $space-md;
+  }
+
+  &__header &__title {
+    margin-bottom: 0;
+    flex: 1;
   }
 
   &__text {
@@ -196,6 +248,10 @@
     line-height: 1.75;
     color: $color-text-dark;
     margin-bottom: $space-lg;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__benefits {

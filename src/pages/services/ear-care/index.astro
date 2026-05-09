@@ -1,94 +1,389 @@
 ---
-import ServiceLayout from "../../../layouts/ServiceLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ServiceExpect from "../../../components/service/ServiceExpect.astro";
+
+const bookingUrl =
+  "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
+
+const pageTitle =
+  "Ear Care Services Portsmouth & Southampton | Promedico Wellness Group";
+
+const pageDescription =
+  "Professional ear care and earwax removal services in Portsmouth and Southampton, with Portsmouth clinic appointments and home visits available.";
 ---
 
-<ServiceLayout
-  title="Ear Care Services | Promedico Wellness Group"
-  description="Professional ear care services from Promedico Wellness Group, including Portsmouth clinic appointments, Portsmouth home visits, and Southampton home visits."
-  eyebrow="Ear Care Services"
-  heading="Professional Ear Care"
-  headingAccent="for Portsmouth and Southampton"
-  subheading="Safe, effective earwax removal with clinic and home visit options, designed to make access to ear care straightforward and convenient."
-  trustItems={[
-    "Portsmouth clinic appointments",
-    "Portsmouth home visits",
-    "Southampton home visits"
-  ]}
-  bookingEyebrow="Book an appointment"
-  bookingTitle="Need to arrange your visit?"
-  bookingText="Choose the service area that suits you best, then book online or contact us if you would like help before booking."
-  bookingMeta={[
-    { text: "Portsmouth clinic appointments available" },
-    { text: "Home visits available in Portsmouth and Southampton" },
-    { text: "Questions? Contact us", href: "/contact" }
-  ]}
-  bookingPrimaryText="Book Online"
-  bookingPrimaryHref="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
-  bookingSecondaryText="Contact Us"
-  bookingSecondaryHref="/contact"
->
-  <section class="section section--light">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-header__heading">Choose your ear care service</h2>
-        <p class="section-header__lead">
-          We currently offer earwax removal in Portsmouth and Southampton, with options for clinic appointments and home visits depending on location.
-        </p>
-      </div>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main id="main-content">
+    <section class="hero hero--image hero--ear-care" aria-labelledby="ear-care-hero-heading">
+      <div class="hero__bg-pattern" aria-hidden="true"></div>
 
-      <ul class="service-cards">
-        <li class="service-card">
-          <h3>Portsmouth</h3>
-          <p>
-            Earwax removal in Portsmouth with both clinic appointments and home visits available.
+      <div class="container">
+        <div class="hero__inner">
+          <p class="hero__eyebrow">Ear Care Services</p>
+
+          <h1 class="hero__heading" id="ear-care-hero-heading">
+            Professional Ear Care<br />
+            <span class="hero__heading-accent">in Portsmouth and Southampton</span>
+          </h1>
+
+          <p class="hero__subheading">
+            Practitioner-led earwax removal and ear care appointments, with Portsmouth clinic
+            appointments and home visits available across Portsmouth and Southampton.
           </p>
-          <a class="btn btn--primary" href="/services/ear-care/portsmouth">
-            View Portsmouth Service
-          </a>
-        </li>
 
-        <li class="service-card">
-          <h3>Southampton</h3>
-          <p>
-            Earwax removal in Southampton offered as a convenient home visit service.
-          </p>
-          <a class="btn btn--primary" href="/services/ear-care/southampton">
-            View Southampton Service
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+              Book Online
+            </a>
 
-  <ServiceExpect
-    intro="We begin with a careful assessment of the ears and carry out treatment where appropriate, explaining the process clearly throughout."
-    items={[
-      {
-        title: "Initial assessment",
-        text: "We assess the ears carefully and confirm whether treatment is suitable."
-      },
-      {
-        title: "Treatment where appropriate",
-        text: "Earwax removal is carried out carefully and professionally using the appropriate approach."
-      },
-      {
-        title: "Clear aftercare advice",
-        text: "We explain the outcome and answer any questions before the appointment ends."
-      }
-    ]}
-    ctaText="Contact Us"
-    ctaHref="/contact"
-  />
+            <a class="btn btn--outline-light" href="#choose-service">
+              Choose Your Service
+            </a>
+          </div>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-header__heading">Which option is right for you?</h2>
-        <p class="section-header__lead">
-          If you are unsure whether to choose Portsmouth or Southampton, or whether a clinic appointment or home visit is more suitable, contact us and we will be happy to help.
-        </p>
+          <ul class="hero__trust-list" aria-label="Promedico ear care options">
+            <li class="hero__trust-item">Portsmouth clinic appointments</li>
+            <li class="hero__trust-item">Portsmouth home visits</li>
+            <li class="hero__trust-item">Southampton home visits</li>
+            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
-</ServiceLayout>
+    </section>
+
+    <section class="section section--light" id="choose-service" aria-labelledby="choose-service-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="choose-service-heading">
+            Choose Your Ear Care Service
+          </h2>
+
+          <p class="section-header__lead">
+            Promedico currently provides earwax removal in Portsmouth and Southampton. Choose the
+            service page that matches your location and preferred appointment type.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <div class="service-card__header">
+                <div class="service-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-building"></i>
+                </div>
+
+                <h3 class="service-card__heading">Portsmouth Ear Care</h3>
+              </div>
+
+              <p class="service-card__text">
+                Earwax removal in Portsmouth with both clinic appointments and home visits available.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Clinic appointments available</li>
+                <li>Home visits available</li>
+                <li>Suitable for Portsmouth patients</li>
+              </ul>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/portsmouth">
+                View Portsmouth Service
+              </a>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <div class="service-card__header">
+                <div class="service-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-house-medical"></i>
+                </div>
+
+                <h3 class="service-card__heading">Southampton Ear Care</h3>
+              </div>
+
+              <p class="service-card__text">
+                Home visit earwax removal across Southampton, delivered in a familiar and comfortable setting.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Home visits across Southampton</li>
+                <li>No clinic travel required</li>
+                <li>Convenient in-home appointments</li>
+              </ul>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
+                View Southampton Service
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="earwax-removal-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="earwax-removal-heading">
+            Earwax Removal with Assessment First
+          </h2>
+
+          <p class="section-header__lead">
+            Earwax removal should start with a clear assessment. Promedico checks whether wax is
+            present, whether removal is appropriate, and which appointment option is most suitable.
+          </p>
+        </header>
+
+        <div class="procedure-cards">
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Assessment</p>
+
+              <div class="procedure-card__header">
+                <div class="procedure-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-clipboard-medical"></i>
+                </div>
+
+                <h3 class="procedure-card__title">Checking Suitability</h3>
+              </div>
+
+              <p class="procedure-card__text">
+                Your symptoms are discussed and the ears are examined before treatment is considered.
+                This helps confirm whether earwax removal is appropriate.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Treatment</p>
+
+              <div class="procedure-card__header">
+                <div class="procedure-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-ear-listen"></i>
+                </div>
+
+                <h3 class="procedure-card__title">Removal Where Appropriate</h3>
+              </div>
+
+              <p class="procedure-card__text">
+                Where suitable, earwax removal may be carried out using an appropriate clinical
+                method, such as microsuction.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Advice</p>
+
+              <div class="procedure-card__header">
+                <div class="procedure-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-comment-medical"></i>
+                </div>
+
+                <h3 class="procedure-card__title">Clear Next Steps</h3>
+              </div>
+
+              <p class="procedure-card__text">
+                If treatment is not suitable, you will be given clear guidance on the next
+                appropriate step.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <ServiceExpect
+      title="What to Expect at Your Ear Care Appointment"
+      intro="Your appointment follows a structured process designed around safety, comfort and appropriate care."
+      items={[
+        {
+          title: "Initial assessment",
+          text: "Your symptoms will be discussed and your ears examined to check whether wax is present and whether removal is suitable."
+        },
+        {
+          title: "Treatment where appropriate",
+          text: "If treatment is suitable, earwax removal will be carried out carefully using an appropriate method."
+        },
+        {
+          title: "Aftercare advice",
+          text: "You will receive clear aftercare advice and guidance on what to do if symptoms persist or further support is needed."
+        }
+      ]}
+      closingSentence="The same professional standard of care applies whether your appointment takes place at home or in clinic."
+      ctaText="Contact Us"
+      ctaHref="/contact"
+    />
+
+    <section class="section section--light" aria-labelledby="symptoms-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="symptoms-heading">
+            When Earwax May Need Attention
+          </h2>
+
+          <p class="section-header__lead">
+            Earwax build-up can cause symptoms that affect hearing, comfort and day-to-day life.
+            Assessment is important because not every ear symptom is caused by wax.
+          </p>
+        </header>
+
+        <div class="procedure-cards">
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <h3 class="procedure-card__title">Blocked or Full Ears</h3>
+
+              <p class="procedure-card__text">
+                A blocked or full sensation may be associated with wax build-up, but the ear should
+                be assessed before any treatment is carried out.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <h3 class="procedure-card__title">Reduced Hearing</h3>
+
+              <p class="procedure-card__text">
+                Wax can sometimes reduce hearing clarity. An appointment can help establish whether
+                wax is present and whether removal is appropriate.
+              </p>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <h3 class="procedure-card__title">Discomfort or Irritation</h3>
+
+              <p class="procedure-card__text">
+                If you have discomfort, irritation or ongoing symptoms, assessment helps identify
+                whether earwax removal is suitable or whether further advice is needed.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="why-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="why-heading">
+            Why Choose Promedico for Ear Care?
+          </h2>
+
+          <p class="section-header__lead">
+            Promedico provides practitioner-led ear care with a conservative, clinical and
+            patient-centred approach.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Practitioner-Led Care</h3>
+
+              <p class="service-card__text">
+                Appointments are delivered by an experienced Advanced Clinical Practitioner, with a
+                focus on assessment, suitability and clear communication.
+              </p>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Clinic and Home Visit Options</h3>
+
+              <p class="service-card__text">
+                Choose the setting that suits you: Portsmouth clinic appointments or home visits
+                across Portsmouth and Southampton.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--light" aria-labelledby="right-option-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="right-option-heading">
+            Which Option Is Right for You?
+          </h2>
+
+          <p class="section-header__lead">
+            Choose Portsmouth if you want either a clinic appointment or a Portsmouth home visit.
+            Choose Southampton if you are looking for home visit earwax removal in Southampton.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Choose Portsmouth</h3>
+
+              <p class="service-card__text">
+                For clinic appointments at Somerstown Central Community Hub or home visits across
+                Portsmouth.
+              </p>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/portsmouth">
+                Portsmouth Ear Care
+              </a>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Choose Southampton</h3>
+
+              <p class="service-card__text">
+                For home visit earwax removal across Southampton and surrounding areas.
+              </p>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
+                Southampton Ear Care
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="svc-booking" aria-labelledby="booking-heading">
+      <div class="container">
+        <div class="svc-booking__inner svc-booking__inner--no-map">
+          <div class="svc-booking__content">
+            <p class="svc-booking__eyebrow">Book an appointment</p>
+
+            <h2 class="svc-booking__heading" id="booking-heading">
+              Book Your Ear Care Appointment
+            </h2>
+
+            <p class="svc-booking__text">
+              Choose the service area that suits you best, then book online or contact Promedico if
+              you would like help before booking.
+            </p>
+
+            <ul class="svc-booking__meta">
+              <li>Portsmouth clinic appointments available</li>
+              <li>Home visits available in Portsmouth and Southampton</li>
+              <li><a href="/contact">Questions? Contact us</a></li>
+            </ul>
+
+            <div class="svc-booking__ctas">
+              <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+                Book Online
+              </a>
+
+              <a class="btn btn--outline" href="/contact">
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
