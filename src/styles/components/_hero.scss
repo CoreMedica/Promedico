@@ -283,3 +283,25 @@
     background-position: center;
   }
 }
+.hero--portsmouth-ear-care {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba($color-header-bg, 0.94) 0%,
+      rgba($color-header-bg, 0.84) 48%,
+      rgba($color-header-bg, 0.48) 100%
+    ),
+    url("/images/services/ear-care/portsmouth-hero.webp");
+  background-position: center right;
+
+  @include respond-to(tablet) {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba($color-header-bg, 0.94) 0%,
+        rgba($color-header-bg, 0.88) 100%
+      ),
+      url("/images/services/ear-care/portsmouth-hero.webp");
+    background-position: center;
+  }
+}
