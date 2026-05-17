@@ -6,12 +6,22 @@ import "../styles/main.scss";
 interface Props {
   title: string;
   description?: string;
+  canonical?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
-  description = "Private healthcare services from Promedico Wellness Group."
+  description = "Private healthcare services from Promedico Wellness Group.",
+  canonical,
+  schema
 } = Astro.props;
+  const siteUrl = Astro.site ?? new URL("https://promedico.co.uk");
+  const cononicalUrl = canonical 
+    ? new URL(canonical, siteUrl).toString() 
+    : new URL(Astro.url.pathname, siteUrl).toString();
+
+  const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
 ---
 
 <!doctype html>
@@ -21,6 +31,15 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={cononicalUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    {
+      schemaItems.map((schemaItem) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
+      ))
+    }
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
