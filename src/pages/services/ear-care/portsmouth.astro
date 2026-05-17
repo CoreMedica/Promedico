@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import HomeVisitModal from "../../../components/ui/HomeVisitModal.astro";
 
 const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
@@ -112,9 +113,9 @@ const pageDescription =
                 <li>Suitable for patients who prefer not to travel</li>
               </ul>
 
-              <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              <button class="btn btn--primary service-card__link" type="button" data-home-visit-open>
                 Book Home Visit
-              </a>
+              </button>
             </div>
           </li>
         </ul>
@@ -241,9 +242,9 @@ const pageDescription =
               Ear assessment and earwax removal where appropriate in your own home across Portsmouth.
             </p>
 
-            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
-              Book Online
-            </a>
+            <button class="btn btn--primary" type="button" data-home-visit-open>
+              Book A Home Visit
+            </button>
           </article>
         </div>
       </div>
@@ -315,9 +316,9 @@ const pageDescription =
                 <li>Useful if travel is difficult</li>
               </ul>
 
-              <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              <button class="btn btn--primary service-card__link" type="button" data-home-visit-open>
                 Book Home Visit
-              </a>
+              </button>
             </div>
           </li>
         </ul>
@@ -518,5 +519,6 @@ const pageDescription =
         </div>
       </div>
     </section>
+    <HomeVisitModal defaultArea="portsmouth" />
   </main>
 </BaseLayout>

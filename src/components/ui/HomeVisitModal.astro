@@ -1,0 +1,199 @@
+---
+interface Props {
+  defaultArea?: "portsmouth" | "southampton" | "";
+}
+
+const { defaultArea = "" } = Astro.props;
+---
+
+<div
+  class="modal"
+  id="home-visit-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="home-visit-modal-heading"
+>
+  <div class="modal__backdrop" data-home-visit-close></div>
+
+  <div class="modal__panel" role="document">
+    <button
+      class="modal__close"
+      type="button"
+      aria-label="Close home visit request form"
+      data-home-visit-close
+    >
+      <i class="fa-sharp fa-thin fa-xmark" aria-hidden="true"></i>
+    </button>
+
+    <div class="modal__header">
+      <p class="modal__eyebrow">Home visit request</p>
+
+      <h2 class="modal__heading" id="home-visit-modal-heading">
+        Request a Home Visit
+      </h2>
+
+      <p class="modal__subheading">
+        Use this form to request a home visit appointment. We will contact you to confirm
+        availability and next steps.
+      </p>
+    </div>
+
+    <form class="modal__form" action="/php/home-visit-request.php" method="POST">
+      <input type="hidden" name="form_name" value="home_visit_request" />
+
+      <div class="form-row form-row--two">
+        <div class="form-field">
+          <label class="form-field__label" for="home-visit-name">
+            Full name <span class="form-field__required">*</span>
+          </label>
+          <input
+            class="form-field__input"
+            id="home-visit-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label class="form-field__label" for="home-visit-phone">
+            Phone number <span class="form-field__required">*</span>
+          </label>
+          <input
+            class="form-field__input"
+            id="home-visit-phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-row form-row--two">
+        <div class="form-field">
+          <label class="form-field__label" for="home-visit-email">
+            Email address <span class="form-field__required">*</span>
+          </label>
+          <input
+            class="form-field__input"
+            id="home-visit-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label class="form-field__label" for="home-visit-area">
+            Area <span class="form-field__required">*</span>
+          </label>
+          <select
+            class="form-field__input form-field__select"
+            id="home-visit-area"
+            name="area"
+            required
+          >
+            <option value="">Please select</option>
+            <option value="portsmouth" selected={defaultArea === "portsmouth"}>Portsmouth</option>
+            <option value="southampton" selected={defaultArea === "southampton"}>Southampton</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-field__label" for="home-visit-postcode">
+          Postcode <span class="form-field__required">*</span>
+        </label>
+        <input
+          class="form-field__input"
+          id="home-visit-postcode"
+          name="postcode"
+          type="text"
+          autocomplete="postal-code"
+          required
+        />
+      </div>
+
+      <div class="form-field">
+        <label class="form-field__label" for="home-visit-message">
+          Anything we should know?
+        </label>
+        <textarea
+          class="form-field__input form-field__textarea"
+          id="home-visit-message"
+          name="message"
+          rows="4"
+          placeholder="For example: preferred days, mobility needs, or whether this is for yourself or someone else."
+        ></textarea>
+      </div>
+
+      <div class="form-field form-field--checkbox">
+        <input type="checkbox" id="home-visit-consent" name="consent" value="yes" required />
+        <label for="home-visit-consent">
+          I consent to Promedico Wellness Group using the details provided to respond to my home
+          visit request.
+        </label>
+      </div>
+
+      <div class="modal__actions">
+        <button class="btn btn--primary modal__submit" type="submit">
+          Send Home Visit Request
+        </button>
+
+        <p class="modal__privacy-note">
+          Do not include urgent medical information. This form is for appointment enquiries only.
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("home-visit-modal");
+  const openButtons = document.querySelectorAll("[data-home-visit-open]");
+  const closeButtons = document.querySelectorAll("[data-home-visit-close]");
+
+  let lastFocusedElement: Element | null = null;
+
+  function openModal() {
+    if (!modal) return;
+
+    lastFocusedElement = document.activeElement;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    const firstInput = modal.querySelector("input, select, textarea, button");
+    if (firstInput instanceof HTMLElement) {
+      firstInput.focus();
+    }
+  }
+
+  function closeModal() {
+    if (!modal) return;
+
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+  openButtons.forEach((button) => {
+    button.addEventListener("click", openModal);
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal?.getAttribute("aria-hidden") === "false") {
+      closeModal();
+    }
+  });
+</script>
