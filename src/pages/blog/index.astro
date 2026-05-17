@@ -1,12 +1,144 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }: { data: any }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+})).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const pageTitle = "Ear Care Articles | Promedico Wellness Group";
+const pageDescription =
+  "Patient education articles from Promedico Wellness Group covering earwax build-up, blocked ears, microsuction and ear care appointment guidance.";
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
 ---
 
-<BaseLayout title="Blog | Promedico Wellness Group">
-  <section class="section">
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="hero" aria-labelledby="blog-hero-heading">
+    <div class="hero__bg-pattern" aria-hidden="true"></div>
+
     <div class="container">
-      <h1>Blog</h1>
-      <p>Articles coming soon.</p>
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Ear Care Articles</p>
+
+        <h1 class="hero__heading" id="blog-hero-heading">
+          Practical Ear Care Advice<br />
+          <span class="hero__heading-accent">from Promedico</span>
+        </h1>
+
+        <p class="hero__subheading">
+          Clear, patient-focused articles covering earwax build-up, blocked ears, microsuction,
+          appointment preparation and local ear care options in Portsmouth and Southampton.
+        </p>
+
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="/services/ear-care">
+            View Ear Care Services
+          </a>
+
+          <a class="btn btn--outline-light" href="/contact">
+            Contact Promedico
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" aria-labelledby="articles-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="articles-heading">
+          Latest Ear Care Articles
+        </h2>
+
+        <p class="section-header__lead">
+          Educational articles designed to help you understand common earwax symptoms, treatment
+          options and when to arrange an assessment.
+        </p>
+      </header>
+
+      {
+        posts.length > 0 ? (
+          <ul class="service-cards" aria-label="Promedico blog articles">
+            {posts.map((post) => (
+              <li class="service-card">
+                <article class="service-card__body">
+                  <div class="service-card__header">
+                    <div class="service-card__icon-wrap" aria-hidden="true">
+                      <i class="fa-sharp fa-thin fa-newspaper"></i>
+                    </div>
+
+                    <h3 class="service-card__heading">{post.data.title}</h3>
+                  </div>
+
+                  <p class="blog-meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {formatDate(post.data.pubDate)}
+                    </time>
+                    <span aria-hidden="true"> · </span>
+                    <span>{post.data.category}</span>
+                  </p>
+
+                  <p class="service-card__text">{post.data.description}</p>
+
+                  {post.data.tags.length > 0 && (
+                    <ul class="service-card__features">
+                      {post.data.tags.slice(0, 3).map((tag) => (
+                        <li>{tag}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <a class="btn btn--primary service-card__link" href={`/blog/${post.id}/`}>
+                    Read Article
+                  </a>
+                </article>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No articles have been published yet.</p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="svc-booking" aria-labelledby="blog-booking-heading">
+    <div class="container">
+      <div class="svc-booking__inner svc-booking__inner--no-map">
+        <div>
+          <p class="svc-booking__eyebrow">Need an appointment?</p>
+
+          <h2 class="svc-booking__heading" id="blog-booking-heading">
+            Ear Care Appointments in Portsmouth and Southampton
+          </h2>
+
+          <p class="svc-booking__text">
+            If you have blocked ears, reduced hearing, fullness or suspected wax build-up,
+            Promedico can assess whether earwax removal is appropriate.
+          </p>
+
+          <div class="svc-booking__ctas">
+            <a
+              class="btn btn--primary"
+              href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+              target="_blank"
+              rel="noopener"
+            >
+              Book Portsmouth Clinic
+            </a>
+
+            <a class="btn btn--outline-light" href="/contact">
+              Request a Home Visit
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

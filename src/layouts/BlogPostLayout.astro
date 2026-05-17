@@ -1,0 +1,121 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+
+const serviceLink = post.data.serviceLink ?? {
+  label: "View Ear Care Services",
+  href: "/services/ear-care",
+};
+
+const pageTitle = `${post.data.title} | Promedico Wellness Group`;
+const pageDescription = post.data.description;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: {
+    "@type": "Organization",
+    name: post.data.author,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Promedico Wellness Group",
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://promedico.co.uk/blog/${post.id}/`,
+  },
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <article class="blog-post">
+    <header class="hero" aria-labelledby="blog-post-heading">
+      <div class="hero__bg-pattern" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__inner">
+          <p class="hero__eyebrow">{post.data.category}</p>
+
+          <h1 class="hero__heading" id="blog-post-heading">
+            {post.data.title}
+          </h1>
+
+          <p class="hero__subheading">{post.data.description}</p>
+
+          <p class="blog-meta blog-meta--light">
+            <time datetime={post.data.pubDate.toISOString()}>
+              Published {formatDate(post.data.pubDate)}
+            </time>
+
+            {
+              post.data.updatedDate && (
+                <>
+                  <span aria-hidden="true"> · </span>
+                  <span>Updated {formatDate(post.data.updatedDate)}</span>
+                </>
+              )
+            }
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" aria-label="Article content">
+      <div class="container">
+        <div class="blog-post__content">
+          <slot />
+        </div>
+      </div>
+    </section>
+
+    <section class="svc-booking" aria-labelledby="article-service-heading">
+      <div class="container">
+        <div class="svc-booking__inner svc-booking__inner--no-map">
+          <div>
+            <p class="svc-booking__eyebrow">Related service</p>
+
+            <h2 class="svc-booking__heading" id="article-service-heading">
+              Need Ear Care Support?
+            </h2>
+
+            <p class="svc-booking__text">
+              If your symptoms suggest possible earwax build-up, the next step is an appropriate
+              ear assessment. Promedico provides clinic appointments in Portsmouth and home visits
+              across Portsmouth and Southampton.
+            </p>
+
+            <div class="svc-booking__ctas">
+              <a class="btn btn--primary" href={serviceLink.href}>
+                {serviceLink.label}
+              </a>
+
+              <a class="btn btn--outline-light" href="/contact">
+                Contact Promedico
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
