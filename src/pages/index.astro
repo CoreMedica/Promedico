@@ -5,28 +5,112 @@ const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
 
 const pageTitle =
-  "Earwax Removal Portsmouth & Southampton | Promedico Wellness Group";
+  "Promedico Wellness Group | Practitioner-Led Private Ear Care";
 
 const pageDescription =
-  "Practitioner-led earwax removal in Portsmouth and Southampton. Clinic appointments in Portsmouth and home visits available across Portsmouth and Southampton.";
+  "Practitioner-led private ear care from Promedico, with Portsmouth clinic appointments and home visit earwax removal across Portsmouth and Southampton.";
+
+const siteUrl = "https://promedico.co.uk";
+
+const homeSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    name: "Promedico Wellness Group",
+    url: siteUrl,
+    inLanguage: "en-GB"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/#organization`,
+    name: "Promedico Wellness Group",
+    url: siteUrl,
+    image: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    telephone: "+447777100716",
+    email: "reception@coremedica.co.uk",
+    priceRange: "££",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
+      addressLocality: "Southsea",
+      addressRegion: "Portsmouth",
+      postalCode: "PO5 4JJ",
+      addressCountry: "GB"
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Portsmouth"
+      },
+      {
+        "@type": "City",
+        name: "Southampton"
+      }
+    ],
+    medicalSpecialty: "Otolaryngologic"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/#webpage`,
+    url: `${siteUrl}/`,
+    name: pageTitle,
+    description: pageDescription,
+    isPartOf: {
+      "@id": `${siteUrl}/#website`
+    },
+    about: {
+      "@id": `${siteUrl}/#organization`
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/images/team/jacqueline-allen.webp`
+    },
+    inLanguage: "en-GB"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      }
+    ]
+  }
+];
+
+const pageImage = "/images/team/jacqueline-allen.webp";
+
+const pageSocialTitle =
+  "Promedico Wellness Group | Practitioner-Led Private Ear Care";
+
+const pageSocialDescription =
+  "Private ear care and earwax removal across Portsmouth and Southampton, with Portsmouth clinic appointments and local home visits.";
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout title={pageTitle} description={pageDescription} schema={homeSchema} ogTitle={pageSocialTitle} ogDescription={pageSocialDescription} ogImage={pageImage}>
     <section class="hero hero--image hero--home" aria-labelledby="hero-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>
 
       <div class="container">
         <div class="hero__inner">
-          <p class="hero__eyebrow">Portsmouth &amp; Southampton Ear Care</p>
+          <p class="hero__eyebrow">Private Ear Care in Portsmouth & Southampton</p>
 
           <h1 class="hero__heading" id="hero-heading">
-            Expert Earwax Removal,<br />
+            Practitioner-Led Ear Care,<br />
             <span class="hero__heading-accent">at Home or in Clinic</span>
           </h1>
 
           <p class="hero__subheading">
-            Practitioner-led ear care across Portsmouth and Southampton, with clinic appointments
-            in Portsmouth and home visits available in both areas.
+            Private ear care and earwax removal across Portsmouth and Southampton, with clinic
+            appointments in Portsmouth and home visits available across both local areas.
           </p>
 
           <div class="hero__ctas">
@@ -48,7 +132,21 @@ const pageDescription =
         </div>
       </div>
     </section>
+    <section class="section" aria-labelledby="promedico-summary-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="promedico-summary-heading">
+            What Does Promedico Provide?
+          </h2>
 
+          <p class="section-header__lead">
+            Promedico provides practitioner-led private ear care, including ear assessment and
+            earwax removal where appropriate. Clinic appointments are available in Portsmouth,
+            and home visits are available across Portsmouth and Southampton.
+          </p>
+        </header>
+      </div>
+    </section>
     <section class="services-section" aria-labelledby="service-choice-heading">
       <div class="container">
         <header class="section-header">
@@ -107,7 +205,7 @@ const pageDescription =
         </ul>
       </div>
     </section>
-
+    
     <section class="section" aria-labelledby="ear-care-heading">
       <div class="container">
         <header class="section-header">
@@ -290,7 +388,48 @@ const pageDescription =
         </ul>
       </div>
     </section>
+    <section class="section section--light" aria-labelledby="locations-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="locations-heading">
+            Portsmouth Clinic and Home Visit Areas
+          </h2>
 
+          <p class="section-header__lead">
+            Promedico provides clinic appointments at Somerstown Central Community Hub in
+            Southsea, Portsmouth, and home visit ear care across Portsmouth and Southampton.
+          </p>
+        </header>
+
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Portsmouth Clinic</h3>
+              <p class="service-card__text">
+                Clinic appointments are available at Somerstown Central Community Hub,
+                Winston Churchill Avenue, Southsea, Portsmouth, PO5 4JJ.
+              </p>
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/portsmouth">
+                View Portsmouth Ear Care
+              </a>
+            </div>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__body">
+              <h3 class="service-card__heading">Home Visits</h3>
+              <p class="service-card__text">
+                Home visits are available across Portsmouth and Southampton for patients who
+                prefer to be seen at home or find clinic travel less convenient.
+              </p>
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
+                View Southampton Home Visits
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
     <section class="svc-booking" aria-labelledby="booking-heading">
       <div class="container">
         <div class="svc-booking__inner svc-booking__inner--no-map">

@@ -8,18 +8,32 @@ interface Props {
   description?: string;
   canonical?: string;
   schema?: Record<string, unknown> | Record<string, unknown>[];
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  twitterCard?: "summary" | "summary_large_image";
 }
 
 const {
   title,
   description = "Private healthcare services from Promedico Wellness Group.",
   canonical,
-  schema
+  schema,
+  ogTitle,
+  ogDescription,
+  ogImage = "/images/ProMedico-Logo-text.webp",
+  ogType = "website",
+  twitterCard = "summary_large_image"
 } = Astro.props;
   const siteUrl = Astro.site ?? new URL("https://promedico.co.uk");
-  const cononicalUrl = canonical 
-    ? new URL(canonical, siteUrl).toString() 
+  const canonicalUrl = canonical
+    ? new URL(canonical, siteUrl).toString()
     : new URL(Astro.url.pathname, siteUrl).toString();
+
+  const socialTitle = ogTitle ?? title;
+  const socialDescription = ogDescription ?? description;
+  const socialImageUrl = new URL(ogImage, siteUrl).toString();
 
   const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
 ---
@@ -31,9 +45,21 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={cononicalUrl} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
-
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Promedico Wellness Group" />
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={socialDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={socialTitle} />
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={socialDescription} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={socialTitle} />
     {
       schemaItems.map((schemaItem) => (
         <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
