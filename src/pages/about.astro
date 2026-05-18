@@ -9,9 +9,110 @@ const pageTitle =
 
 const pageDescription =
   "Learn about Promedico Wellness Group, a practitioner-led private ear care service providing earwax removal appointments in Portsmouth and home visits across Portsmouth and Southampton.";
+
+const siteUrl = "https://promedico.co.uk";
+
+const aboutSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${siteUrl}/about#webpage`,
+    url: `${siteUrl}/about`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB",
+    about: {
+      "@id": `${siteUrl}/#organization`
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/#organization`,
+    name: "Promedico Wellness Group",
+    url: siteUrl,
+    logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    telephone: "+447777100716",
+    email: "reception@coremedica.co.uk",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
+      addressLocality: "Southsea",
+      addressRegion: "Portsmouth",
+      postalCode: "PO5 4JJ",
+      addressCountry: "GB"
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Portsmouth"
+      },
+      {
+        "@type": "City",
+        name: "Southampton"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl}/about#jacqueline-allen`,
+    name: "Jacqueline Allen",
+    jobTitle: "Advanced Clinical Practitioner",
+    worksFor: {
+      "@id": `${siteUrl}/#organization`
+    },
+    hasCredential: [
+      "HCPC Registered Paramedic",
+      "Independent and supplementary prescriber",
+      "MSc Advanced Clinical Practice background"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl}/about#david`,
+    name: "David Cadwallader",
+    jobTitle: "Ear Care Practitioner",
+    worksFor: {
+      "@id": `${siteUrl}/#organization`
+    },
+    knowsAbout: [
+      "Microsuction",
+      "Ear irrigation",
+      "Patient relations",
+      "Website management",
+      "Healthcare marketing"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/about#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: `${siteUrl}/about`
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage="/images/team/jacqueline-allen.webp"
+  schema={aboutSchema}
+>
     <section class="hero hero--image hero--about" aria-labelledby="about-hero-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>
 
@@ -26,8 +127,8 @@ const pageDescription =
 
           <p class="hero__subheading">
             Promedico Wellness Group provides professional ear care and earwax removal services
-            across Portsmouth and Southampton, with a focus on safe assessment, appropriate
-            treatment and clear patient communication.
+            across Portsmouth and Southampton, with a clear focus on assessment, suitability,
+            patient communication and appropriate treatment.
           </p>
 
           <div class="hero__ctas">
@@ -41,8 +142,8 @@ const pageDescription =
           </div>
 
           <ul class="hero__trust-list" aria-label="Promedico key trust points">
-            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
-            <li class="hero__trust-item">HCPC Registered Paramedic</li>
+            <li class="hero__trust-item">Practitioner-led ear care</li>
+            <li class="hero__trust-item">Microsuction and irrigation available where suitable</li>
             <li class="hero__trust-item">Clinic appointments in Portsmouth</li>
             <li class="hero__trust-item">Home visits across Portsmouth and Southampton</li>
           </ul>
@@ -131,52 +232,73 @@ const pageDescription =
       </div>
     </section>
 
-    <section class="section" aria-labelledby="jacqueline-heading">
+    <section class="section" aria-labelledby="team-heading">
       <div class="container">
         <header class="section-header">
-          <h2 class="section-header__heading" id="jacqueline-heading">
-            Led by Jacqueline Allen
+          <h2 class="section-header__heading" id="team-heading">
+            Meet the Promedico Team
           </h2>
 
           <p class="section-header__lead">
-            Promedico ear care is delivered by Jacqueline Allen, an Advanced Clinical Practitioner
-            with over 15 years’ experience across primary care, urgent care and paramedicine.
+            Promedico ear care is delivered by a focused local team, with clinical leadership
+            from Jacqueline Allen and ear care appointments supported by trained practitioners.
           </p>
         </header>
 
-        <div class="about-intro__grid">
-          <div class="about-intro__content">
-            <p>
-              Jacqueline is an HCPC Registered Paramedic and an independent and supplementary
-              prescriber. She has an MSc Advanced Clinical Practice background and has worked across
-              NHS, urgent care and primary care settings.
-            </p>
+        <div class="procedure-cards procedure-cards--two-col">
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Clinical lead</p>
 
-            <p>
-              Her clinical experience supports a careful approach to ear care, including assessment,
-              suitability checks, consent, treatment where appropriate and aftercare advice.
-            </p>
+              <h3 class="procedure-card__title">Jacqueline Allen</h3>
 
-            <ul class="service-card__features">
-              <li>Advanced Clinical Practitioner</li>
-              <li>HCPC Registered Paramedic</li>
-              <li>Independent and supplementary prescriber</li>
-              <li>MSc Advanced Clinical Practice background</li>
-              <li>Over 15 years’ clinical experience</li>
-            </ul>
-          </div>
+              <p class="procedure-card__text">
+                Jacqueline is an Advanced Clinical Practitioner with over 15 years' experience
+                across primary care, urgent care and paramedicine.
+              </p>
 
-          <figure class="about-intro__panel">
-            <img
-              class="about-intro__panel--image"
-              src="/images/team/jacqueline-allen.webp"
-              alt="Jacqueline Allen, Advanced Clinical Practitioner at Promedico Wellness Group"
-              width="700"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
+              <p class="procedure-card__text">
+                She is an HCPC Registered Paramedic and an independent and supplementary
+                prescriber, with an MSc Advanced Clinical Practice background and experience
+                across NHS, urgent care and primary care settings.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Advanced Clinical Practitioner</li>
+                <li>HCPC Registered Paramedic</li>
+                <li>Independent and supplementary prescriber</li>
+                <li>MSc Advanced Clinical Practice background</li>
+                <li>Over 15 years' clinical experience</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="procedure-card">
+            <div class="procedure-card__body">
+              <p class="procedure-card__eyebrow">Ear care practitioner</p>
+
+              <h3 class="procedure-card__title">David Cadwallader</h3>
+
+              <p class="procedure-card__text">
+                David provides ear care appointments within his scope of practice, focused on
+                microsuction and ear irrigation where appropriate.
+              </p>
+
+              <p class="procedure-card__text">
+                He has completed nationally recognised CPD training in microsuction and ear
+                irrigation, and also supports Promedico's website, marketing and patient
+                relations.
+              </p>
+
+              <ul class="service-card__features">
+                <li>Microsuction-trained</li>
+                <li>Ear irrigation-trained</li>
+                <li>Nationally recognised CPD training completed</li>
+                <li>Patient relations and service support</li>
+                <li>Website and marketing management</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -189,7 +311,7 @@ const pageDescription =
           </h2>
 
           <p class="section-header__lead">
-            Promedico’s approach is built around safety, clarity and appropriate treatment.
+            Promedico's approach is built around safety, clarity and appropriate treatment.
           </p>
         </header>
 
@@ -300,8 +422,8 @@ const pageDescription =
               <h3 class="service-card__heading">Practitioner-Led Care</h3>
 
               <p class="service-card__text">
-                Appointments are delivered by a qualified Advanced Clinical Practitioner with
-                substantial experience across urgent care, primary care and paramedicine.
+                Appointments are delivered by trained practitioners working within their scope,
+                with clinical leadership from an experienced Advanced Clinical Practitioner.
               </p>
             </div>
           </li>

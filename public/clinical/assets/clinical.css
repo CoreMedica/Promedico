@@ -1,0 +1,10 @@
+:root {
+  --color-teal: #2f5f5b;
+  --color-gold: #c2a46d;
+  --color-bg: #f7f6f3;
+  --color-bg-alt: #efede8;
+  --color-text: #1e2523;
+  --color-text-muted: #5f6a67;
+  --color-border: #d9d6cf;
+  --font-primary: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}

@@ -160,6 +160,16 @@
     grid-template-columns: 1fr;
   }
 }
+.procedure-cards--two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
 
 .procedure-card {
   background-color: $color-white;
