@@ -5,14 +5,126 @@ import ServiceExpect from "../../../components/service/ServiceExpect.astro";
 const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
 
+const siteUrl = "https://promedico.co.uk";
+
 const pageTitle =
-  "Ear Care Services Portsmouth & Southampton | Promedico Wellness Group";
+  "Ear Care Services | Portsmouth & Southampton | Promedico";
 
 const pageDescription =
-  "Professional ear care and earwax removal services in Portsmouth and Southampton, with Portsmouth clinic appointments and home visits available.";
+  "Private ear care and earwax removal services from Promedico, with Portsmouth clinic appointments and home visits across Portsmouth and Southampton.";
+
+const pageImage = "/images/team/jacqueline-allen.webp";
+
+const faqItems = [
+  {
+    question: "What ear care services does Promedico provide?",
+    answer:
+      "Promedico provides private ear assessment and earwax removal where appropriate. Portsmouth clinic appointments are available, and home visits are available across Portsmouth and Southampton."
+  },
+  {
+    question: "Do I need a clinic appointment or a home visit?",
+    answer:
+      "Choose Portsmouth if you want a clinic appointment or a Portsmouth home visit. Choose Southampton if you are looking for home visit earwax removal in Southampton. If you are unsure, contact Promedico before booking."
+  },
+  {
+    question: "Is earwax removal always carried out at the appointment?",
+    answer:
+      "No. Each appointment starts with an assessment. Earwax removal is only carried out where wax is present and treatment is suitable. If removal is not appropriate, you will be given clear advice on the next step."
+  },
+  {
+    question: "Which earwax removal methods are available?",
+    answer:
+      "Promedico may use clinically recognised earwax removal methods such as microsuction or ear irrigation where appropriate. The method used depends on the assessment, suitability and appointment setting."
+  },
+  {
+    question: "Can Promedico help if I am not sure whether my symptoms are caused by earwax?",
+    answer:
+      "Yes. An appointment can help establish whether wax is present and whether earwax removal is suitable. Not every blocked, full or uncomfortable ear is caused by wax, so assessment comes first."
+  },
+  {
+    question: "How do I book an ear care appointment?",
+    answer:
+      "Portsmouth clinic appointments can be booked online. For home visits in Portsmouth or Southampton, contact Promedico so we can confirm your area, appointment type and availability."
+  }
+];
+
+const earCareSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/services/ear-care#service`,
+    name: "Ear Care Services",
+    serviceType: "Ear assessment and earwax removal",
+    description: pageDescription,
+    provider: {
+      "@id": `${siteUrl}/#organization`
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Portsmouth"
+      },
+      {
+        "@type": "City",
+        name: "Southampton"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/services/ear-care#webpage`,
+    url: `${siteUrl}/services/ear-care`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB",
+    about: {
+      "@id": `${siteUrl}/services/ear-care#service`
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}/services/ear-care#faq`,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/services/ear-care#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Ear Care",
+        item: `${siteUrl}/services/ear-care`
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={pageImage}
+  ogTitle="Ear Care Services | Portsmouth & Southampton"
+  ogDescription="Private ear care and earwax removal services from Promedico, with Portsmouth clinic appointments and local home visits."
+  schema={earCareSchema}
+>
     <section class="hero hero--image hero--ear-care" aria-labelledby="ear-care-hero-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>
 
@@ -44,7 +156,7 @@ const pageDescription =
             <li class="hero__trust-item">Portsmouth clinic appointments</li>
             <li class="hero__trust-item">Portsmouth home visits</li>
             <li class="hero__trust-item">Southampton home visits</li>
-            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
+            <li class="hero__trust-item">Practitioner-led care</li>
           </ul>
         </div>
       </div>
@@ -361,13 +473,13 @@ const pageDescription =
             </h2>
 
             <p class="svc-booking__text">
-              Choose the service area that suits you best, then book online or contact Promedico if
-              you would like help before booking.
+              Book online for Portsmouth clinic appointments. For home visits in Portsmouth or
+              Southampton, contact Promedico so we can confirm your area and appointment availability.
             </p>
 
             <ul class="svc-booking__meta">
-              <li>Portsmouth clinic appointments available</li>
-              <li>Home visits available in Portsmouth and Southampton</li>
+              <li>Portsmouth clinic appointments can be booked online</li>
+              <li>Home visits are available by enquiry in Portsmouth and Southampton</li>
               <li><a href="/contact">Questions? Contact us</a></li>
             </ul>
 
@@ -384,4 +496,74 @@ const pageDescription =
         </div>
       </div>
     </section>
+    <section class="faq-section faq-section--light" aria-labelledby="ear-care-faq-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="ear-care-faq-heading">
+            Ear Care FAQs
+          </h2>
+
+          <p class="section-header__lead">
+            Clear answers to common questions about Promedico ear care appointments,
+            earwax removal and choosing the right appointment type.
+          </p>
+        </header>
+
+        <div class="faq-grid">
+          <dl class="faq-list">
+            {
+              faqItems.map((item, index) => {
+                const questionId = `faq-question-${index}`;
+                const answerId = `faq-answer-${index}`;
+
+                return (
+                  <div class="faq-item">
+                    <dt class="faq-item__question">
+                      <button
+                        class="faq-item__trigger"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls={answerId}
+                        id={questionId}
+                      >
+                        <span>{item.question}</span>
+                        <span class="faq-item__icon" aria-hidden="true"></span>
+                      </button>
+                    </dt>
+
+                    <dd
+                      class="faq-item__answer"
+                      id={answerId}
+                      aria-labelledby={questionId}
+                      hidden
+                    >
+                      <div class="faq-item__answer-inner">
+                        <p>{item.answer}</p>
+                      </div>
+                    </dd>
+                  </div>
+                );
+              })
+            }
+          </dl>
+        </div>
+      </div>
+    </section>
+    <script>
+      const faqTriggers = document.querySelectorAll(".faq-item__trigger");
+
+      faqTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const expanded = trigger.getAttribute("aria-expanded") === "true";
+          const answerId = trigger.getAttribute("aria-controls");
+          const answer = answerId ? document.getElementById(answerId) : null;
+
+          trigger.setAttribute("aria-expanded", String(!expanded));
+
+          if (answer) {
+            answer.hidden = expanded;
+          }
+        });
+      });
+    </script>
 </BaseLayout>

@@ -4,13 +4,99 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
 
-const pageTitle = "Contact Promedico Wellness Group | Ear Care Portsmouth & Southampton";
+const siteUrl = "https://promedico.co.uk";
+
+const pageTitle =
+  "Contact Promedico | Ear Care Appointments & Home Visits";
 
 const pageDescription =
-  "Contact Promedico Wellness Group for practitioner-led ear care appointments, Portsmouth clinic appointments, home visits, and general enquiries.";
+  "Contact Promedico about Portsmouth clinic appointments, home visit earwax removal in Portsmouth or Southampton, or questions before booking.";
+
+const pageImage = "/images/contact/somerstown-central-hub.webp";
+
+const contactSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${siteUrl}/contact#webpage`,
+    url: `${siteUrl}/contact`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB",
+    about: {
+      "@id": `${siteUrl}/#organization`
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/#organization`,
+    name: "Promedico Wellness Group",
+    url: siteUrl,
+    logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    image: `${siteUrl}${pageImage}`,
+    telephone: "+447777100716",
+    email: "reception@coremedica.co.uk",
+    priceRange: "££",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
+      addressLocality: "Southsea",
+      addressRegion: "Portsmouth",
+      postalCode: "PO5 4JJ",
+      addressCountry: "GB"
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Portsmouth"
+      },
+      {
+        "@type": "City",
+        name: "Southampton"
+      }
+    ],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "appointments and enquiries",
+        telephone: "+447777100716",
+        email: "reception@coremedica.co.uk",
+        areaServed: "GB",
+        availableLanguage: "en-GB"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/contact#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contact",
+        item: `${siteUrl}/contact`
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={pageImage}
+  ogTitle="Contact Promedico | Ear Care Appointments & Home Visits"
+  ogDescription="Contact Promedico about Portsmouth clinic appointments, local home visits, and ear care questions before booking."
+  schema={contactSchema}
+>
     <section class="hero hero--image hero--contact" aria-labelledby="contact-hero-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>
 
@@ -24,8 +110,8 @@ const pageDescription =
           </h1>
 
           <p class="hero__subheading">
-            Contact us about ear care appointments, Portsmouth clinic bookings, home visits across
-            Portsmouth and Southampton, or general questions before booking.
+            Contact Promedico about Portsmouth clinic appointments, home visit earwax removal
+            in Portsmouth or Southampton, or questions before booking.
           </p>
 
           <div class="hero__ctas">
@@ -64,42 +150,42 @@ const pageDescription =
         <ul class="service-cards">
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">Book Online</h3>
+              <h3 class="service-card__heading">Book a Portsmouth Clinic Appointment</h3>
 
               <p class="service-card__text">
-                The quickest way to arrange an ear care appointment is to use the online booking
-                system.
+                Use the online booking system if you want to arrange a clinic appointment
+                at Somerstown Central Community Hub in Southsea, Portsmouth.
               </p>
 
               <ul class="service-card__features">
                 <li>Portsmouth clinic appointments</li>
-                <li>Portsmouth home visits</li>
-                <li>Southampton home visits</li>
+                <li>Book directly online</li>
+                <li>Suitable if you can attend the clinic</li>
               </ul>
 
               <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
-                Book Online
+                Book Portsmouth Clinic
               </a>
             </div>
           </li>
 
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">General Enquiries</h3>
+              <h3 class="service-card__heading">Request a Home Visit or Ask a Question</h3>
 
               <p class="service-card__text">
-                If you are unsure which option is right for you, or you have a question before
-                booking, send us a message using the form below.
+                Use the contact form if you are asking about a home visit in Portsmouth or
+                Southampton, or if you are unsure which appointment type is most suitable.
               </p>
 
               <ul class="service-card__features">
-                <li>Ask about appointment options</li>
-                <li>Check home visit coverage</li>
-                <li>Ask a question before booking</li>
+                <li>Portsmouth home visit enquiries</li>
+                <li>Southampton home visit enquiries</li>
+                <li>Questions before booking</li>
               </ul>
 
               <a class="btn btn--outline service-card__link" href="#contact-form">
-                Go to Contact Form
+                Send an Enquiry
               </a>
             </div>
           </li>
@@ -137,9 +223,9 @@ const pageDescription =
             </p>
 
             <p>
-              Please use the online booking system for appointments where possible. If you are
-              enquiring about a home visit, include your area or postcode in your message so we can
-              advise on availability.
+              Please use the online booking system for Portsmouth clinic appointments where possible.
+              If you are enquiring about a home visit, include your area or postcode in your message
+              so we can advise on availability.
             </p>
 
             <div class="contact-form__actions">
@@ -177,7 +263,8 @@ const pageDescription =
 
           <p class="section-header__lead">
             Use the form below for appointment questions, home visit enquiries, service area
-            queries, or anything you would like to clarify before booking.
+            queries, or anything you would like to clarify before booking. Do not use this form
+            for urgent medical concerns.
           </p>
         </header>
 
@@ -231,7 +318,7 @@ const pageDescription =
             <input type="checkbox" id="consent" name="consent" value="yes" required />
             <label for="consent">
               I consent to Promedico Wellness Group using the details provided to respond to my
-              enquiry.
+              enquiry. I understand this form is for appointment and service enquiries only.
             </label>
           </div>
 
@@ -260,24 +347,14 @@ const pageDescription =
           </p>
         </header>
 
-        <ul class="service-cards">
+        <ul class="service-cards service-cards__three-col">
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">Need an Appointment Quickly?</h3>
+              <h3 class="service-card__heading">Booking a Portsmouth Clinic Appointment?</h3>
 
               <p class="service-card__text">
-                Use the online booking system for the fastest route to arranging an appointment.
-              </p>
-            </div>
-          </li>
-
-          <li class="service-card">
-            <div class="service-card__body">
-              <h3 class="service-card__heading">Not Sure Which Option to Choose?</h3>
-
-              <p class="service-card__text">
-                Contact us and we can help you decide whether a Portsmouth clinic appointment,
-                Portsmouth home visit or Southampton home visit is the right option.
+                Use the online booking system if you want to arrange a clinic appointment at
+                Somerstown Central Community Hub in Southsea.
               </p>
             </div>
           </li>
@@ -287,17 +364,19 @@ const pageDescription =
               <h3 class="service-card__heading">Asking About a Home Visit?</h3>
 
               <p class="service-card__text">
-                Please include your area or postcode in the message so we can advise on availability.
+                Please include your area or postcode so we can advise on availability for
+                Portsmouth or Southampton home visits.
               </p>
             </div>
           </li>
 
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">General Questions</h3>
+              <h3 class="service-card__heading">Not Sure Which Option to Choose?</h3>
 
               <p class="service-card__text">
-                We can help with queries about service areas, appointment types and booking options.
+                Contact us and we can help you decide whether a clinic appointment or home visit
+                is the more suitable route.
               </p>
             </div>
           </li>

@@ -15,6 +15,11 @@
   @include respond-to(tablet) {
     grid-template-columns: 1fr;
   }
+
+  &__three-col {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 950px;
+  }
 }
 
 .service-card {
