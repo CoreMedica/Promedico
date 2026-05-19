@@ -1,0 +1,11 @@
+Options -Indexes
+
+<FilesMatch "\.(env|ini|log|sql|bak|json|lock|md)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "^(composer\.json|composer\.lock)$">
+    Require all denied
+</FilesMatch>
+
+Header set X-Robots-Tag "noindex, nofollow, noarchive"
