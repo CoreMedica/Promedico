@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/app/bootstrap.php';
+
+clinical_require_login();
+
 $pageTitle = 'Patient Record';
 $activeNav = 'patients';
-
-require_once __DIR__ . '/includes/header.php';
-require_once __DIR__ . '/includes/db.php';
 
 $currentUser = clinical_current_user();
 
@@ -14,45 +15,26 @@ if ($currentUser === null) {
     clinical_redirect_to_login();
 }
 
-$patientId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$patientId = clinical_get_int('id');
 
-if (!$patientId || $patientId < 1) {
+if ($patientId === null || $patientId < 1) {
     http_response_code(400);
     exit('Invalid patient ID.');
 }
 
-$pdo = clinical_db();
+$patientService = clinical_patient_service();
 
-$stmt = $pdo->prepare(
-    'SELECT
-        p.*,
-        created_user.name AS created_by_name,
-        updated_user.name AS updated_by_name
-     FROM patients p
-     LEFT JOIN users created_user ON created_user.id = p.created_by
-     LEFT JOIN users updated_user ON updated_user.id = p.updated_by
-     WHERE p.id = :id
-       AND p.is_active = 1
-     LIMIT 1'
+$patient = $patientService->getPatientForView(
+    patientId: $patientId,
+    userId: (int) $currentUser['id']
 );
 
-$stmt->execute([
-    'id' => $patientId,
-]);
-
-$patient = $stmt->fetch();
-
-if (!$patient) {
+if ($patient === null) {
     http_response_code(404);
     exit('Patient not found.');
 }
 
-clinical_audit(
-    userId: (int) $currentUser['id'],
-    action: 'patient_viewed',
-    entityType: 'patient',
-    entityId: (int) $patientId
-);
+$pdo = clinical_pdo();
 
 $treatmentsStmt = $pdo->prepare(
     'SELECT
@@ -78,50 +60,23 @@ $treatmentsStmt->execute([
 $treatments = $treatmentsStmt->fetchAll();
 
 $created = (string) ($_GET['created'] ?? '') === '1';
-
-function patient_display(?string $value): string
-{
-    if ($value === null || trim($value) === '') {
-        return '<span class="clinical-muted">Not recorded</span>';
-    }
-
-    return clinical_escape($value);
-}
-
-function patient_display_date(?string $date): string
-{
-    if ($date === null || $date === '') {
-        return '<span class="clinical-muted">Not recorded</span>';
-    }
-
-    return clinical_escape(date('d/m/Y', strtotime($date)));
-}
-
-function patient_display_datetime(?string $datetime): string
-{
-    if ($datetime === null || $datetime === '') {
-        return '<span class="clinical-muted">Not recorded</span>';
-    }
-
-    return clinical_escape(date('d/m/Y H:i', strtotime($datetime)));
-}
-
-function patient_label_from_enum(?string $value): string
-{
-    if ($value === null || $value === '') {
-        return 'Not recorded';
-    }
-
-    return ucwords(str_replace('_', ' ', $value));
-}
+$updated = (string) ($_GET['updated'] ?? '') === '1';
 
 $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
+
+require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="clinical-container clinical-stack clinical-stack--xl">
     <?php if ($created): ?>
         <div class="clinical-alert clinical-alert--success" role="status">
             <p>Patient record created successfully.</p>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($updated): ?>
+        <div class="clinical-alert clinical-alert--success" role="status">
+            <p>Patient record updated successfully.</p>
         </div>
     <?php endif; ?>
 
@@ -137,6 +92,10 @@ $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
         <div class="clinical-button-row">
             <a class="clinical-button" href="/clinical/treatment-new.php?patient_id=<?= (int) $patient['id'] ?>">
                 Add treatment note
+            </a>
+
+            <a class="clinical-button clinical-button--secondary" href="/clinical/patient-edit.php?id=<?= (int) $patient['id'] ?>">
+                Edit patient
             </a>
 
             <a class="clinical-button clinical-button--secondary" href="/clinical/patients.php">
@@ -160,16 +119,16 @@ $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
                     <dd><?= clinical_escape($patientName) ?></dd>
 
                     <dt>Date of birth</dt>
-                    <dd><?= patient_display_date($patient['date_of_birth']) ?></dd>
+                    <dd><?= clinical_format_date($patient['date_of_birth']) ?></dd>
 
                     <dt>Phone</dt>
-                    <dd><?= patient_display($patient['phone']) ?></dd>
+                    <dd><?= clinical_display($patient['phone']) ?></dd>
 
                     <dt>Email</dt>
-                    <dd><?= patient_display($patient['email']) ?></dd>
+                    <dd><?= clinical_display($patient['email']) ?></dd>
 
                     <dt>Postcode</dt>
-                    <dd><?= patient_display($patient['postcode']) ?></dd>
+                    <dd><?= clinical_display($patient['postcode']) ?></dd>
                 </dl>
             </div>
         </article>
@@ -187,13 +146,15 @@ $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
                     <h3 class="clinical-record-section__title">Address</h3>
 
                     <p>
-                        <?= patient_display($patient['address_line_1']) ?><br>
+                        <?= clinical_display($patient['address_line_1']) ?><br>
+
                         <?php if (!empty($patient['address_line_2'])): ?>
                             <?= clinical_escape($patient['address_line_2']) ?><br>
                         <?php endif; ?>
-                        <?= patient_display($patient['town']) ?><br>
-                        <?= patient_display($patient['county']) ?><br>
-                        <?= patient_display($patient['postcode']) ?>
+
+                        <?= clinical_display($patient['town']) ?><br>
+                        <?= clinical_display($patient['county']) ?><br>
+                        <?= clinical_display($patient['postcode']) ?>
                     </p>
                 </div>
 
@@ -201,7 +162,9 @@ $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
                     <h3 class="clinical-record-section__title">Relevant medical notes</h3>
 
                     <?php if (!empty($patient['relevant_medical_notes'])): ?>
-                        <div class="clinical-note-box"><?= clinical_escape($patient['relevant_medical_notes']) ?></div>
+                        <div class="clinical-note-box">
+                            <?= clinical_escape($patient['relevant_medical_notes']) ?>
+                        </div>
                     <?php else: ?>
                         <p class="clinical-muted">No relevant medical notes recorded.</p>
                     <?php endif; ?>
@@ -221,16 +184,16 @@ $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
         <div class="clinical-card__body">
             <dl class="clinical-definition-list">
                 <dt>Created</dt>
-                <dd><?= patient_display_datetime($patient['created_at']) ?></dd>
+                <dd><?= clinical_format_datetime($patient['created_at']) ?></dd>
 
                 <dt>Created by</dt>
-                <dd><?= patient_display($patient['created_by_name']) ?></dd>
+                <dd><?= clinical_display($patient['created_by_name']) ?></dd>
 
                 <dt>Last updated</dt>
-                <dd><?= patient_display_datetime($patient['updated_at']) ?></dd>
+                <dd><?= clinical_format_datetime($patient['updated_at']) ?></dd>
 
                 <dt>Updated by</dt>
-                <dd><?= patient_display($patient['updated_by_name']) ?></dd>
+                <dd><?= clinical_display($patient['updated_by_name']) ?></dd>
             </dl>
         </div>
     </section>
@@ -262,15 +225,18 @@ $patientName = $patient['first_name'] . ' ' . $patient['last_name'];
                     <?php foreach ($treatments as $treatment): ?>
                         <li class="clinical-timeline__item">
                             <p class="clinical-timeline__meta">
-                                <?= clinical_escape(date('d/m/Y', strtotime($treatment['treatment_date']))) ?>
+                                <?= clinical_format_date($treatment['treatment_date']) ?>
+
                                 <?php if (!empty($treatment['treatment_time'])): ?>
-                                    · <?= clinical_escape(substr($treatment['treatment_time'], 0, 5)) ?>
+                                    · <?= clinical_format_time($treatment['treatment_time']) ?>
                                 <?php endif; ?>
-                                · <?= clinical_escape(patient_label_from_enum($treatment['treatment_type'])) ?>
+
+                                · <?= clinical_escape(clinical_label_from_enum($treatment['treatment_type'])) ?>
                             </p>
 
                             <h3 class="clinical-timeline__title">
-                                <?= clinical_escape(patient_label_from_enum($treatment['location_type'])) ?>
+                                <?= clinical_escape(clinical_label_from_enum($treatment['location_type'])) ?>
+
                                 <?php if (!empty($treatment['location_name'])): ?>
                                     — <?= clinical_escape($treatment['location_name']) ?>
                                 <?php endif; ?>

@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/../app/bootstrap.php';
 
 clinical_require_login();
 
@@ -33,15 +33,7 @@ header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: no-referrer');
 header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
 
-function clinical_nav_active(string $key, string $activeNav): string
-{
-    return $key === $activeNav ? ' is-active" aria-current="page' : '';
-}
 
-function clinical_escape(string $value): string
-{
-    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-}
 
 $documentTitle = clinical_escape($pageTitle) . ' | Promedico Clinical';
 $currentUserName = clinical_escape($currentUser['name']);
@@ -86,24 +78,24 @@ $currentUserRole = clinical_escape(ucfirst($currentUser['role']));
 
     <nav class="clinical-nav" aria-label="Clinical navigation">
         <div class="clinical-nav__inner">
-            <a class="clinical-nav__link<?= clinical_nav_active('dashboard', $activeNav) ?>" href="/clinical/dashboard.php">
+            <a class="clinical-nav__link<?= clinical_active_nav('dashboard', $activeNav) ?>" href="/clinical/dashboard.php">
                 Dashboard
             </a>
 
-            <a class="clinical-nav__link<?= clinical_nav_active('patients', $activeNav) ?>" href="/clinical/patients.php">
+            <a class="clinical-nav__link<?= clinical_active_nav('patients', $activeNav) ?>" href="/clinical/patients.php">
                 Patients
             </a>
 
-            <a class="clinical-nav__link<?= clinical_nav_active('new-patient', $activeNav) ?>" href="/clinical/patient-new.php">
+            <a class="clinical-nav__link<?= clinical_active_nav('new-patient', $activeNav) ?>" href="/clinical/patient-new.php">
                 New patient
             </a>
 
-            <a class="clinical-nav__link<?= clinical_nav_active('new-treatment', $activeNav) ?>" href="/clinical/treatment-new.php">
+            <a class="clinical-nav__link<?= clinical_active_nav('new-treatment', $activeNav) ?>" href="/clinical/treatment-new.php">
                 New treatment note
             </a>
 
             <?php if ($currentUser['role'] === 'admin'): ?>
-                <a class="clinical-nav__link<?= clinical_nav_active('audit', $activeNav) ?>" href="/clinical/audit.php">
+                <a class="clinical-nav__link<?= clinical_active_nav('audit', $activeNav) ?>" href="/clinical/audit.php">
                     Audit log
                 </a>
             <?php endif; ?>

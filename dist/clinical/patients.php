@@ -2,54 +2,23 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/app/bootstrap.php';
+
+clinical_require_login();
+
 $pageTitle = 'Patients';
 $activeNav = 'patients';
 
-require_once __DIR__ . '/includes/header.php';
-require_once __DIR__ . '/includes/db.php';
+$patientService = clinical_patient_service();
 
 $search = trim((string) ($_GET['q'] ?? ''));
 
-$pdo = clinical_db();
+$patients = $patientService->searchPatients(
+    search: $search,
+    limit: 100
+);
 
-$params = [];
-$sql = '
-    SELECT
-        id,
-        first_name,
-        last_name,
-        date_of_birth,
-        phone,
-        email,
-        postcode,
-        created_at
-    FROM patients
-    WHERE is_active = 1
-';
-
-if ($search !== '') {
-    $sql .= '
-        AND (
-            first_name LIKE :search
-            OR last_name LIKE :search
-            OR CONCAT(first_name, " ", last_name) LIKE :search
-            OR phone LIKE :search
-            OR email LIKE :search
-            OR postcode LIKE :search
-        )
-    ';
-
-    $params['search'] = '%' . $search . '%';
-}
-
-$sql .= '
-    ORDER BY last_name ASC, first_name ASC
-    LIMIT 100
-';
-
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$patients = $stmt->fetchAll();
+require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="clinical-container clinical-stack clinical-stack--xl">
@@ -91,11 +60,14 @@ $patients = $stmt->fetchAll();
 
                     <div class="clinical-form-field">
                         <label class="clinical-label" aria-hidden="true">&nbsp;</label>
+
                         <div class="clinical-button-row">
                             <button class="clinical-button" type="submit">Search</button>
 
                             <?php if ($search !== ''): ?>
-                                <a class="clinical-button clinical-button--secondary" href="/clinical/patients.php">Clear</a>
+                                <a class="clinical-button clinical-button--secondary" href="/clinical/patients.php">
+                                    Clear
+                                </a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -107,8 +79,9 @@ $patients = $stmt->fetchAll();
     <section class="clinical-card">
         <div class="clinical-card__header">
             <h2 class="clinical-card__title">
-                <?= $search === '' ? 'Recent patient list' : 'Search results' ?>
+                <?= $search === '' ? 'Patient list' : 'Search results' ?>
             </h2>
+
             <p class="clinical-card__subtitle">
                 Showing up to 100 active patient records.
             </p>
@@ -151,23 +124,23 @@ $patients = $stmt->fetchAll();
                                     </td>
 
                                     <td>
-                                        <?= $patient['date_of_birth'] ? clinical_escape(date('d/m/Y', strtotime($patient['date_of_birth']))) : '<span class="clinical-muted">Not recorded</span>' ?>
+                                        <?= clinical_format_date($patient['date_of_birth']) ?>
                                     </td>
 
                                     <td>
-                                        <?= $patient['phone'] ? clinical_escape($patient['phone']) : '<span class="clinical-muted">Not recorded</span>' ?>
+                                        <?= clinical_display($patient['phone']) ?>
                                     </td>
 
                                     <td>
-                                        <?= $patient['email'] ? clinical_escape($patient['email']) : '<span class="clinical-muted">Not recorded</span>' ?>
+                                        <?= clinical_display($patient['email']) ?>
                                     </td>
 
                                     <td>
-                                        <?= $patient['postcode'] ? clinical_escape($patient['postcode']) : '<span class="clinical-muted">Not recorded</span>' ?>
+                                        <?= clinical_display($patient['postcode']) ?>
                                     </td>
 
                                     <td>
-                                        <?= clinical_escape(date('d/m/Y', strtotime($patient['created_at']))) ?>
+                                        <?= clinical_format_date($patient['created_at']) ?>
                                     </td>
 
                                     <td>
@@ -176,6 +149,12 @@ $patients = $stmt->fetchAll();
                                                 class="clinical-button clinical-button--small"
                                                 href="/clinical/patient-view.php?id=<?= (int) $patient['id'] ?>">
                                                 View
+                                            </a>
+
+                                            <a
+                                                class="clinical-button clinical-button--secondary clinical-button--small"
+                                                href="/clinical/patient-edit.php?id=<?= (int) $patient['id'] ?>">
+                                                Edit
                                             </a>
                                         </div>
                                     </td>

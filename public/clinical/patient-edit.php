@@ -6,8 +6,8 @@ require_once __DIR__ . '/app/bootstrap.php';
 
 clinical_require_login();
 
-$pageTitle = 'New Patient';
-$activeNav = 'new-patient';
+$pageTitle = 'Edit Patient';
+$activeNav = 'patients';
 
 $currentUser = clinical_current_user();
 
@@ -15,16 +15,30 @@ if ($currentUser === null) {
     clinical_redirect_to_login();
 }
 
+$patientId = clinical_get_int('id');
+
+if ($patientId === null || $patientId < 1) {
+    http_response_code(400);
+    exit('Invalid patient ID.');
+}
+
 $patientService = clinical_patient_service();
 
+$patient = $patientService->getPatientForEdit($patientId);
+
+if ($patient === null) {
+    http_response_code(404);
+    exit('Patient not found.');
+}
+
 $errors = [];
-$possibleMatches = [];
-$form = $patientService->emptyForm();
+$form = $patientService->patientToForm($patient);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     clinical_verify_csrf_or_fail();
 
-    $result = $patientService->createPatient(
+    $result = $patientService->updatePatient(
+        patientId: $patientId,
         input: $_POST,
         userId: (int) $currentUser['id']
     );
@@ -32,11 +46,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result['success'] === true) {
         clinical_rotate_csrf_token();
 
-        clinical_redirect('/clinical/patient-view.php?id=' . (int) $result['patient_id'] . '&created=1');
+        clinical_redirect('/clinical/patient-view.php?id=' . $patientId . '&updated=1');
+    }
+
+    if (($result['not_found'] ?? false) === true) {
+        http_response_code(404);
+        exit('Patient not found.');
     }
 
     $errors = $result['errors'];
-    $possibleMatches = $result['possible_matches'];
     $form = $result['form'];
 }
 
@@ -47,15 +65,15 @@ require_once __DIR__ . '/includes/header.php';
     <section class="clinical-page-header">
         <div class="clinical-page-header__content">
             <p class="clinical-eyebrow">Patient records</p>
-            <h1 class="clinical-title">New patient</h1>
+            <h1 class="clinical-title">Edit patient</h1>
             <p class="clinical-subtitle">
-                Create a patient record before adding treatment notes. Search existing patients first where possible to avoid duplicates.
+                Update patient demographic and contact details. Treatment notes are not edited here.
             </p>
         </div>
 
         <div class="clinical-button-row">
-            <a class="clinical-button clinical-button--secondary" href="/clinical/patients.php">
-                Back to patients
+            <a class="clinical-button clinical-button--secondary" href="/clinical/patient-view.php?id=<?= (int) $patientId ?>">
+                Back to patient
             </a>
         </div>
     </section>
@@ -68,72 +86,21 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     <?php endif; ?>
 
-    <?php if (count($possibleMatches) > 0): ?>
-        <section class="clinical-alert clinical-alert--warning" role="status">
-            <p><strong>Possible existing patient records found.</strong></p>
-            <p>
-                Check these before creating a duplicate. If this is definitely a different patient, continue saving.
-            </p>
-
-            <div class="clinical-table-wrap" style="margin-top: 1rem;">
-                <table class="clinical-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>DOB</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Postcode</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php foreach ($possibleMatches as $match): ?>
-                            <tr>
-                                <td>
-                                    <?= clinical_escape($match['last_name'] . ', ' . $match['first_name']) ?>
-                                </td>
-
-                                <td>
-                                    <?= clinical_format_date($match['date_of_birth']) ?>
-                                </td>
-
-                                <td>
-                                    <?= clinical_display($match['phone']) ?>
-                                </td>
-
-                                <td>
-                                    <?= clinical_display($match['email']) ?>
-                                </td>
-
-                                <td>
-                                    <?= clinical_display($match['postcode']) ?>
-                                </td>
-
-                                <td>
-                                    <a class="clinical-button clinical-button--small" href="/clinical/patient-view.php?id=<?= (int) $match['id'] ?>">
-                                        View
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    <?php endif; ?>
+    <section class="clinical-alert clinical-alert--warning" role="status">
+        <p><strong>Scope warning:</strong> this page is for correcting patient details only.</p>
+        <p>Treatment records should remain locked. Corrections to treatment notes should be handled by addenda.</p>
+    </section>
 
     <section class="clinical-card">
         <div class="clinical-card__header">
             <h2 class="clinical-card__title">Patient details</h2>
             <p class="clinical-card__subtitle">
-                Record only information required for safe treatment and follow-up.
+                Keep details accurate for identification, follow-up, and safe treatment.
             </p>
         </div>
 
         <div class="clinical-card__body">
-            <form class="clinical-form" method="post" action="/clinical/patient-new.php" novalidate>
+            <form class="clinical-form" method="post" action="/clinical/patient-edit.php?id=<?= (int) $patientId ?>" novalidate>
                 <?= clinical_csrf_field(); ?>
 
                 <div class="clinical-form-grid">
@@ -262,8 +229,10 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
 
                 <div class="clinical-button-row">
-                    <button class="clinical-button" type="submit">Save patient</button>
-                    <a class="clinical-button clinical-button--secondary" href="/clinical/patients.php">Cancel</a>
+                    <button class="clinical-button" type="submit">Save changes</button>
+                    <a class="clinical-button clinical-button--secondary" href="/clinical/patient-view.php?id=<?= (int) $patientId ?>">
+                        Cancel
+                    </a>
                 </div>
             </form>
         </div>
