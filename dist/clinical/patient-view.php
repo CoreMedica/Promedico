@@ -34,30 +34,11 @@ if ($patient === null) {
     exit('Patient not found.');
 }
 
-$pdo = clinical_pdo();
+$treatmentService = clinical_treatment_service();
 
-$treatmentsStmt = $pdo->prepare(
-    'SELECT
-        t.id,
-        t.treatment_date,
-        t.treatment_time,
-        t.location_type,
-        t.location_name,
-        t.treatment_type,
-        t.follow_up_required,
-        t.created_at,
-        u.name AS practitioner_name
-     FROM treatments t
-     LEFT JOIN users u ON u.id = t.practitioner_id
-     WHERE t.patient_id = :patient_id
-     ORDER BY t.treatment_date DESC, t.treatment_time DESC, t.id DESC'
+$treatments = $treatmentService->listTreatmentsForPatient(
+    patientId: $patientId
 );
-
-$treatmentsStmt->execute([
-    'patient_id' => $patientId,
-]);
-
-$treatments = $treatmentsStmt->fetchAll();
 
 $created = (string) ($_GET['created'] ?? '') === '1';
 $updated = (string) ($_GET['updated'] ?? '') === '1';

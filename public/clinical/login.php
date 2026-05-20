@@ -8,20 +8,22 @@ require_once __DIR__ . '/includes/csrf.php';
 clinical_start_session();
 
 if (clinical_is_logged_in()) {
-    header('Location: /clinical/dashboard.php');
-    exit;
+    clinical_redirect('/clinical/dashboard.php');
 }
 
 $error = '';
 $email = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    clinical_verify_csrf_or_fail();
+
     $email = trim((string) ($_POST['email'] ?? ''));
     $password = (string) ($_POST['password'] ?? '');
 
     if (clinical_login($email, $password)) {
-        header('Location: /clinical/dashboard.php');
-        exit;
+        clinical_rotate_csrf_token();
+
+        clinical_redirect('/clinical/dashboard.php');
     }
 
     $error = 'Invalid email address or password.';
@@ -34,11 +36,6 @@ header('X-Frame-Options: DENY');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: no-referrer');
 header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
-
-function clinical_login_escape(string $value): string
-{
-    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-}
 ?>
 <!doctype html>
 <html lang="en-GB">
@@ -74,7 +71,7 @@ function clinical_login_escape(string $value): string
 
             <?php if ($error !== ''): ?>
                 <div class="clinical-alert clinical-alert--danger" role="alert">
-                    <p><?= clinical_login_escape($error) ?></p>
+                    <p><?= clinical_escape($error) ?></p>
                 </div>
             <?php endif; ?>
 
@@ -88,7 +85,7 @@ function clinical_login_escape(string $value): string
                         type="email"
                         id="email"
                         name="email"
-                        value="<?= clinical_login_escape($email) ?>"
+                        value="<?= clinical_escape($email) ?>"
                         autocomplete="username"
                         required>
                 </div>

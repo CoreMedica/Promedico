@@ -6,5 +6,4 @@ require_once __DIR__ . '/includes/auth.php';
 
 clinical_logout();
 
-header('Location: /clinical/login.php');
-exit;
+clinical_redirect('/clinical/login.php');
