@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // CONFIG
 // ─────────────────────────────────────────────
 
-$to = 'reception@coremedica.co.uk'; // TODO: replace with final Promedico mailbox if different
+$to = 'reception@promedico.co.uk'; // TODO: replace with final Promedico mailbox if different
 $siteName = 'Promedico Wellness Group';
 $subjectPrefix = 'Website enquiry';
 

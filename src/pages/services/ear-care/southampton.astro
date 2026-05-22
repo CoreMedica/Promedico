@@ -2,498 +2,848 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import HomeVisitModal from "../../../components/ui/HomeVisitModal.astro";
 
+const bookingUrl =
+  "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
+
+const siteUrl = "https://promedico.co.uk";
+
 const pageTitle =
-  "Earwax Removal Southampton | Home Visits | Promedico";
+  "Earwax Removal Southampton | Clinic & Home Visits | Promedico";
 
 const pageDescription =
-  "Professional home visit earwax removal in Southampton. Practitioner-led ear care delivered in the comfort of your own home.";
+  "Earwax removal in Southampton from Promedico, with clinic appointments at 4 Chessel Avenue in Bitterne and home visits across Southampton.";
+
+const pageImage = "/images/team/jacqueline-allen.webp";
+
+const faqItems = [
+  {
+    question: "Do you offer earwax removal in Southampton?",
+    answer:
+      "Yes. Promedico provides earwax removal in Southampton, with clinic appointments and home visits available across Southampton."
+  },
+  {
+    question: "Where is the Promedico earwax removal clinic in Southampton?",
+    answer:
+      "Promedico Southampton clinic appointments are available at 4 Chessel Avenue, Bitterne, Southampton, SO19 4AA. Appointments must be booked in advance."
+  },
+  {
+    question: "Do you offer home visit earwax removal in Southampton?",
+    answer:
+      "Yes. Home visit earwax removal is available across Southampton for patients who prefer to be seen at home or who may find travelling to clinic less convenient."
+  },
+  {
+    question: "How much does earwax removal cost in Southampton?",
+    answer:
+      "Southampton clinic appointments are priced at £60. Southampton home visit appointments are priced at £80. Each appointment includes ear assessment and earwax removal where appropriate."
+  },
+  {
+    question: "Which earwax removal methods are available in Southampton?",
+    answer:
+      "Promedico may use clinically recognised methods such as microsuction or ear irrigation where appropriate. The method used depends on the ear assessment, suitability and appointment setting."
+  },
+  {
+    question: "Is earwax removal always carried out at the appointment?",
+    answer:
+      "No. Each appointment starts with an assessment. Earwax removal is only carried out where wax is present and treatment is suitable. If removal is not appropriate, you will be given clear advice."
+  },
+  {
+    question: "How do I book earwax removal in Southampton?",
+    answer:
+      "Southampton clinic appointments can be booked online. Southampton home visits can be requested using the home visit enquiry option so availability can be confirmed."
+  }
+];
+
+const southamptonSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/services/ear-care/southampton#service`,
+    name: "Earwax Removal Southampton",
+    serviceType: "Ear assessment and earwax removal",
+    description: pageDescription,
+    provider: {
+      "@id": `${siteUrl}/services/ear-care/southampton#clinic`
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Southampton"
+      },
+      {
+        "@type": "Place",
+        name: "Bitterne"
+      },
+      {
+        "@type": "Place",
+        name: "Woolston"
+      },
+      {
+        "@type": "Place",
+        name: "Sholing"
+      },
+      {
+        "@type": "Place",
+        name: "Portswood"
+      },
+      {
+        "@type": "Place",
+        name: "Shirley"
+      },
+      {
+        "@type": "Place",
+        name: "Bassett"
+      },
+      {
+        "@type": "Place",
+        name: "Swaythling"
+      },
+      {
+        "@type": "Place",
+        name: "Ocean Village"
+      },
+      {
+        "@type": "Place",
+        name: "West End"
+      },
+      {
+        "@type": "Place",
+        name: "Hedge End"
+      },
+      {
+        "@type": "Place",
+        name: "Eastleigh"
+      }
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Southampton clinic earwax removal appointment",
+        price: "60",
+        priceCurrency: "GBP",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/services/ear-care/southampton`
+      },
+      {
+        "@type": "Offer",
+        name: "Southampton home visit earwax removal appointment",
+        price: "80",
+        priceCurrency: "GBP",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/services/ear-care/southampton`
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/services/ear-care/southampton#clinic`,
+    name: "Promedico Southampton Clinic",
+    url: `${siteUrl}/services/ear-care/southampton`,
+    logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    image: `${siteUrl}${pageImage}`,
+    telephone: "+447777100716",
+    email: "reception@promedico.co.uk",
+    priceRange: "££",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "4 Chessel Avenue",
+      addressLocality: "Bitterne",
+      addressRegion: "Southampton",
+      postalCode: "SO19 4AA",
+      addressCountry: "GB"
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Southampton"
+      },
+      {
+        "@type": "Place",
+        name: "Bitterne"
+      },
+      {
+        "@type": "Place",
+        name: "Woolston"
+      },
+      {
+        "@type": "Place",
+        name: "Sholing"
+      },
+      {
+        "@type": "Place",
+        name: "Portswood"
+      },
+      {
+        "@type": "Place",
+        name: "Shirley"
+      },
+      {
+        "@type": "Place",
+        name: "Bassett"
+      },
+      {
+        "@type": "Place",
+        name: "Swaythling"
+      },
+      {
+        "@type": "Place",
+        name: "Ocean Village"
+      },
+      {
+        "@type": "Place",
+        name: "West End"
+      },
+      {
+        "@type": "Place",
+        name: "Hedge End"
+      },
+      {
+        "@type": "Place",
+        name: "Eastleigh"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/services/ear-care/southampton#webpage`,
+    url: `${siteUrl}/services/ear-care/southampton`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB",
+    about: {
+      "@id": `${siteUrl}/services/ear-care/southampton#service`
+    },
+    isPartOf: {
+      "@id": `${siteUrl}/#website`
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}/services/ear-care/southampton#faq`,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/services/ear-care/southampton#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Ear Care",
+        item: `${siteUrl}/services/ear-care`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Southampton",
+        item: `${siteUrl}/services/ear-care/southampton`
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-    <section class="hero hero--image hero--southampton-ear-care" aria-labelledby="southampton-hero-heading">
-      <div class="hero__bg-pattern" aria-hidden="true"></div>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={pageImage}
+  ogTitle="Earwax Removal Southampton | Clinic & Home Visits"
+  ogDescription="Earwax removal in Southampton from Promedico, with clinic appointments in Bitterne and home visits across Southampton."
+  schema={southamptonSchema}
+>
+  <section class="hero hero--image hero--southampton-ear-care" aria-labelledby="southampton-hero-heading">
+    <div class="hero__bg-pattern" aria-hidden="true"></div>
 
-      <div class="container">
-        <div class="hero__inner">
-          <p class="hero__eyebrow">Southampton Ear Care</p>
+    <div class="container">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Southampton Ear Care</p>
 
-          <h1 class="hero__heading" id="southampton-hero-heading">
-            Home Visit Earwax Removal<br />
-            <span class="hero__heading-accent">in Southampton</span>
-          </h1>
+        <h1 class="hero__heading" id="southampton-hero-heading">
+          Earwax Removal<br />
+          <span class="hero__heading-accent">in Southampton</span>
+        </h1>
 
-          <p class="hero__subheading">
-            Practitioner-led ear care delivered at home across Southampton, with assessment first
-            and treatment carried out only where appropriate.
-          </p>
-
-          <div class="hero__ctas">
-            <button class="btn btn--primary" type="button" data-home-visit-open>
-              Request Home Visit
-            </button>
-
-            <a class="btn btn--outline-light" href="#home-visit-service">
-              View Home Visit Service
-            </a>
-          </div>
-
-          <ul class="hero__trust-list" aria-label="Southampton home visit ear care">
-            <li class="hero__trust-item">Home visits across Southampton</li>
-            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
-            <li class="hero__trust-item">Assessment before treatment</li>
-            <li class="hero__trust-item">Care in your own home</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--light" id="home-visit-service" aria-labelledby="home-visit-heading">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-header__heading" id="home-visit-heading">
-            Southampton Home Visit Ear Care
-          </h2>
-
-          <p class="section-header__lead">
-            Promedico provides earwax removal in Southampton as a home visit service, designed for
-            patients who prefer not to travel or who want professional ear care in a familiar setting.
-          </p>
-        </header>
-
-        <ul class="service-cards">
-          <li class="service-card">
-            <div class="service-card__body">
-              <div class="service-card__header">
-                <div class="service-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-house-medical"></i>
-                </div>
-
-                <h3 class="service-card__heading">Home Visit Appointment</h3>
-              </div>
-
-              <p class="service-card__text">
-                Ear assessment and earwax removal where appropriate, delivered at your home across
-                Southampton.
-              </p>
-
-              <ul class="service-card__features">
-                <li>Home visits across Southampton</li>
-                <li>No clinic travel required</li>
-                <li>Assessment and treatment where suitable</li>
-              </ul>
-
-              <button class="btn btn--primary service-card__link" type="button" data-home-visit-open>
-                Request Home Visit
-              </button>
-            </div>
-          </li>
-
-          <li class="service-card">
-            <div class="service-card__body">
-              <div class="service-card__header">
-                <div class="service-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-user-doctor"></i>
-                </div>
-
-                <h3 class="service-card__heading">Practitioner-Led Care</h3>
-              </div>
-
-              <p class="service-card__text">
-                Appointments are delivered by an experienced Advanced Clinical Practitioner, with a
-                focus on safe assessment, suitability and clear explanation.
-              </p>
-
-              <ul class="service-card__features">
-                <li>Clinical assessment first</li>
-                <li>Clear explanation before treatment</li>
-                <li>Aftercare advice provided</li>
-              </ul>
-
-              <a class="btn btn--outline service-card__link" href="/about">
-                Learn About Promedico
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="assessment-heading">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-header__heading" id="assessment-heading">
-            Earwax Removal with Assessment First
-          </h2>
-
-          <p class="section-header__lead">
-            Ear symptoms should not be treated as wax by default. Your ears are assessed before
-            treatment is considered, and removal is only carried out where suitable.
-          </p>
-        </header>
-
-        <div class="procedure-cards">
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Step 1</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-door-open"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Home Visit Arrival</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                We attend your home appointment and talk through the process before beginning, so
-                you know what to expect.
-              </p>
-            </div>
-          </article>
-
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Step 2</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-clipboard-medical"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Assessment and Suitability</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                Your symptoms are discussed and your ears are examined to check whether wax is
-                present and whether removal is appropriate.
-              </p>
-            </div>
-          </article>
-
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Step 3</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-ear-listen"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Treatment Where Suitable</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                If treatment is suitable, earwax removal may be carried out using an appropriate
-                clinical method, such as microsuction.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="svc-pricing" aria-labelledby="pricing-heading">
-      <div class="container">
-        <header class="section-header section-header--center">
-          <h2 class="section-header__heading" id="pricing-heading">
-            Southampton Home Visit Pricing
-          </h2>
-
-          <p class="section-header__lead">
-            Clear pricing for home visit earwax removal in Southampton.
-          </p>
-        </header>
-
-        <div class="pricing-cards pricing-cards--one-col">
-          <article class="pricing-card pricing-card--featured">
-            <p class="pricing-card__label">Home Visit</p>
-
-            <h3 class="pricing-card__name">Home Visit Appointment</h3>
-
-            <div class="pricing-card__price">
-              <span class="price-currency">£</span>
-              <span class="price-amount">80</span>
-            </div>
-
-            <p class="pricing-card__description">
-              Ear assessment and earwax removal where appropriate in your own home across
-              Southampton.
-            </p>
-
-            <button class="btn btn--primary" type="button" data-home-visit-open>
-              Request Home Visit
-            </button>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--light" aria-labelledby="why-home-visit-heading">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-header__heading" id="why-home-visit-heading">
-            Why Choose a Home Visit?
-          </h2>
-
-          <p class="section-header__lead">
-            A home visit can make ear care easier to access, especially if travelling to clinic is
-            inconvenient or less suitable.
-          </p>
-        </header>
-
-        <div class="procedure-cards">
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Convenience</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-chair"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Care at Home</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                Receive ear care in a familiar environment without needing to travel to a clinic.
-              </p>
-            </div>
-          </article>
-
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Accessibility</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-person-cane"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Useful if Travel Is Difficult</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                Home visits may be helpful for patients who find travelling inconvenient, tiring or
-                less practical.
-              </p>
-            </div>
-          </article>
-
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Consistency</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-shield-check"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Same Clinical Approach</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                The same assessment-first, practitioner-led standard applies whether care is
-                delivered at home or in clinic.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="svc-areas" aria-labelledby="areas-heading">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-header__heading" id="areas-heading">
-            Home Visit Earwax Removal Across Southampton
-          </h2>
-
-          <p class="section-header__lead">
-            Promedico provides home visit ear care across Southampton and nearby areas.
-          </p>
-        </header>
-
-        <div class="area-grid" aria-label="Southampton areas covered">
-          <div class="area-item">Southampton</div>
-          <div class="area-item">Bitterne</div>
-          <div class="area-item">Woolston</div>
-          <div class="area-item">Sholing</div>
-          <div class="area-item">Portswood</div>
-          <div class="area-item">Shirley</div>
-          <div class="area-item">Bassett</div>
-          <div class="area-item">Swaythling</div>
-          <div class="area-item">Ocean Village</div>
-          <div class="area-item">West End</div>
-          <div class="area-item">Hedge End</div>
-          <div class="area-item">Eastleigh</div>
-        </div>
-
-        <p class="svc-areas__note">
-          If your area is not listed, request a home visit and include your postcode so we can
-          advise on availability.
+        <p class="hero__subheading">
+          Practitioner-led ear care in Southampton, with clinic appointments in Bitterne
+          and home visits available across the local area.
         </p>
-      </div>
-    </section>
 
-    <section class="section section--light" aria-labelledby="symptoms-heading">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-header__heading" id="symptoms-heading">
-            When Earwax May Need Attention
-          </h2>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+            Book Clinic Appointment
+          </a>
 
-          <p class="section-header__lead">
-            Earwax build-up can affect hearing, comfort and day-to-day life. Assessment is important
-            because not every ear symptom is caused by wax.
-          </p>
-        </header>
-
-        <div class="procedure-cards">
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Common concern</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-ear-deaf"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Blocked or Full Ears</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                A blocked or full sensation can be associated with wax build-up, but the ear should
-                be assessed before treatment is carried out.
-              </p>
-            </div>
-          </article>
-
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Common concern</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-volume-low"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Reduced Hearing</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                Wax can sometimes reduce hearing clarity. Assessment helps confirm whether wax is
-                present and whether removal is appropriate.
-              </p>
-            </div>
-          </article>
-
-          <article class="procedure-card">
-            <div class="procedure-card__body">
-              <p class="procedure-card__eyebrow">Common concern</p>
-
-              <div class="procedure-card__header">
-                <div class="procedure-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-circle-info"></i>
-                </div>
-
-                <h3 class="procedure-card__title">Ongoing Discomfort</h3>
-              </div>
-
-              <p class="procedure-card__text">
-                If symptoms persist or treatment is not suitable, you will be advised on the next
-                appropriate step.
-              </p>
-            </div>
-          </article>
+          <button class="btn btn--outline-light" type="button" data-home-visit-open>
+            Request Home Visit
+          </button>
         </div>
-      </div>
-    </section>
 
-    <section class="section" aria-labelledby="why-heading">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-header__heading" id="why-heading">
-            Why Choose Promedico for Earwax Removal in Southampton?
-          </h2>
-
-          <p class="section-header__lead">
-            Promedico provides practitioner-led home visit ear care with a clinical, conservative
-            and patient-centred approach.
-          </p>
-        </header>
-
-        <ul class="service-cards">
-          <li class="service-card">
-            <div class="service-card__body">
-              <div class="service-card__header">
-                <div class="service-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-user-doctor"></i>
-                </div>
-
-                <h3 class="service-card__heading">Practitioner-Led Care</h3>
-              </div>
-
-              <p class="service-card__text">
-                Appointments are delivered by an experienced Advanced Clinical Practitioner, with a
-                focus on assessment, suitability and clear communication.
-              </p>
-            </div>
-          </li>
-
-          <li class="service-card">
-            <div class="service-card__body">
-              <div class="service-card__header">
-                <div class="service-card__icon-wrap" aria-hidden="true">
-                  <i class="fa-sharp fa-thin fa-hand-holding-medical"></i>
-                </div>
-
-                <h3 class="service-card__heading">Appropriate Treatment</h3>
-              </div>
-
-              <p class="service-card__text">
-                Treatment is only carried out where suitable. If removal is not appropriate, you will
-                be given clear advice on the next step.
-              </p>
-            </div>
-          </li>
+        <ul class="hero__trust-list" aria-label="Southampton ear care appointment options">
+          <li class="hero__trust-item">Southampton clinic appointments</li>
+          <li class="hero__trust-item">Southampton home visits</li>
+          <li class="hero__trust-item">Practitioner-led ear care</li>
+          <li class="hero__trust-item">Assessment before treatment</li>
         </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="svc-booking" aria-labelledby="booking-heading">
-      <div class="container">
-        <div class="svc-booking__inner svc-booking__inner--no-map">
-          <div class="svc-booking__content">
-            <p class="svc-booking__eyebrow">Request a home visit</p>
+  <section class="section section--light" id="appointment-options" aria-labelledby="appointment-options-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="appointment-options-heading">
+          Choose Your Southampton Appointment Type
+        </h2>
 
-            <h2 class="svc-booking__heading" id="booking-heading">
-              Request Earwax Removal at Home in Southampton
-            </h2>
+        <p class="section-header__lead">
+          Promedico offers two appointment options for earwax removal in Southampton:
+          a clinic appointment in Bitterne or a home visit across Southampton.
+        </p>
+      </header>
 
-            <p class="svc-booking__text">
-              Home visits are requested using the enquiry form. Send your details and postcode, and
-              Promedico will contact you to confirm availability.
+      <ul class="service-cards">
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-building"></i>
+              </div>
+
+              <h3 class="service-card__heading">Clinic Appointment</h3>
+            </div>
+
+            <p class="service-card__text">
+              Attend a Southampton clinic appointment at 4 Chessel Avenue in Bitterne for
+              ear assessment and earwax removal where appropriate.
             </p>
 
-            <ul class="svc-booking__meta">
-              <li>Home visits across Southampton</li>
-              <li>Postcode required for availability</li>
-              <li><a href="/contact">Questions? Contact us</a></li>
+            <ul class="service-card__features">
+              <li>Clinic-based ear care appointment</li>
+              <li>Bitterne, Southampton clinic location</li>
+              <li>Assessment and treatment where appropriate</li>
             </ul>
 
-            <div class="svc-booking__ctas">
-              <button class="btn btn--primary" type="button" data-home-visit-open>
-                Request Home Visit
-              </button>
+            <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              Book Clinic Appointment
+            </a>
+          </div>
+        </li>
 
-              <a class="btn btn--outline" href="/contact">
-                Contact Us
-              </a>
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-house-medical"></i>
+              </div>
+
+              <h3 class="service-card__heading">Home Visit</h3>
             </div>
+
+            <p class="service-card__text">
+              Arrange earwax removal at home if travelling to clinic is less convenient
+              or you prefer to be seen in your own environment.
+            </p>
+
+            <ul class="service-card__features">
+              <li>Home visits across Southampton</li>
+              <li>Care delivered in your own home</li>
+              <li>Suitable for patients who prefer not to travel</li>
+            </ul>
+
+            <button class="btn btn--primary service-card__link" type="button" data-home-visit-open>
+              Request Home Visit
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="assessment-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="assessment-heading">
+          Earwax Removal with Assessment First
+        </h2>
+
+        <p class="section-header__lead">
+          Earwax removal should start with a clear assessment. Your ears are checked
+          before treatment is considered, and removal is only carried out where suitable.
+        </p>
+      </header>
+
+      <div class="procedure-cards">
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Assessment</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-clipboard-medical"></i>
+              </div>
+
+              <h3 class="procedure-card__title">Checking Suitability</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              Your symptoms are discussed and your ears are examined to check whether
+              wax is present and whether treatment is suitable.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Treatment</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-ear-listen"></i>
+              </div>
+
+              <h3 class="procedure-card__title">Removal Where Appropriate</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              If treatment is suitable, earwax removal may be carried out using an
+              appropriate method such as microsuction or ear irrigation.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Advice</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-comment-medical"></i>
+              </div>
+
+              <h3 class="procedure-card__title">Clear Next Steps</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              You will receive aftercare advice and guidance on what to do if symptoms
+              persist or further support is needed.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-pricing" aria-labelledby="pricing-heading">
+    <div class="container">
+      <header class="section-header section-header--center">
+        <h2 class="section-header__heading" id="pricing-heading">
+          Southampton Earwax Removal Pricing
+        </h2>
+
+        <p class="section-header__lead">
+          Clear pricing for Southampton clinic appointments and home visits.
+        </p>
+      </header>
+
+      <div class="pricing-cards pricing-cards--two-col">
+        <article class="pricing-card pricing-card--featured">
+          <p class="pricing-card__label">Clinic</p>
+
+          <h3 class="pricing-card__name">Clinic Appointment</h3>
+
+          <div class="pricing-card__price">
+            <span class="price-currency">£</span>
+            <span class="price-amount">60</span>
+          </div>
+
+          <p class="pricing-card__description">
+            Ear assessment and earwax removal where appropriate at the Southampton clinic.
+          </p>
+
+          <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+            Book Clinic Appointment
+          </a>
+        </article>
+
+        <article class="pricing-card">
+          <p class="pricing-card__label">Home Visit</p>
+
+          <h3 class="pricing-card__name">Home Visit Appointment</h3>
+
+          <div class="pricing-card__price">
+            <span class="price-currency">£</span>
+            <span class="price-amount">80</span>
+          </div>
+
+          <p class="pricing-card__description">
+            Ear assessment and earwax removal where appropriate in your own home across Southampton.
+          </p>
+
+          <button class="btn btn--primary" type="button" data-home-visit-open>
+            Request Home Visit
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" aria-labelledby="clinic-location-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="clinic-location-heading">
+          Southampton Clinic Location in Bitterne
+        </h2>
+
+        <p class="section-header__lead">
+          Clinic appointments are available at 4 Chessel Avenue in Bitterne, Southampton.
+        </p>
+      </header>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-location-dot"></i>
+              </div>
+
+              <h3 class="service-card__heading">Clinic Address</h3>
+            </div>
+
+            <p class="service-card__text">
+              <strong>
+                Promedico Southampton Clinic<br />
+                4 Chessel Avenue<br />
+                Bitterne<br />
+                Southampton<br />
+                SO19 4AA
+              </strong>
+            </p>
+
+            <p class="service-card__text">
+              The Southampton clinic is used for scheduled ear care appointments only.
+              Please book before attending.
+            </p>
+
+            <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              Book Clinic Appointment
+            </a>
+          </div>
+        </li>
+
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-car-side"></i>
+              </div>
+
+              <h3 class="service-card__heading">Home Visits</h3>
+            </div>
+
+            <p class="service-card__text">
+              Home visits are available across Southampton for patients who prefer to be seen
+              at home or who may find travelling to clinic less convenient.
+            </p>
+
+            <ul class="service-card__features">
+              <li>Southampton home visits</li>
+              <li>Appointment required</li>
+              <li>Useful if travel is difficult</li>
+            </ul>
+
+            <button class="btn btn--primary service-card__link" type="button" data-home-visit-open>
+              Request Home Visit
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="svc-areas" aria-labelledby="areas-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="areas-heading">
+          Earwax Removal Across Southampton
+        </h2>
+
+        <p class="section-header__lead">
+          Promedico provides Southampton clinic appointments and home visits across
+          Southampton and nearby areas.
+        </p>
+      </header>
+
+      <div class="area-grid" aria-label="Southampton areas covered">
+        <div class="area-item">Southampton</div>
+        <div class="area-item">Bitterne</div>
+        <div class="area-item">Woolston</div>
+        <div class="area-item">Sholing</div>
+        <div class="area-item">Portswood</div>
+        <div class="area-item">Shirley</div>
+        <div class="area-item">Bassett</div>
+        <div class="area-item">Swaythling</div>
+        <div class="area-item">Ocean Village</div>
+        <div class="area-item">West End</div>
+        <div class="area-item">Hedge End</div>
+        <div class="area-item">Eastleigh</div>
+      </div>
+
+      <p class="svc-areas__note">
+        If your area is not listed, contact us before booking and we can advise on clinic
+        or home visit availability.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light" aria-labelledby="symptoms-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="symptoms-heading">
+          When Earwax May Need Attention
+        </h2>
+
+        <p class="section-header__lead">
+          Earwax build-up can affect hearing, comfort and day-to-day life. Assessment is important
+          because not every ear symptom is caused by wax.
+        </p>
+      </header>
+
+      <div class="procedure-cards">
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Common concern</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-ear-deaf"></i>
+              </div>
+
+              <h3 class="procedure-card__title">Blocked or Full Ears</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              A blocked or full sensation can be associated with wax build-up, but the ear should
+              be assessed before treatment is carried out.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Common concern</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-volume-low"></i>
+              </div>
+
+              <h3 class="procedure-card__title">Reduced Hearing</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              Wax can sometimes reduce hearing clarity. Assessment helps confirm whether wax is
+              present and whether removal is appropriate.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Common concern</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-circle-info"></i>
+              </div>
+
+              <h3 class="procedure-card__title">Ongoing Discomfort</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              If symptoms persist or treatment is not suitable, you will be advised on the next
+              appropriate step.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="why-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="why-heading">
+          Why Choose Promedico for Earwax Removal in Southampton?
+        </h2>
+
+        <p class="section-header__lead">
+          Promedico provides practitioner-led ear care in Southampton with a clinical,
+          conservative and patient-centred approach.
+        </p>
+      </header>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-user-doctor"></i>
+              </div>
+
+              <h3 class="service-card__heading">Practitioner-Led Care</h3>
+            </div>
+
+            <p class="service-card__text">
+              Appointments are delivered by trained practitioners working within their scope,
+              with clinical leadership from an experienced Advanced Clinical Practitioner.
+            </p>
+          </div>
+        </li>
+
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <i class="fa-sharp fa-thin fa-hand-holding-medical"></i>
+              </div>
+
+              <h3 class="service-card__heading">Appropriate Treatment</h3>
+            </div>
+
+            <p class="service-card__text">
+              Treatment is only carried out where suitable. If removal is not appropriate, you will
+              be given clear advice on the next step.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq-section faq-section--light" aria-labelledby="southampton-faq-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="southampton-faq-heading">
+          Southampton Earwax Removal FAQs
+        </h2>
+
+        <p class="section-header__lead">
+          Clear answers to common questions about Southampton clinic appointments,
+          home visits and earwax removal methods.
+        </p>
+      </header>
+
+      <div class="faq-grid">
+        <dl class="faq-list">
+          {
+            faqItems.map((item, index) => {
+              const questionId = `southampton-faq-question-${index}`;
+              const answerId = `southampton-faq-answer-${index}`;
+
+              return (
+                <div class="faq-item">
+                  <dt class="faq-item__question">
+                    <button
+                      class="faq-item__trigger"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls={answerId}
+                      id={questionId}
+                    >
+                      <span>{item.question}</span>
+                      <span class="faq-item__icon" aria-hidden="true"></span>
+                    </button>
+                  </dt>
+
+                  <dd
+                    class="faq-item__answer"
+                    id={answerId}
+                    aria-labelledby={questionId}
+                    hidden
+                  >
+                    <div class="faq-item__answer-inner">
+                      <p>{item.answer}</p>
+                    </div>
+                  </dd>
+                </div>
+              );
+            })
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-booking" aria-labelledby="booking-heading">
+    <div class="container">
+      <div class="svc-booking__inner svc-booking__inner--no-map">
+        <div class="svc-booking__content">
+          <p class="svc-booking__eyebrow">Book an appointment</p>
+
+          <h2 class="svc-booking__heading" id="booking-heading">
+            Book Earwax Removal in Southampton
+          </h2>
+
+          <p class="svc-booking__text">
+            Book online for Southampton clinic appointments at 4 Chessel Avenue in Bitterne.
+            For Southampton home visits, use the home visit request option so we can
+            confirm your area and appointment availability.
+          </p>
+
+          <ul class="svc-booking__meta">
+            <li>Southampton clinic appointments available</li>
+            <li>Home visits available across Southampton</li>
+            <li><a href="/contact">Questions? Contact us</a></li>
+          </ul>
+
+          <div class="svc-booking__ctas">
+            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+              Book Clinic Appointment
+            </a>
+
+            <button class="btn btn--outline" type="button" data-home-visit-open>
+              Request Home Visit
+            </button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <HomeVisitModal defaultArea="southampton" />
+  <script>
+    const faqTriggers = document.querySelectorAll(".faq-item__trigger");
+
+    faqTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const expanded = trigger.getAttribute("aria-expanded") === "true";
+        const answerId = trigger.getAttribute("aria-controls");
+        const answer = answerId ? document.getElementById(answerId) : null;
+
+        trigger.setAttribute("aria-expanded", String(!expanded));
+
+        if (answer) {
+          answer.hidden = expanded;
+        }
+      });
+    });
+  </script>
+
+  <HomeVisitModal defaultArea="southampton" />
 </BaseLayout>

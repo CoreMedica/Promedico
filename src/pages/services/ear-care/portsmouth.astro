@@ -5,14 +5,222 @@ import HomeVisitModal from "../../../components/ui/HomeVisitModal.astro";
 const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
 
+const siteUrl = "https://promedico.co.uk";
+
+const pageImage = "/images/contact/somerstown-central-hub.webp";
+
 const pageTitle =
   "Earwax Removal Portsmouth | Clinic & Home Visits | Promedico";
 
 const pageDescription =
-  "Professional earwax removal in Portsmouth with clinic appointments at Somerstown Central Community Hub and home visits available across Portsmouth.";
+  "Earwax removal in Portsmouth from Promedico, with clinic appointments at Somerstown Central Community Hub in Southsea and home visits across Portsmouth.";
+
+const faqItems = [
+  {
+    question: "Where is the Promedico earwax removal clinic in Portsmouth?",
+    answer:
+      "Promedico clinic appointments are available at Somerstown Central Community Hub, Winston Churchill Avenue, Southsea, Portsmouth, PO5 4JJ. Appointments must be booked in advance."
+  },
+  {
+    question: "Do you offer home visit earwax removal in Portsmouth?",
+    answer:
+      "Yes. Promedico provides home visit earwax removal across Portsmouth for patients who prefer to be seen at home or who may find travelling to clinic less convenient."
+  },
+  {
+    question: "How much does earwax removal cost in Portsmouth?",
+    answer:
+      "Portsmouth clinic appointments are priced at £60. Portsmouth home visit appointments are priced at £80. Each appointment includes ear assessment and earwax removal where appropriate."
+  },
+  {
+    question: "Is earwax removal always carried out at the appointment?",
+    answer:
+      "No. Each appointment starts with an assessment. Earwax removal is only carried out where wax is present and treatment is suitable. If removal is not appropriate, you will be given clear advice."
+  },
+  {
+    question: "Which earwax removal methods are available in Portsmouth?",
+    answer:
+      "Promedico may use clinically recognised methods such as microsuction or ear irrigation where appropriate. The method used depends on the ear assessment, suitability and appointment setting."
+  },
+  {
+    question: "How do I book earwax removal in Portsmouth?",
+    answer:
+      "Portsmouth clinic appointments can be booked online. Portsmouth home visits can be requested using the home visit enquiry option so availability can be confirmed."
+  }
+];
+const portsmouthSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/services/ear-care/portsmouth#service`,
+    name: "Earwax Removal Portsmouth",
+    serviceType: "Ear assessment and earwax removal",
+    description: pageDescription,
+    provider: {
+      "@id": `${siteUrl}/#organization`
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Portsmouth"
+      },
+      {
+        "@type": "Place",
+        name: "Southsea"
+      }
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Portsmouth clinic earwax removal appointment",
+        price: "60",
+        priceCurrency: "GBP",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/services/ear-care/portsmouth`
+      },
+      {
+        "@type": "Offer",
+        name: "Portsmouth home visit earwax removal appointment",
+        price: "80",
+        priceCurrency: "GBP",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/services/ear-care/portsmouth`
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/#organization`,
+    name: "Promedico Wellness Group",
+    url: siteUrl,
+    logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    image: `${siteUrl}${pageImage}`,
+    telephone: "+447777100716",
+    email: "reception@promedico.co.uk",
+    priceRange: "££",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
+      addressLocality: "Southsea",
+      addressRegion: "Portsmouth",
+      postalCode: "PO5 4JJ",
+      addressCountry: "GB"
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Portsmouth"
+      },
+      {
+        "@type": "Place",
+        name: "Southsea"
+      },
+      {
+        "@type": "Place",
+        name: "Fratton"
+      },
+      {
+        "@type": "Place",
+        name: "Milton"
+      },
+      {
+        "@type": "Place",
+        name: "Eastney"
+      },
+      {
+        "@type": "Place",
+        name: "Copnor"
+      },
+      {
+        "@type": "Place",
+        name: "North End"
+      },
+      {
+        "@type": "Place",
+        name: "Hilsea"
+      },
+      {
+        "@type": "Place",
+        name: "Cosham"
+      },
+      {
+        "@type": "Place",
+        name: "Drayton"
+      },
+      {
+        "@type": "Place",
+        name: "Farlington"
+      },
+      {
+        "@type": "Place",
+        name: "Port Solent"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/services/ear-care/portsmouth#webpage`,
+    url: `${siteUrl}/services/ear-care/portsmouth`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB",
+    about: {
+      "@id": `${siteUrl}/services/ear-care/portsmouth#service`
+    },
+    isPartOf: {
+      "@id": `${siteUrl}/#website`
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}/services/ear-care/portsmouth#faq`,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/services/ear-care/portsmouth#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Ear Care",
+        item: `${siteUrl}/services/ear-care`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Portsmouth",
+        item: `${siteUrl}/services/ear-care/portsmouth`
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={pageImage}
+  ogTitle="Earwax Removal Portsmouth | Clinic & Home Visits"
+  ogDescription="Earwax removal in Portsmouth from Promedico, with Southsea clinic appointments and home visits across Portsmouth."
+  schema={portsmouthSchema}
+>
     <section class="hero hero--image hero--portsmouth-ear-care" aria-labelledby="portsmouth-hero-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>
 
@@ -43,7 +251,7 @@ const pageDescription =
           <ul class="hero__trust-list" aria-label="Portsmouth ear care appointment options">
             <li class="hero__trust-item">Portsmouth clinic appointments</li>
             <li class="hero__trust-item">Portsmouth home visits</li>
-            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
+            <li class="hero__trust-item">Practitioner-led ear care</li>
             <li class="hero__trust-item">Assessment before treatment</li>
           </ul>
         </div>
@@ -458,8 +666,8 @@ const pageDescription =
               </div>
 
               <p class="service-card__text">
-                Appointments are delivered by an experienced Advanced Clinical Practitioner, with a
-                focus on assessment, suitability and clear communication.
+                Appointments are delivered by trained practitioners working within their scope, with
+                clinical leadership from an experienced Advanced Clinical Practitioner.
               </p>
             </div>
           </li>
@@ -495,8 +703,8 @@ const pageDescription =
             </h2>
 
             <p class="svc-booking__text">
-              Choose a Portsmouth clinic appointment or home visit using the online booking system,
-              or contact Promedico if you need help before booking.
+              Book online for Portsmouth clinic appointments. For Portsmouth home visits, use the
+              home visit request option so we can confirm your area and appointment availability.
             </p>
 
             <ul class="svc-booking__meta">
@@ -507,16 +715,87 @@ const pageDescription =
 
             <div class="svc-booking__ctas">
               <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
-                Book Online
+                Book Clinic Appointment
               </a>
 
-              <a class="btn btn--outline" href="/contact">
-                Contact Us
-              </a>
+              <button class="btn btn--outline" type="button" data-home-visit-open>
+                Request Home Visit
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <section class="faq-section faq-section--light" aria-labelledby="portsmouth-faq-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="portsmouth-faq-heading">
+            Portsmouth Earwax Removal FAQs
+          </h2>
+
+          <p class="section-header__lead">
+            Clear answers to common questions about Portsmouth clinic appointments,
+            home visits, pricing and earwax removal methods.
+          </p>
+        </header>
+
+        <div class="faq-grid">
+          <dl class="faq-list">
+            {
+              faqItems.map((item, index) => {
+                const questionId = `portsmouth-faq-question-${index}`;
+                const answerId = `portsmouth-faq-answer-${index}`;
+
+                return (
+                  <div class="faq-item">
+                    <dt class="faq-item__question">
+                      <button
+                        class="faq-item__trigger"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls={answerId}
+                        id={questionId}
+                      >
+                        <span>{item.question}</span>
+                        <span class="faq-item__icon" aria-hidden="true"></span>
+                      </button>
+                    </dt>
+
+                    <dd
+                      class="faq-item__answer"
+                      id={answerId}
+                      aria-labelledby={questionId}
+                      hidden
+                    >
+                      <div class="faq-item__answer-inner">
+                        <p>{item.answer}</p>
+                      </div>
+                    </dd>
+                  </div>
+                );
+              })
+            }
+          </dl>
+        </div>
+      </div>
+    </section>
+    <script>
+      const faqTriggers = document.querySelectorAll(".faq-item__trigger");
+
+      faqTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const expanded = trigger.getAttribute("aria-expanded") === "true";
+          const answerId = trigger.getAttribute("aria-controls");
+          const answer = answerId ? document.getElementById(answerId) : null;
+
+          trigger.setAttribute("aria-expanded", String(!expanded));
+
+          if (answer) {
+            answer.hidden = expanded;
+          }
+        });
+      });
+    </script>
     <HomeVisitModal defaultArea="portsmouth" />
 </BaseLayout>
