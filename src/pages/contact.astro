@@ -10,7 +10,7 @@ const pageTitle =
   "Contact Promedico | Ear Care Appointments & Home Visits";
 
 const pageDescription =
-  "Contact Promedico about Portsmouth clinic appointments, home visit earwax removal in Portsmouth or Southampton, or questions before booking.";
+  "Contact Promedico about clinic appointments or home visit earwax removal in Portsmouth and Southampton, or questions before booking.";
 
 const pageImage = "/images/contact/somerstown-central-hub.webp";
 
@@ -38,14 +38,24 @@ const contactSchema = [
     telephone: "+447777100716",
     email: "reception@promedico.co.uk",
     priceRange: "££",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
-      addressLocality: "Southsea",
-      addressRegion: "Portsmouth",
-      postalCode: "PO5 4JJ",
-      addressCountry: "GB"
-    },
+    address: [
+      {
+        "@type": "PostalAddress",
+        streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
+        addressLocality: "Southsea",
+        addressRegion: "Portsmouth",
+        postalCode: "PO5 4JJ",
+        addressCountry: "GB"
+      },
+      {
+        "@type": "PostalAddress",
+        streetAddress: "4 Chessel Avenue",
+        addressLocality: "Bitterne",
+        addressRegion: "Southampton",
+        postalCode: "SO19 4AA",
+        addressCountry: "GB"
+      }
+    ],
     areaServed: [
       {
         "@type": "City",
@@ -94,7 +104,7 @@ const contactSchema = [
   description={pageDescription}
   ogImage={pageImage}
   ogTitle="Contact Promedico | Ear Care Appointments & Home Visits"
-  ogDescription="Contact Promedico about Portsmouth clinic appointments, local home visits, and ear care questions before booking."
+  ogDescription="Contact Promedico about clinic appointments, local home visits, and ear care questions before booking."
   schema={contactSchema}
 >
     <section class="hero hero--image hero--contact" aria-labelledby="contact-hero-heading">
@@ -110,8 +120,8 @@ const contactSchema = [
           </h1>
 
           <p class="hero__subheading">
-            Contact Promedico about Portsmouth clinic appointments, home visit earwax removal
-            in Portsmouth or Southampton, or questions before booking.
+            Contact Promedico about clinic appointments or home visit earwax removal in
+            Portsmouth and Southampton, or questions before booking.
           </p>
 
           <div class="hero__ctas">
@@ -126,8 +136,8 @@ const contactSchema = [
 
           <ul class="hero__trust-list" aria-label="Promedico contact options">
             <li class="hero__trust-item">Portsmouth clinic enquiries</li>
+            <li class="hero__trust-item">Southampton clinic enquiries</li>
             <li class="hero__trust-item">Home visit enquiries</li>
-            <li class="hero__trust-item">Portsmouth and Southampton coverage</li>
             <li class="hero__trust-item">Practitioner-led ear care</li>
           </ul>
         </div>
@@ -150,21 +160,21 @@ const contactSchema = [
         <ul class="service-cards">
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">Book a Portsmouth Clinic Appointment</h3>
+              <h3 class="service-card__heading">Book a Clinic Appointment</h3>
 
               <p class="service-card__text">
                 Use the online booking system if you want to arrange a clinic appointment
-                at Somerstown Central Community Hub in Southsea, Portsmouth.
+                in Portsmouth or Southampton.
               </p>
 
               <ul class="service-card__features">
                 <li>Portsmouth clinic appointments</li>
+                <li>Southampton clinic appointments</li>
                 <li>Book directly online</li>
-                <li>Suitable if you can attend the clinic</li>
               </ul>
 
               <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
-                Book Portsmouth Clinic
+                Book Clinic Appointment
               </a>
             </div>
           </li>
@@ -197,60 +207,78 @@ const contactSchema = [
       <div class="container">
         <header class="section-header">
           <h2 class="section-header__heading" id="clinic-location-heading">
-            Portsmouth Clinic Location
+            Clinic Locations
           </h2>
 
           <p class="section-header__lead">
-            Clinic appointments are available at Somerstown Central Community Hub in Southsea,
-            Portsmouth. Home visits are also available across Portsmouth and Southampton.
+            Clinic appointments are available in Portsmouth and Southampton. Home visits are
+            also available across both local areas.
           </p>
         </header>
 
-        <div class="about-intro__grid">
-          <div class="about-intro__content">
-            <p>
-              The Portsmouth clinic is based at:
-            </p>
+        <ul class="service-cards">
+          <li class="service-card">
+            <div class="service-card__body">
+              <div class="service-card__header">
+                <div class="service-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-location-dot"></i>
+                </div>
 
-            <p>
-              <strong>
-                Somerstown Central Community Hub<br />
-                Winston Churchill Avenue<br />
-                Southsea<br />
-                Portsmouth<br />
-                PO5 4JJ
-              </strong>
-            </p>
+                <h3 class="service-card__heading">Portsmouth Clinic</h3>
+              </div>
 
-            <p>
-              Please use the online booking system for Portsmouth clinic appointments where possible.
-              If you are enquiring about a home visit, include your area or postcode in your message
-              so we can advise on availability.
-            </p>
+              <p class="service-card__text">
+                <strong>
+                  Somerstown Central Community Hub<br />
+                  Winston Churchill Avenue<br />
+                  Southsea<br />
+                  Portsmouth<br />
+                  PO5 4JJ
+                </strong>
+              </p>
 
-            <div class="contact-form__actions">
-              <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
-                Book Online
-              </a>
+              <p class="service-card__text">
+                Please book online before attending. The Portsmouth clinic is used for
+                scheduled appointments only.
+              </p>
 
-              <a class="btn btn--outline" href="#contact-form">
-                Send an Enquiry
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/portsmouth">
+                View Portsmouth Ear Care
               </a>
             </div>
-          </div>
+          </li>
 
-          <figure class="about-intro__panel">
-            <img
-              class="about-intro__panel--image"
-              src="/images/contact/somerstown-central-hub.webp"
-              alt="Somerstown Central Community Hub in Southsea, Portsmouth"
-              width="850"
-              height="478"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </div>
+          <li class="service-card">
+            <div class="service-card__body">
+              <div class="service-card__header">
+                <div class="service-card__icon-wrap" aria-hidden="true">
+                  <i class="fa-sharp fa-thin fa-location-dot"></i>
+                </div>
+
+                <h3 class="service-card__heading">Southampton Clinic</h3>
+              </div>
+
+              <p class="service-card__text">
+                <strong>
+                  Promedico Southampton Clinic<br />
+                  4 Chessel Avenue<br />
+                  Bitterne<br />
+                  Southampton<br />
+                  SO19 4AA
+                </strong>
+              </p>
+
+              <p class="service-card__text">
+                Please book online before attending. The Southampton clinic is used for
+                scheduled appointments only.
+              </p>
+
+              <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
+                View Southampton Ear Care
+              </a>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -295,10 +323,10 @@ const contactSchema = [
             <div class="form-field">
               <label for="service">Enquiry type</label>
               <select id="service" name="service">
-                <option value="">Please select</option>
-                <option value="portsmouth">Portsmouth clinic appointment</option>
+                <option value="portsmouth-clinic">Portsmouth clinic appointment</option>
                 <option value="portsmouth-home">Portsmouth home visit</option>
-                <option value="southampton">Southampton home visit</option>
+                <option value="southampton-clinic">Southampton clinic appointment</option>
+                <option value="southampton-home">Southampton home visit</option>
                 <option value="not-sure">Not sure</option>
               </select>
             </div>
@@ -350,11 +378,11 @@ const contactSchema = [
         <ul class="service-cards service-cards__three-col">
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">Booking a Portsmouth Clinic Appointment?</h3>
+              <h3 class="service-card__heading">Booking a Clinic Appointment?</h3>
 
               <p class="service-card__text">
-                Use the online booking system if you want to arrange a clinic appointment at
-                Somerstown Central Community Hub in Southsea.
+                Use the online booking system if you want to arrange a clinic appointment in
+                Portsmouth or Southampton.
               </p>
             </div>
           </li>

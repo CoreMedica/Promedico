@@ -1,6 +1,7 @@
 ---
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
+import CookieBanner from "../components/ui/CookieBanner.astro";
 import "../styles/main.scss";
 
 interface Props {
@@ -80,5 +81,6 @@ const {
       <slot />
     </main>
     <SiteFooter />
+    <CookieBanner />
   </body>
 </html>

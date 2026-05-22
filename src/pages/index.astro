@@ -8,7 +8,7 @@ const pageTitle =
   "Promedico Wellness Group | Practitioner-Led Private Ear Care";
 
 const pageDescription =
-  "Practitioner-led private ear care from Promedico, with Portsmouth clinic appointments and home visit earwax removal across Portsmouth and Southampton.";
+  "Practitioner-led private ear care from Promedico, with clinic appointments and home visit earwax removal available in Portsmouth and Southampton.";
 
 const siteUrl = "https://promedico.co.uk";
 
@@ -32,14 +32,24 @@ const homeSchema = [
     telephone: "+447777100716",
     email: "reception@promedico.co.uk",
     priceRange: "££",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
-      addressLocality: "Southsea",
-      addressRegion: "Portsmouth",
-      postalCode: "PO5 4JJ",
-      addressCountry: "GB"
-    },
+    address: [
+      {
+        "@type": "PostalAddress",
+        streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
+        addressLocality: "Southsea",
+        addressRegion: "Portsmouth",
+        postalCode: "PO5 4JJ",
+        addressCountry: "GB"
+      },
+      {
+        "@type": "PostalAddress",
+        streetAddress: "4 Chessel Avenue",
+        addressLocality: "Bitterne",
+        addressRegion: "Southampton",
+        postalCode: "SO19 4AA",
+        addressCountry: "GB"
+      }
+    ],
     areaServed: [
       {
         "@type": "City",
@@ -92,7 +102,7 @@ const pageSocialTitle =
   "Promedico Wellness Group | Practitioner-Led Private Ear Care";
 
 const pageSocialDescription =
-  "Private ear care and earwax removal across Portsmouth and Southampton, with Portsmouth clinic appointments and local home visits.";
+  "Private ear care and earwax removal across Portsmouth and Southampton, with clinic appointments and local home visits in both areas.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} schema={homeSchema} ogTitle={pageSocialTitle} ogDescription={pageSocialDescription} ogImage={pageImage}>
@@ -110,7 +120,7 @@ const pageSocialDescription =
 
           <p class="hero__subheading">
             Private ear care and earwax removal across Portsmouth and Southampton, with clinic
-            appointments in Portsmouth and home visits available across both local areas.
+            appointments and home visits available in both local areas.
           </p>
 
           <div class="hero__ctas">
@@ -124,9 +134,9 @@ const pageSocialDescription =
           </div>
 
           <ul class="hero__trust-list" aria-label="Promedico key trust points">
-            <li class="hero__trust-item">Advanced Clinical Practitioner-led care</li>
-            <li class="hero__trust-item">HCPC Registered Paramedic</li>
-            <li class="hero__trust-item">Clinic appointments and home visits</li>
+            <li class="hero__trust-item">Practitioner-led ear care</li>
+            <li class="hero__trust-item">Clinic appointments in Portsmouth and Southampton</li>
+            <li class="hero__trust-item">Home visits available in both areas</li>
             <li class="hero__trust-item">Clear, safe and patient-centred approach</li>
           </ul>
         </div>
@@ -141,8 +151,8 @@ const pageSocialDescription =
 
           <p class="section-header__lead">
             Promedico provides practitioner-led private ear care, including ear assessment and
-            earwax removal where appropriate. Clinic appointments are available in Portsmouth,
-            and home visits are available across Portsmouth and Southampton.
+            earwax removal where appropriate. Clinic appointments and home visits are available
+            in Portsmouth and Southampton.
           </p>
         </header>
       </div>
@@ -187,14 +197,14 @@ const pageSocialDescription =
               <h3 class="service-card__heading">Southampton Ear Care</h3>
 
               <p class="service-card__text">
-                Home visit earwax removal is available across Southampton and surrounding areas,
-                delivered in a familiar and comfortable setting.
+                Clinic appointments and home visits are available across Southampton, giving you
+                flexibility depending on what works best for you.
               </p>
 
               <ul class="service-card__features">
-                <li>Home visits across Southampton</li>
-                <li>Care delivered in your own home</li>
-                <li>Convenient and accessible appointments</li>
+                <li>Clinic appointments in Bitterne</li>
+                <li>Home visits available</li>
+                <li>Assessment and treatment where appropriate</li>
               </ul>
 
               <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
@@ -234,7 +244,7 @@ const pageSocialDescription =
             <div class="procedure-card__body">
               <h3 class="procedure-card__heading">Appropriate Treatment</h3>
               <p class="procedure-card__text">
-                Where treatment is appropriate, clinically recognised methods such as microsuction
+                Where treatment is appropriate, clinically recognised methods such as microsuction or ear irrigation
                 may be used.
               </p>
             </div>
@@ -265,15 +275,16 @@ const pageSocialDescription =
             </h2>
 
             <p class="about-section__lead">
-              Promedico ear care is delivered by Jacqueline Allen, an Advanced Clinical Practitioner
+              Promedico ear care is delivered by trained practitioners working within their scope,
+              with clinical leadership from Jacqueline Allen, an Advanced Clinical Practitioner
               with over 15 years' experience across primary care, urgent care and paramedicine.
             </p>
 
             <p>
               Jacqueline is an HCPC Registered Paramedic and independent and supplementary
               prescriber, with an MSc Advanced Clinical Practice background. Her experience across
-              NHS, urgent care and primary care settings supports safe assessment, appropriate
-              decision-making and clear patient communication.
+              NHS, urgent care and primary care settings supports Promedico's assessment-first,
+              patient-centred approach to ear care.
             </p>
 
             <p>
@@ -331,7 +342,7 @@ const pageSocialDescription =
               <h3 class="procedure-card__heading">Treatment Where Suitable</h3>
               <p class="procedure-card__text">
                 If treatment is suitable, earwax removal will be carried out using an appropriate
-                method, such as microsuction.
+                method, such as microsuction or ear irrigation.
               </p>
             </div>
           </article>
@@ -370,8 +381,8 @@ const pageSocialDescription =
             <div class="service-card__body">
               <h3 class="service-card__heading">Practitioner-Led Care</h3>
               <p class="service-card__text">
-                Appointments are delivered by an experienced Advanced Clinical Practitioner, not
-                treated as a rushed retail-style service.
+                Appointments are delivered by trained practitioners working within their scope,
+                with clinical leadership from an experienced Advanced Clinical Practitioner.
               </p>
             </div>
           </li>
@@ -380,8 +391,8 @@ const pageSocialDescription =
             <div class="service-card__body">
               <h3 class="service-card__heading">Clinic and Home Visit Options</h3>
               <p class="service-card__text">
-                Choose the setting that suits you, with clinic appointments in Portsmouth and home
-                visits across Portsmouth and Southampton.
+                Choose the setting that suits you, with clinic appointments and home visits available
+                in Portsmouth and Southampton.
               </p>
             </div>
           </li>
@@ -392,23 +403,26 @@ const pageSocialDescription =
       <div class="container">
         <header class="section-header">
           <h2 class="section-header__heading" id="locations-heading">
-            Portsmouth Clinic and Home Visit Areas
+            Clinic and Home Visit Ear Care Locations
           </h2>
 
           <p class="section-header__lead">
-            Promedico provides clinic appointments at Somerstown Central Community Hub in
-            Southsea, Portsmouth, and home visit ear care across Portsmouth and Southampton.
+            Promedico provides clinic appointments and home visit ear care in Portsmouth
+            and Southampton.
           </p>
         </header>
 
         <ul class="service-cards">
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">Portsmouth Clinic</h3>
+              <h3 class="service-card__heading">Portsmouth Ear Care</h3>
+
               <p class="service-card__text">
                 Clinic appointments are available at Somerstown Central Community Hub,
-                Winston Churchill Avenue, Southsea, Portsmouth, PO5 4JJ.
+                Winston Churchill Avenue, Southsea, Portsmouth, PO5 4JJ. Home visits are
+                also available across Portsmouth.
               </p>
+
               <a class="btn btn--primary service-card__link" href="/services/ear-care/portsmouth">
                 View Portsmouth Ear Care
               </a>
@@ -417,13 +431,15 @@ const pageSocialDescription =
 
           <li class="service-card">
             <div class="service-card__body">
-              <h3 class="service-card__heading">Home Visits</h3>
+              <h3 class="service-card__heading">Southampton Ear Care</h3>
+
               <p class="service-card__text">
-                Home visits are available across Portsmouth and Southampton for patients who
-                prefer to be seen at home or find clinic travel less convenient.
+                Clinic appointments are available at 4 Chessel Avenue, Bitterne,
+                Southampton, SO19 4AA. Home visits are also available across Southampton.
               </p>
+
               <a class="btn btn--primary service-card__link" href="/services/ear-care/southampton">
-                View Southampton Home Visits
+                View Southampton Ear Care
               </a>
             </div>
           </li>
@@ -441,8 +457,8 @@ const pageSocialDescription =
             </h2>
 
             <p class="svc-booking__text">
-              Book online for clinic appointments or home visits, or contact Promedico if you need
-              help choosing the right option.
+              Book online for clinic appointments in Portsmouth or Southampton. For home visits,
+              contact Promedico so we can confirm your area and appointment availability.
             </p>
 
             <div class="svc-booking__ctas">

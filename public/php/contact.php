@@ -87,7 +87,14 @@ if (mb_strlen($message) > 3000) {
     redirect_with_status('message-too-long');
 }
 
-$allowedServices = ['', 'portsmouth', 'southampton', 'not-sure'];
+$allowedServices = [
+    'portsmouth-clinic',
+    'portsmouth-home',
+    'southampton-clinic',
+    'southampton-home',
+    'not-sure',
+    ''
+];
 
 if (!in_array($service, $allowedServices, true)) {
     redirect_with_status('invalid-service');
@@ -98,8 +105,10 @@ if (!in_array($service, $allowedServices, true)) {
 // ─────────────────────────────────────────────
 
 $serviceLabel = match ($service) {
-    'portsmouth' => 'Portsmouth',
-    'southampton' => 'Southampton',
+    'portsmouth-clinic' => 'Portsmouth clinic appointment',
+    'portsmouth-home' => 'Portsmouth home visit',
+    'southampton-clinic' => 'Southampton clinic appointment',
+    'southampton-home' => 'Southampton home visit',
     'not-sure' => 'Not sure',
     default => 'Not selected',
 };

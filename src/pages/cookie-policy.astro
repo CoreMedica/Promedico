@@ -1,0 +1,150 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Cookie Policy | Promedico Wellness Group";
+
+const pageDescription =
+  "Cookie information for Promedico Wellness Group, including essential cookies, analytics cookies and advertising measurement cookies.";
+
+const siteUrl = "https://promedico.co.uk";
+
+const cookieSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/cookie-policy#webpage`,
+    url: `${siteUrl}/cookie-policy`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/cookie-policy#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Cookie Policy",
+        item: `${siteUrl}/cookie-policy`
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  schema={cookieSchema}
+>
+  <section class="hero" aria-labelledby="cookie-heading">
+    <div class="hero__bg-pattern" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Cookies</p>
+
+        <h1 class="hero__heading" id="cookie-heading">
+          Cookie Policy
+        </h1>
+
+        <p class="hero__subheading">
+          This policy explains how Promedico Wellness Group uses cookies, local storage
+          and similar technologies on this website.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Cookie policy content">
+    <div class="container">
+      <div class="blog-post__content">
+        <p><strong>Last updated:</strong> 22 May, 2026</p>
+
+        <h2>What cookies are</h2>
+        <p>
+          Cookies are small text files placed on your device when you visit a website.
+          Similar technologies, such as local storage and tracking tags, can also be used
+          to remember settings, measure website use or support advertising measurement.
+        </p>
+
+        <h2>How we use cookies</h2>
+        <p>
+          We use essential technologies to make the website work. With your consent, we may
+          also use analytics and advertising technologies to understand how people use the
+          website and to measure marketing performance.
+        </p>
+
+        <h2>Essential cookies and local storage</h2>
+        <p>
+          Essential technologies are used where necessary for the website to function or to
+          remember your cookie choice. These do not require consent.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Purpose</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>promedico_cookie_consent</td>
+              <td>Stores whether you accepted or rejected non-essential cookies.</td>
+              <td>Stored in your browser until cleared or changed.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Analytics cookies</h2>
+        <p>
+          If you accept non-essential cookies, we may use Google analytics tools to understand
+          website traffic, page views and how visitors interact with the website.
+        </p>
+
+        <h2>Advertising and measurement cookies</h2>
+        <p>
+          If you accept non-essential cookies, we may use Google and Microsoft/Bing advertising
+          tags to measure advertising performance and understand whether marketing activity leads
+          to website visits or enquiries.
+        </p>
+
+        <h2>Your cookie choices</h2>
+        <p>
+          You can accept or reject non-essential cookies using the cookie banner. You can also
+          change your choice by clearing your browser storage for this website, or by using the
+          control below if enabled.
+        </p>
+
+        <p>
+          <button class="btn btn--outline" type="button" onclick="window.PromedicoCookieConsent?.reset()">
+            Change cookie choice
+          </button>
+        </p>
+
+        <h2>Third-party services</h2>
+        <p>
+          Google and Microsoft may process information collected through their tags according to
+          their own privacy notices and settings. These technologies are only loaded after you
+          accept non-essential cookies.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          If you have questions about our use of cookies, contact
+          <a href="mailto:reception@promedico.co.uk">reception@promedico.co.uk</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

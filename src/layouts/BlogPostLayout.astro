@@ -25,7 +25,7 @@ const pageDescription = post.data.description;
 
 const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
@@ -37,16 +37,27 @@ const articleSchema = {
   publisher: {
     "@type": "Organization",
     name: "Promedico Wellness Group",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://promedico.co.uk/images/ProMedico-Logo-text.webp",
+    },
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://promedico.co.uk/blog/${post.id}/`,
+    "@id": `https://promedico.co.uk/blog/${post.id}`,
   },
 };
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogTitle={pageTitle}
+  ogDescription={pageDescription}
+  ogImage="/images/ProMedico-Logo-text.webp"
+  ogType="article"
+  schema={articleSchema}
+>
 
   <article class="blog-post">
     <header class="hero" aria-labelledby="blog-post-heading">
@@ -100,8 +111,8 @@ const articleSchema = {
 
             <p class="svc-booking__text">
               If your symptoms suggest possible earwax build-up, the next step is an appropriate
-              ear assessment. Promedico provides clinic appointments in Portsmouth and home visits
-              across Portsmouth and Southampton.
+              ear assessment. Promedico provides clinic appointments and home visits in Portsmouth
+              and Southampton.
             </p>
 
             <div class="svc-booking__ctas">

@@ -61,17 +61,25 @@ if (
     exit;
 }
 
-$to = 'YOUR_EMAIL_ADDRESS_HERE';
+$areaLabel = match ($area) {
+    'portsmouth' => 'Portsmouth home visit',
+    'southampton' => 'Southampton home visit',
+    default => 'Not selected',
+};
+
+$to = 'reception@promedico.co.uk';
 $subject = 'New home visit request - Promedico Wellness Group';
 
 $body = "New home visit request\n\n";
 $body .= "Name: {$name}\n";
 $body .= "Email: {$email}\n";
 $body .= "Phone: {$phone}\n";
-$body .= "Area: {$area}\n";
+$body .= "Area: {$areaLabel}\n";
 $body .= "Postcode: {$postcode}\n\n";
 $body .= "Message:\n{$message}\n\n";
 $body .= "Consent: {$consent}\n";
+$body .= "Submitted from: {$_SERVER['HTTP_HOST']}\n";
+$body .= "IP address: {$_SERVER['REMOTE_ADDR']}\n";
 
 $headers = [];
 $headers[] = 'From: Promedico Website <no-reply@promedico.co.uk>';
@@ -81,9 +89,8 @@ $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 $sent = mail($to, $subject, $body, implode("\r\n", $headers));
 
 if (!$sent) {
-    header('Location: /contact?status=send-failed');
-    exit;
+    redirect_with_status('send-failed');
 }
 
-header('Location: /contact?status=success');
+redirect_with_status('success');
 exit;
