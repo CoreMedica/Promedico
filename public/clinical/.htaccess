@@ -1,11 +1,62 @@
+# ==========================================================================
+# Promedico Clinical App - Apache hardening
+# Path: public/clinical/.htaccess
+# ==========================================================================
+
 Options -Indexes
 
-<FilesMatch "\.(env|ini|log|sql|bak|json|lock|md)$">
+DirectoryIndex login.php index.php
+
+# --------------------------------------------------------------------------
+# No indexing
+# --------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "no-referrer"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Block sensitive / non-runtime files
+# --------------------------------------------------------------------------
+
+<FilesMatch "\.(env|ini|log|sql|bak|backup|old|orig|save|md|json|lock|yml|yaml|xml)$">
     Require all denied
 </FilesMatch>
 
-<FilesMatch "^(composer\.json|composer\.lock)$">
+<FilesMatch "^(composer\.json|composer\.lock|package\.json|package-lock\.json|vite\.config\..*|astro\.config\..*)$">
     Require all denied
 </FilesMatch>
 
-Header set X-Robots-Tag "noindex, nofollow, noarchive"
+# --------------------------------------------------------------------------
+# Block hidden files, except .well-known if ever needed
+# --------------------------------------------------------------------------
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# --------------------------------------------------------------------------
+# Restrict includes/app/private internals from direct browser access
+# --------------------------------------------------------------------------
+
+RewriteEngine On
+
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^app/ - [F,L]
+
+# --------------------------------------------------------------------------
+# Basic PHP runtime safety where hosting allows it
+# These may be ignored or forbidden on some shared hosts.
+# If IONOS throws a 500 error, remove the php_flag/php_value lines.
+# --------------------------------------------------------------------------
+
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value session.cookie_httponly 1
+    php_value session.use_strict_mode 1
+</IfModule>

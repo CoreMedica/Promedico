@@ -215,8 +215,9 @@ final class TreatmentRepository
     {
         $stmt = $this->pdo->query(
             'SELECT COUNT(*) AS total
-             FROM treatments
-             WHERE follow_up_required = 1'
+         FROM treatments
+         WHERE follow_up_required = 1
+           AND follow_up_completed_at IS NULL'
         );
 
         $row = $stmt->fetch();
@@ -253,5 +254,109 @@ final class TreatmentRepository
         $stmt->execute();
 
         return $stmt->fetchAll();
+    }
+
+    public function findOutstandingFollowUps(int $limit = 100): array
+    {
+        $limit = max(1, min($limit, 500));
+
+        $stmt = $this->pdo->prepare(
+            'SELECT
+            t.id,
+            t.patient_id,
+            t.treatment_date,
+            t.treatment_time,
+            t.treatment_type,
+            t.location_type,
+            t.location_name,
+            t.follow_up_notes,
+            t.created_at,
+
+            p.first_name AS patient_first_name,
+            p.last_name AS patient_last_name,
+            p.date_of_birth AS patient_date_of_birth,
+            p.phone AS patient_phone,
+            p.email AS patient_email,
+            p.postcode AS patient_postcode,
+
+            practitioner.name AS practitioner_name
+         FROM treatments t
+         INNER JOIN patients p ON p.id = t.patient_id
+         LEFT JOIN users practitioner ON practitioner.id = t.practitioner_id
+         WHERE t.follow_up_required = 1
+           AND t.follow_up_completed_at IS NULL
+           AND p.is_active = 1
+         ORDER BY t.treatment_date ASC, t.treatment_time ASC, t.id ASC
+         LIMIT :limit_value'
+        );
+
+        $stmt->bindValue('limit_value', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public function findCompletedFollowUps(int $limit = 100): array
+    {
+        $limit = max(1, min($limit, 500));
+
+        $stmt = $this->pdo->prepare(
+            'SELECT
+            t.id,
+            t.patient_id,
+            t.treatment_date,
+            t.treatment_time,
+            t.treatment_type,
+            t.follow_up_notes,
+            t.follow_up_completed_at,
+            t.follow_up_completion_notes,
+
+            p.first_name AS patient_first_name,
+            p.last_name AS patient_last_name,
+            p.date_of_birth AS patient_date_of_birth,
+            p.phone AS patient_phone,
+            p.email AS patient_email,
+            p.postcode AS patient_postcode,
+
+            completed_user.name AS follow_up_completed_by_name
+         FROM treatments t
+         INNER JOIN patients p ON p.id = t.patient_id
+         LEFT JOIN users completed_user ON completed_user.id = t.follow_up_completed_by
+         WHERE t.follow_up_required = 1
+           AND t.follow_up_completed_at IS NOT NULL
+           AND p.is_active = 1
+         ORDER BY t.follow_up_completed_at DESC, t.id DESC
+         LIMIT :limit_value'
+        );
+
+        $stmt->bindValue('limit_value', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public function completeFollowUp(
+        int $treatmentId,
+        int $userId,
+        ?string $completionNotes
+    ): bool {
+        $stmt = $this->pdo->prepare(
+            'UPDATE treatments
+         SET
+            follow_up_completed_at = NOW(),
+            follow_up_completed_by = :follow_up_completed_by,
+            follow_up_completion_notes = :follow_up_completion_notes
+         WHERE id = :id
+           AND follow_up_required = 1
+           AND follow_up_completed_at IS NULL'
+        );
+
+        $stmt->execute([
+            'follow_up_completed_by' => $userId,
+            'follow_up_completion_notes' => $completionNotes,
+            'id' => $treatmentId,
+        ]);
+
+        return $stmt->rowCount() > 0;
     }
 }

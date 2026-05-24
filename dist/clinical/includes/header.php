@@ -90,6 +90,10 @@ $currentUserRole = clinical_escape(ucfirst($currentUser['role']));
                 New patient
             </a>
 
+            <a class="clinical-nav__link<?= clinical_active_nav('follow-ups', $activeNav) ?>" href="/clinical/follow-ups.php">
+                Follow-ups
+            </a>
+
             <?php if ($currentUser['role'] === 'admin'): ?>
                 <a class="clinical-nav__link<?= clinical_active_nav('audit', $activeNav) ?>" href="/clinical/audit.php">
                     Audit log

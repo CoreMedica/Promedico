@@ -177,6 +177,18 @@ require_once __DIR__ . '/includes/header.php';
 
                 <dt>Follow-up required</dt>
                 <dd><?= clinical_bool_badge($treatment['follow_up_required']) ?></dd>
+
+                <dt>Follow-up completed</dt>
+                <dd>
+                    <?php if (!empty($treatment['follow_up_completed_at'])): ?>
+                        <span class="clinical-badge clinical-badge--success">Completed</span><br>
+                        <span class="clinical-muted">
+                            <?= clinical_format_datetime($treatment['follow_up_completed_at']) ?>
+                        </span>
+                    <?php else: ?>
+                        <span class="clinical-badge clinical-badge--warning">Outstanding</span>
+                    <?php endif; ?>
+                </dd>
             </dl>
         </div>
     </section>
@@ -211,6 +223,15 @@ require_once __DIR__ . '/includes/header.php';
             <h2 class="clinical-record-section__title">Follow-up notes</h2>
             <div class="clinical-note-box"><?= clinical_display($treatment['follow_up_notes']) ?></div>
         </article>
+
+        <?php if (!empty($treatment['follow_up_completion_notes'])): ?>
+            <article class="clinical-record-section">
+                <h2 class="clinical-record-section__title">Follow-up completion notes</h2>
+                <div class="clinical-note-box">
+                    <?= clinical_display($treatment['follow_up_completion_notes']) ?>
+                </div>
+            </article>
+        <?php endif; ?>
     </section>
 
     <section class="clinical-card">

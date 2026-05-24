@@ -12,7 +12,7 @@ declare(strict_types=1);
  * db.php, auth.php, csrf.php, helpers.php, repositories, services and validators
  * individually.
  */
-
+require_once __DIR__ . '/../includes/runtime.php';
 require_once __DIR__ . '/../includes/session.php';
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/csrf.php';

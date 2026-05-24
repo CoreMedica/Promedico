@@ -30,6 +30,10 @@ function clinical_start_session(): void
         return;
     }
 
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies', '1');
+    ini_set('session.cookie_httponly', '1');
+
     $secure = clinical_is_https();
 
     session_set_cookie_params([

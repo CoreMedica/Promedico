@@ -244,4 +244,76 @@ final class TreatmentService
             'follow_up_notes' => clinical_nullable_string((string) ($form['follow_up_notes'] ?? '')),
         ];
     }
+
+    public function listOutstandingFollowUps(int $limit = 100): array
+    {
+        return $this->treatmentRepository->findOutstandingFollowUps($limit);
+    }
+
+    public function listCompletedFollowUps(int $limit = 100): array
+    {
+        return $this->treatmentRepository->findCompletedFollowUps($limit);
+    }
+
+    public function completeFollowUp(int $treatmentId, array $input, int $userId): array
+    {
+        $treatment = $this->treatmentRepository->findTreatmentById($treatmentId);
+
+        if ($treatment === null) {
+            return [
+                'success' => false,
+                'not_found' => true,
+                'errors' => ['Treatment record not found.'],
+                'form' => [
+                    'completion_notes' => trim((string) ($input['completion_notes'] ?? '')),
+                ],
+            ];
+        }
+
+        if ((int) $treatment['follow_up_required'] !== 1) {
+            return [
+                'success' => false,
+                'not_found' => false,
+                'errors' => ['This treatment does not have a follow-up marked as required.'],
+                'form' => [
+                    'completion_notes' => trim((string) ($input['completion_notes'] ?? '')),
+                ],
+            ];
+        }
+
+        if (!empty($treatment['follow_up_completed_at'])) {
+            return [
+                'success' => false,
+                'not_found' => false,
+                'errors' => ['This follow-up has already been completed.'],
+                'form' => [
+                    'completion_notes' => trim((string) ($input['completion_notes'] ?? '')),
+                ],
+            ];
+        }
+
+        $completionNotes = clinical_nullable_string((string) ($input['completion_notes'] ?? ''));
+
+        $completed = $this->treatmentRepository->completeFollowUp(
+            treatmentId: $treatmentId,
+            userId: $userId,
+            completionNotes: $completionNotes
+        );
+
+        if ($completed) {
+            $this->auditService->recordFollowUpCompleted(
+                treatmentId: $treatmentId,
+                userId: $userId
+            );
+        }
+
+        return [
+            'success' => $completed,
+            'not_found' => false,
+            'errors' => $completed ? [] : ['Follow-up could not be completed.'],
+            'form' => [
+                'completion_notes' => $completionNotes ?? '',
+            ],
+        ];
+    }
 }

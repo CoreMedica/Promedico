@@ -210,4 +210,14 @@ final class AuditService
 
         return substr((string) $userAgent, 0, 255);
     }
+
+    public function recordFollowUpCompleted(int $treatmentId, int $userId): void
+    {
+        $this->record(
+            userId: $userId,
+            action: 'follow_up_completed',
+            entityType: 'treatment',
+            entityId: $treatmentId
+        );
+    }
 }
