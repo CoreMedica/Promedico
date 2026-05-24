@@ -1,6 +1,20 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/pages/_earwax.scss";
 import HomeVisitModal from "../../../components/ui/HomeVisitModal.astro";
+
+import BuildingIcon from "../../../assets/icons/fontawesome/building.svg?raw";
+import HouseMedicalIcon from "../../../assets/icons/fontawesome/house-medical.svg?raw";
+import ClipboardMedicalIcon from "../../../assets/icons/fontawesome/clipboard-medical.svg?raw";
+import EarListenIcon from "../../../assets/icons/fontawesome/ear-listen.svg?raw";
+import CommentMedicalIcon from "../../../assets/icons/fontawesome/comment-medical.svg?raw";
+import LocationDotIcon from "../../../assets/icons/fontawesome/location-dot.svg?raw";
+import CarSideIcon from "../../../assets/icons/fontawesome/car-side.svg?raw";
+import EarDeafIcon from "../../../assets/icons/fontawesome/ear-deaf.svg?raw";
+import VolumeLowIcon from "../../../assets/icons/fontawesome/volume-low.svg?raw";
+import CircleInfoIcon from "../../../assets/icons/fontawesome/circle-info.svg?raw";
+import UserDoctorIcon from "../../../assets/icons/fontawesome/user-doctor.svg?raw";
+import HandHoldingMedicalIcon from "../../../assets/icons/fontawesome/hand-holding-medical.svg?raw";
 
 const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
@@ -266,6 +280,7 @@ const southamptonSchema = [
   ogTitle="Earwax Removal Southampton | Clinic & Home Visits"
   ogDescription="Earwax removal in Southampton from Promedico, with clinic appointments in Bitterne and home visits across Southampton."
   schema={southamptonSchema}
+  preloadImage="/images/earwax/earwax-southampton-hero.webp"
 >
   <section class="hero hero--image hero--southampton-ear-care" aria-labelledby="southampton-hero-heading">
     <div class="hero__bg-pattern" aria-hidden="true"></div>
@@ -322,7 +337,7 @@ const southamptonSchema = [
           <div class="service-card__body">
             <div class="service-card__header">
               <div class="service-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-building"></i>
+                <span aria-hidden="true" set:html={BuildingIcon}></span>
               </div>
 
               <h3 class="service-card__heading">Clinic Appointment</h3>
@@ -349,7 +364,7 @@ const southamptonSchema = [
           <div class="service-card__body">
             <div class="service-card__header">
               <div class="service-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-house-medical"></i>
+                <span aria-hidden="true" set:html={HouseMedicalIcon}></span>
               </div>
 
               <h3 class="service-card__heading">Home Visit</h3>
@@ -395,7 +410,7 @@ const southamptonSchema = [
 
             <div class="procedure-card__header">
               <div class="procedure-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-clipboard-medical"></i>
+                <span aria-hidden="true" set:html={ClipboardMedicalIcon}></span>
               </div>
 
               <h3 class="procedure-card__title">Checking Suitability</h3>
@@ -414,7 +429,7 @@ const southamptonSchema = [
 
             <div class="procedure-card__header">
               <div class="procedure-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-ear-listen"></i>
+                <span aria-hidden="true" set:html={EarListenIcon}></span>
               </div>
 
               <h3 class="procedure-card__title">Removal Where Appropriate</h3>
@@ -433,7 +448,7 @@ const southamptonSchema = [
 
             <div class="procedure-card__header">
               <div class="procedure-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-comment-medical"></i>
+                <span aria-hidden="true" set:html={CommentMedicalIcon}></span>
               </div>
 
               <h3 class="procedure-card__title">Clear Next Steps</h3>
@@ -520,7 +535,7 @@ const southamptonSchema = [
           <div class="service-card__body">
             <div class="service-card__header">
               <div class="service-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-location-dot"></i>
+                <span aria-hidden="true" set:html={LocationDotIcon}></span>
               </div>
 
               <h3 class="service-card__heading">Clinic Address</h3>
@@ -551,7 +566,7 @@ const southamptonSchema = [
           <div class="service-card__body">
             <div class="service-card__header">
               <div class="service-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-car-side"></i>
+                <span aria-hidden="true" set:html={CarSideIcon}></span>
               </div>
 
               <h3 class="service-card__heading">Home Visits</h3>
@@ -632,7 +647,7 @@ const southamptonSchema = [
 
             <div class="procedure-card__header">
               <div class="procedure-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-ear-deaf"></i>
+                <span aria-hidden="true" set:html={EarDeafIcon}></span>
               </div>
 
               <h3 class="procedure-card__title">Blocked or Full Ears</h3>
@@ -651,7 +666,7 @@ const southamptonSchema = [
 
             <div class="procedure-card__header">
               <div class="procedure-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-volume-low"></i>
+                <span aria-hidden="true" set:html={VolumeLowIcon}></span>
               </div>
 
               <h3 class="procedure-card__title">Reduced Hearing</h3>
@@ -670,7 +685,7 @@ const southamptonSchema = [
 
             <div class="procedure-card__header">
               <div class="procedure-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-circle-info"></i>
+                <span aria-hidden="true" set:html={CircleInfoIcon}></span>
               </div>
 
               <h3 class="procedure-card__title">Ongoing Discomfort</h3>
@@ -704,7 +719,7 @@ const southamptonSchema = [
           <div class="service-card__body">
             <div class="service-card__header">
               <div class="service-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-user-doctor"></i>
+                <span aria-hidden="true" set:html={UserDoctorIcon}></span>
               </div>
 
               <h3 class="service-card__heading">Practitioner-Led Care</h3>
@@ -721,7 +736,7 @@ const southamptonSchema = [
           <div class="service-card__body">
             <div class="service-card__header">
               <div class="service-card__icon-wrap" aria-hidden="true">
-                <i class="fa-sharp fa-thin fa-hand-holding-medical"></i>
+                <span aria-hidden="true" set:html={HandHoldingMedicalIcon}></span>
               </div>
 
               <h3 class="service-card__heading">Appropriate Treatment</h3>

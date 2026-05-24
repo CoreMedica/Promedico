@@ -162,11 +162,19 @@
     color: rgba($color-text-dark, 0.65);
     transition: color 0.2s ease;
 
+    span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
     svg {
         width: 13px;
         height: 13px;
+        display: block;
         flex-shrink: 0;
-        stroke: $color-btn-hover;
+        fill: currentColor;
     }
 
     a {

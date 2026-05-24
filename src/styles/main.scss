@@ -1,3 +1,5 @@
+@use 'base/fonts';
+
 // 1. Abstracts — variables and tools first (no CSS output)
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
@@ -25,17 +27,3 @@
 @use 'components/steps';
 @use 'components/cta-band';
 @use 'components/cookie-banner';
-
-
-
-
-// 5. Page-specific styles
-@use 'pages/homepage';
-//@use 'pages/services';
-@use 'pages/earwax';
-//@use 'pages/hayfever';
-//@use 'pages/wellness';
-//@use 'pages/weight-management';
-@use 'pages/about';
-@use 'pages/contact';
-@use 'pages/blog';

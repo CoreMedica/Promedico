@@ -554,3 +554,20 @@
         margin: 0;
     }
 }
+
+.service-card__icon-wrap,
+.procedure-card__icon-wrap {
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+  }
+
+  svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    display: block;
+    fill: currentColor;
+  }
+}

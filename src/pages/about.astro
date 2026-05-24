@@ -1,5 +1,7 @@
 ---
+
 import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/pages/_about.scss";
 
 const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
@@ -123,6 +125,7 @@ const aboutSchema = [
   ogImage="/images/team/jacqueline-allen.webp"
   ogDescription="Learn about Promedico's practitioner-led approach to private ear care, with clinic appointments and home visits in Portsmouth and Southampton."
   schema={aboutSchema}
+  preloadImage="/images/about/about-hero-ear-care.webp"
 >
     <section class="hero hero--image hero--about" aria-labelledby="about-hero-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>

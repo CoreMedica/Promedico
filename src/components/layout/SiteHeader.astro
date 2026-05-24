@@ -19,17 +19,20 @@ const currentPath = Astro.url.pathname;
     if(href == "/") return currentPath === "/";
     return currentPath.startsWith(href);
   };
+
+import EnvelopeIcon from "../../assets/icons/fontawesome/envelope.svg?raw";
+import PhoneIcon from "../../assets/icons/fontawesome/phone.svg?raw";
 ---
 
 
   <div class="header-topbar">
         <div class="container">
             <div class="header-topbar__item">
-                <i class="fa-sharp fa-thin fa-envelope" aria-hidden="true"></i>
+                <span class="header-topbar__icon" aria-hidden="true" set:html={EnvelopeIcon}></span>
                 <a href="mailto:reception@promedico.co.uk">reception@promedico.co.uk</a>
             </div>
             <div class="header-topbar__item">
-                <i class="fa-sharp fa-thin fa-phone"></i>
+                <span class="header-topbar__icon" aria-hidden="true" set:html={PhoneIcon}></span>
                 <a href="tel:07777100716">07777 100716</a>
             </div>
         </div>

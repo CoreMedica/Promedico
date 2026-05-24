@@ -13,8 +13,6 @@
   margin: 0 auto $space-2xl;
 
   &__heading {
-    font-family: $font-heading;
-    font-weight: $font-weight-heading;
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     color: $color-text-dark;
     margin-bottom: $space-sm;
