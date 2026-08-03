@@ -53,6 +53,7 @@ $serviceFiles = [
     __DIR__ . '/services/AuthService.php',
     __DIR__ . '/services/PatientService.php',
     __DIR__ . '/services/TreatmentService.php',
+    __DIR__ . '/services/UserService.php',
 ];
 
 foreach ($serviceFiles as $serviceFile) {
@@ -70,6 +71,7 @@ foreach ($serviceFiles as $serviceFile) {
 $validatorFiles = [
     __DIR__ . '/validators/PatientValidator.php',
     __DIR__ . '/validators/TreatmentValidator.php',
+    __DIR__ . '/validators/UserValidator.php',
 ];
 
 foreach ($validatorFiles as $validatorFile) {
@@ -151,6 +153,20 @@ function clinical_auth_service(): AuthService
 {
     return new AuthService(
         clinical_user_repository(),
+        clinical_audit_service()
+    );
+}
+
+function clinical_user_validator(): UserValidator
+{
+    return new UserValidator();
+}
+
+function clinical_user_service(): UserService
+{
+    return new UserService(
+        clinical_user_repository(),
+        clinical_user_validator(),
         clinical_audit_service()
     );
 }

@@ -14,7 +14,7 @@ function clinical_db(): PDO
         return $pdo;
     }
 
-    $configPath = __DIR__ . '/../../../private/clinical-config.php';
+    $configPath = __DIR__ . '/../../php/config/database.php';
 
     if (!file_exists($configPath)) {
         clinical_fail_securely('Clinical database configuration is unavailable.');
@@ -22,34 +22,33 @@ function clinical_db(): PDO
 
     $config = require $configPath;
 
-    if (
-        !is_array($config) ||
-        empty($config['db']) ||
-        !is_array($config['db'])
-    ) {
-        clinical_fail_securely('Clinical database configuration is invalid.');
-    }
-
-    $db = $config['db'];
-
-    foreach (['host', 'database', 'username', 'password', 'charset'] as $key) {
-        if (!array_key_exists($key, $db)) {
+    foreach (['host', 'database', 'username', 'charset'] as $key) {
+        if (!isset($config[$key]) || $config[$key] === '') {
             clinical_fail_securely('Clinical database configuration is incomplete.');
         }
     }
 
+    // Password can be empty for local development
+    if (!isset($config['password'])) {
+        clinical_fail_securely('Clinical database configuration is incomplete.');
+    }
+
+
+    $port = isset($config['port']) ? (int) $config['port'] : 3306;
+
     $dsn = sprintf(
-        'mysql:host=%s;dbname=%s;charset=%s',
-        $db['host'],
-        $db['database'],
-        $db['charset']
+        'mysql:host=%s;port=%d;dbname=%s;charset=%s',
+        $config['host'],
+        $port,
+        $config['database'],
+        $config['charset']
     );
 
     try {
         $pdo = new PDO(
             $dsn,
-            $db['username'],
-            $db['password'],
+            $config['username'],
+            $config['password'],
             [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -65,11 +64,7 @@ function clinical_db(): PDO
 
 function clinical_fail_securely(string $publicMessage, ?Throwable $exception = null): never
 {
-    if ($exception !== null) {
-        error_log($exception->getMessage());
-    } else {
-        error_log($publicMessage);
-    }
+    error_log($exception ? $exception->getMessage() : $publicMessage);
 
     http_response_code(500);
 

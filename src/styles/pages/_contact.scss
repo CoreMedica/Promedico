@@ -31,6 +31,16 @@
   gap: $space-sm;
   margin-bottom: $space-lg;
 
+  &--honeypot {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+  }
+
   label {
     font-weight: $font-weight-semibold;
     color: $color-text-dark;

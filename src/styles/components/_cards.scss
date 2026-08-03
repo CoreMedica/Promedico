@@ -151,6 +151,38 @@
       transform: translateX(3px);
     }
   }
+
+    &--coming-soon {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: 'Coming Soon';
+      position: absolute;
+      top: 22px;
+      right: -46px;
+      z-index: 3;
+      width: 185px;
+      padding: 0.38rem 0;
+      transform: rotate(45deg);
+      background-color: $color-gold;
+      color: $color-text-dark;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+      pointer-events: none;
+    }
+
+    .btn:disabled {
+      opacity: 0.72;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
 }
 
 

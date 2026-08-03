@@ -33,7 +33,7 @@ const faqItems = [
   {
     question: "Where is the Promedico earwax removal clinic in Portsmouth?",
     answer:
-      "Promedico clinic appointments are available at Somerstown Central Community Hub, Winston Churchill Avenue, Southsea, Portsmouth, PO5 4JJ. Appointments must be booked in advance."
+      "Promedico clinic appointments will be available at Somerstown Central Community Hub, Winston Churchill Avenue, Southsea, Portsmouth, PO5 4JJ. Appointments must be booked in advance."
   },
   {
     question: "Do you offer home visit earwax removal in Portsmouth?",
@@ -43,7 +43,7 @@ const faqItems = [
   {
     question: "How much does earwax removal cost in Portsmouth?",
     answer:
-      "Portsmouth clinic appointments are priced at £60. Portsmouth home visit appointments are priced at £80. Each appointment includes ear assessment and earwax removal where appropriate."
+      "Portsmouth clinic appointments will be priced at £60. Portsmouth home visit appointments are priced at £80. Each appointment includes ear assessment and earwax removal where appropriate."
   },
   {
     question: "Is earwax removal always carried out at the appointment?",
@@ -254,10 +254,10 @@ const portsmouthSchema = [
           </p>
 
           <div class="hero__ctas">
-            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+            <!--<a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
               Book Online
             </a>
-
+          -->
             <a class="btn btn--outline-light" href="#appointment-options">
               View Appointment Options
             </a>
@@ -287,7 +287,7 @@ const portsmouthSchema = [
         </header>
 
         <ul class="service-cards">
-          <li class="service-card">
+          <li class="service-card service-card--coming-soon">
             <div class="service-card__body">
               <div class="service-card__header">
                 <div class="service-card__icon-wrap" aria-hidden="true">
@@ -308,9 +308,12 @@ const portsmouthSchema = [
                 <li>Assessment and treatment where appropriate</li>
               </ul>
 
-              <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              <!--<a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
                 Book Clinic Appointment
-              </a>
+              </a>-->
+              <button class="btn btn--primary" type="button" disabled>
+                Coming Soon
+              </button>
             </div>
           </li>
 
@@ -431,7 +434,7 @@ const portsmouthSchema = [
         </header>
 
         <div class="pricing-cards pricing-cards--two-col">
-          <article class="pricing-card pricing-card--featured">
+          <!--<article class="pricing-card pricing-card--featured">
             <p class="pricing-card__label">Clinic</p>
 
             <h3 class="pricing-card__name">Clinic Appointment</h3>
@@ -449,8 +452,8 @@ const portsmouthSchema = [
               Book Online
             </a>
           </article>
-
-          <article class="pricing-card">
+          -->
+          <article class="pricing-card pricing-card--featured">
             <p class="pricing-card__label">Home Visit</p>
 
             <h3 class="pricing-card__name">Home Visit Appointment</h3>
@@ -486,7 +489,7 @@ const portsmouthSchema = [
         </header>
 
         <ul class="service-cards">
-          <li class="service-card">
+          <li class="service-card service-card--coming-soon">
             <div class="service-card__body">
               <div class="service-card__header">
                 <div class="service-card__icon-wrap" aria-hidden="true">
@@ -511,9 +514,9 @@ const portsmouthSchema = [
                 appointments only.
               </p>
 
-              <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
-                Book Clinic Appointment
-              </a>
+              <button class="btn btn--primary service-card__link" disabled type="button">
+                Coming Soon
+              </button>
             </div>
           </li>
 
@@ -729,10 +732,10 @@ const portsmouthSchema = [
             </ul>
 
             <div class="svc-booking__ctas">
-              <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+              <!-- <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
                 Book Clinic Appointment
               </a>
-
+            -->
               <button class="btn btn--outline" type="button" data-home-visit-open>
                 Request Home Visit
               </button>

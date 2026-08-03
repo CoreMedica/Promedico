@@ -221,7 +221,7 @@ const contactSchema = [
         </header>
 
         <ul class="service-cards">
-          <li class="service-card">
+          <li class="service-card service-card--coming-soon">
             <div class="service-card__body">
               <div class="service-card__header">
                 <div class="service-card__icon-wrap" aria-hidden="true">
@@ -355,6 +355,18 @@ const contactSchema = [
           </div>
 
           <input type="hidden" name="form_name" value="contact" />
+          <input type="hidden" id="form-loaded-at" name="form_loaded_at" value="" />
+
+          <div class="form-field form-field--honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
 
           <div class="contact-form__actions">
             <button type="submit" class="btn btn--primary">Send Enquiry</button>
@@ -417,6 +429,12 @@ const contactSchema = [
     </section>
 
     <script>
+      const loadedAtInput = document.getElementById("form-loaded-at") as HTMLInputElement;
+
+      if (loadedAtInput) {
+        loadedAtInput.value = String(Math.floor(Date.now() / 1000));
+      }
+
       const params = new URLSearchParams(window.location.search);
       const status = params.get("status");
       const alert = document.getElementById("form-alert");

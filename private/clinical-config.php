@@ -16,4 +16,9 @@ return [
         'password' => '',
         'charset' => 'utf8mb4',
     ],
+    'mail' => [
+        'to' => 'reception@promedico.co.uk',
+        'site_name' => 'Promedico Wellness Group',
+        'subject_prefix' => 'Website enquiry',
+    ],
 ];

@@ -24,3 +24,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 private/clinical-config.php
+
+public/php/config/database.local.php
+public/php/config/database.live.php
+private/rate-limit-contact.json

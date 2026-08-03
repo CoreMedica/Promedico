@@ -220,4 +220,46 @@ final class AuditService
             entityId: $treatmentId
         );
     }
+
+    // Add to existing AuditService class
+
+    public function recordUserCreated(int $targetUserId, int $userId): void
+    {
+        $this->record(
+            userId: $userId,
+            action: 'user_created',
+            entityType: 'user',
+            entityId: $targetUserId
+        );
+    }
+
+    public function recordUserViewed(int $targetUserId, int $userId): void
+    {
+        $this->record(
+            userId: $userId,
+            action: 'user_viewed',
+            entityType: 'user',
+            entityId: $targetUserId
+        );
+    }
+
+    public function recordUserUpdated(int $targetUserId, int $userId): void
+    {
+        $this->record(
+            userId: $userId,
+            action: 'user_updated',
+            entityType: 'user',
+            entityId: $targetUserId
+        );
+    }
+
+    public function recordUserDeactivated(int $targetUserId, int $userId): void
+    {
+        $this->record(
+            userId: $userId,
+            action: 'user_deactivated',
+            entityType: 'user',
+            entityId: $targetUserId
+        );
+    }
 }

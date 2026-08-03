@@ -71,10 +71,10 @@ function clinical_user_has_role(string $role): bool
 
 function clinical_require_admin(): void
 {
-    clinical_require_login();
+    $currentUser = clinical_current_user();
 
-    if (!clinical_user_has_role('admin')) {
+    if ($currentUser === null || $currentUser['role'] !== 'admin') {
         http_response_code(403);
-        exit('Access denied.');
+        exit('Access denied. Admin privileges required.');
     }
 }
