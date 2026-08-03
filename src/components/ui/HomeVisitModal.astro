@@ -42,7 +42,7 @@ const { defaultArea = "" } = Astro.props;
     <form class="modal__form" action="/php/home-visit-request.php" method="POST">
       <input type="hidden" name="form_name" value="home_visit_request" />
       <input type="hidden" id="home-visit-form-loaded-at" name="form_loaded_at" value="" />
-
+      <input type="hidden" id="home-visit-csrf-token" name="csrf_token" value="" />
       <div class="form-row form-row--two">
         <div class="form-field">
           <label class="form-field__label" for="home-visit-name">
@@ -174,7 +174,24 @@ const { defaultArea = "" } = Astro.props;
   if (loadedAtInput instanceof HTMLInputElement) {
     loadedAtInput.value = String(Math.floor(Date.now() / 1000));
   }
+  function generateCsrfToken() {
+    if (window.crypto && "randomUUID" in crypto) {
+      return crypto.randomUUID().replace(/-/g, "");
+    }
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  }
 
+  const csrfToken = generateCsrfToken();
+  document.cookie =
+    `csrf_token=${csrfToken}; path=/; max-age=3600; samesite=strict` +
+    (location.protocol === "https:" ? "; secure" : "");
+
+  const csrfInput = document.getElementById("home-visit-csrf-token");
+  if (csrfInput instanceof HTMLInputElement) {
+    csrfInput.value = csrfToken;
+  }
   let lastFocusedElement: Element | null = null;
 
   function openModal() {

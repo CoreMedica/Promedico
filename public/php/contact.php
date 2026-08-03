@@ -82,6 +82,18 @@ function ensure_private_dir(string $privateDir): bool
     return mkdir($privateDir, 0750, true);
 }
 
+function csrf_token_valid(): bool
+{
+    $cookieToken = (string)($_COOKIE['csrf_token'] ?? '');
+    $postToken = (string)($_POST['csrf_token'] ?? '');
+
+    if ($cookieToken === '' || $postToken === '' || !hash_equals($cookieToken, $postToken)) {
+        return false;
+    }
+
+    return true;
+}
+
 function rate_limit_exceeded(
     string $file,
     string $ip,
@@ -197,6 +209,7 @@ function spam_score(string $name, string $email, string $phone, string $message)
     return $score;
 }
 
+
 // ─────────────────────────────────────────────
 // INPUTS
 // ─────────────────────────────────────────────
@@ -212,6 +225,9 @@ $formName = clean_text((string)($_POST['form_name'] ?? ''));
 $website = clean_text((string)($_POST['website'] ?? ''));
 $formLoadedAt = (int)($_POST['form_loaded_at'] ?? 0);
 
+if (!csrf_token_valid()) {
+    redirect_with_status('invalid-form');
+}
 // ─────────────────────────────────────────────
 // SILENT ANTI-SPAM CHECKS
 // ─────────────────────────────────────────────

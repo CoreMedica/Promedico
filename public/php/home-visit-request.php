@@ -43,6 +43,18 @@ function ensure_private_dir(string $privateDir): bool
     return mkdir($privateDir, 0750, true);
 }
 
+function csrf_token_valid(): bool
+{
+    $cookieToken = (string)($_COOKIE['csrf_token'] ?? '');
+    $postToken = (string)($_POST['csrf_token'] ?? '');
+
+    if ($cookieToken === '' || $postToken === '' || !hash_equals($cookieToken, $postToken)) {
+        return false;
+    }
+
+    return true;
+}
+
 function rate_limit_exceeded(
     string $file,
     string $ip,
@@ -167,6 +179,10 @@ $rateLimitFile = $privateDir . '/rate-limit-home-visit.json';
 $formName = $_POST['form_name'] ?? '';
 
 if ($formName !== 'home_visit_request') {
+    redirect_with_status('invalid-form');
+}
+
+if (!csrf_token_valid()) {
     redirect_with_status('invalid-form');
 }
 

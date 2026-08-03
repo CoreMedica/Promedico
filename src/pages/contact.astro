@@ -356,7 +356,7 @@ const contactSchema = [
 
           <input type="hidden" name="form_name" value="contact" />
           <input type="hidden" id="form-loaded-at" name="form_loaded_at" value="" />
-
+          <input type="hidden" id="contact-csrf-token" name="csrf_token" value="" />
           <div class="form-field form-field--honeypot" aria-hidden="true">
             <label for="website">Website</label>
             <input
@@ -434,7 +434,24 @@ const contactSchema = [
       if (loadedAtInput) {
         loadedAtInput.value = String(Math.floor(Date.now() / 1000));
       }
+      function generateCsrfToken(): string {
+        if (window.crypto && "randomUUID" in crypto) {
+          return crypto.randomUUID().replace(/-/g, "");
+        }
+        const bytes = new Uint8Array(16);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+      }
 
+      const csrfToken = generateCsrfToken();
+      document.cookie =
+        `csrf_token=${csrfToken}; path=/; max-age=3600; samesite=strict` +
+        (location.protocol === "https:" ? "; secure" : "");
+
+      const csrfInput = document.getElementById("contact-csrf-token") as HTMLInputElement | null;
+      if (csrfInput) {
+        csrfInput.value = csrfToken;
+      }
       const params = new URLSearchParams(window.location.search);
       const status = params.get("status");
       const alert = document.getElementById("form-alert");
