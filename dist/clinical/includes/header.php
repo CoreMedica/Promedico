@@ -48,7 +48,7 @@ $currentUserRole = clinical_escape(ucfirst($currentUser['role']));
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><?= $documentTitle ?></title>
-
+    <meta name="robots" content="noindex, nofollow, noarchive">
     <link rel="stylesheet" href="/clinical/assets/clinical.css">
 </head>
 

@@ -78,7 +78,15 @@ const {
         <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
       ))
     }
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-B8V2LDDND1"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'G-B8V2LDDND1');
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
