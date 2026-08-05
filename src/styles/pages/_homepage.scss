@@ -259,7 +259,14 @@
       gap: 2.5rem;
     }
   }
-
+    &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
   &__text {
     p {
       font-size: 0.9375rem;

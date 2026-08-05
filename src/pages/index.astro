@@ -1,30 +1,66 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/pages/_homepage.scss";
+
 const bookingUrl =
   "https://www.fresha.com/book-now/promedico-ear-clinic-ppaqx3l8/all-offer?share=true&pId=3035851";
 
+const siteUrl = "https://promedico.co.uk";
+
 const pageTitle =
-  "Promedico Wellness Group | Practitioner-Led Private Ear Care";
+  "Earwax Removal in Portsmouth & Southampton | Promedico";
 
 const pageDescription =
-  "Practitioner-led private ear care from Promedico, with clinic appointments and home visit earwax removal available in Portsmouth and Southampton.";
+  "Practitioner-led earwax removal and ear care in Portsmouth and Southampton. Clinic appointments and home visits available, assessment first. Book online.";
 
-const siteUrl = "https://promedico.co.uk";
+const pageImage = "/images/team/jacqueline-allen.webp";
+
+const pageSocialTitle =
+  "Promedico Wellness Group | Ear Care in Portsmouth & Southampton";
+
+const pageSocialDescription =
+  "Private ear care and earwax removal across Portsmouth and Southampton, with clinic appointments and local home visits in both areas.";
+
+const orgId = `${siteUrl}/#organization`;
+const websiteId = `${siteUrl}/#website`;
+
+const homeFaqItems = [
+  {
+    question: "Do I need a GP referral to book an appointment?",
+    answer:
+      "No. Promedico is a private, self-referral service. You can book directly online or contact us with any questions before booking."
+  },
+  {
+    question: "Is an ear assessment always carried out before treatment?",
+    answer:
+      "Yes. Every appointment starts with an assessment to check whether wax is present and whether removal is appropriate, before any treatment is carried out."
+  },
+  {
+    question: "Which areas does Promedico cover?",
+    answer:
+      "Promedico provides clinic appointments and home visits in Portsmouth and Southampton, including surrounding local areas."
+  },
+  {
+    question: "How much does an appointment cost?",
+    answer:
+      "Clinic appointments start from £60 and home visits start from £80. Full pricing is available on the Portsmouth and Southampton service pages."
+  }
+];
 
 const homeSchema = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${siteUrl}/#website`,
+    "@id": websiteId,
     name: "Promedico Wellness Group",
     url: siteUrl,
-    inLanguage: "en-GB"
+    inLanguage: "en-GB",
+    publisher: { "@id": orgId }
   },
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": `${siteUrl}/#organization`,
+    "@id": orgId,
     name: "Promedico Wellness Group",
     url: siteUrl,
     image: `${siteUrl}/images/ProMedico-Logo-text.webp`,
@@ -32,35 +68,60 @@ const homeSchema = [
     telephone: "+447777100716",
     email: "reception@promedico.co.uk",
     priceRange: "££",
-    address: [
-      {
-        "@type": "PostalAddress",
-        streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
-        addressLocality: "Southsea",
-        addressRegion: "Portsmouth",
-        postalCode: "PO5 4JJ",
-        addressCountry: "GB"
-      },
-      {
-        "@type": "PostalAddress",
-        streetAddress: "4 Chessel Avenue",
-        addressLocality: "Bitterne",
-        addressRegion: "Southampton",
-        postalCode: "SO19 4AA",
-        addressCountry: "GB"
-      }
-    ],
+    medicalSpecialty: "Otolaryngologic",
     areaServed: [
+      { "@type": "City", name: "Portsmouth" },
+      { "@type": "City", name: "Southampton" }
+    ],
+    department: [
+      { "@id": `${siteUrl}/services/ear-care/portsmouth#clinic` },
+      { "@id": `${siteUrl}/services/ear-care/southampton#clinic` }
+    ],
+    sameAs: [
+      "https://share.google/RWDPc31aOTjqvBc8F",
+      "https://www.facebook.com/promedicoearclinic/"
+    ],
+    openingHoursSpecification: [
       {
-        "@type": "City",
-        name: "Portsmouth"
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Thursday",
+        opens: "14:00",
+        closes: "18:00"
       },
       {
-        "@type": "City",
-        name: "Southampton"
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "08:00",
+        closes: "12:00"
       }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/#home-visit-service`,
+    name: "Home Visit Ear Care",
+    serviceType: "Home visit earwax removal",
+    provider: { "@id": orgId },
+    areaServed: [
+      { "@type": "City", name: "Portsmouth" },
+      { "@type": "City", name: "Southampton" }
     ],
-    medicalSpecialty: "Otolaryngologic"
+    hoursAvailable: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        opens: "09:00",
+        closes: "21:00"
+      }
+    ]
   },
   {
     "@context": "https://schema.org",
@@ -69,40 +130,29 @@ const homeSchema = [
     url: `${siteUrl}/`,
     name: pageTitle,
     description: pageDescription,
-    isPartOf: {
-      "@id": `${siteUrl}/#website`
-    },
-    about: {
-      "@id": `${siteUrl}/#organization`
-    },
+    isPartOf: { "@id": websiteId },
+    about: { "@id": orgId },
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: `${siteUrl}/images/team/jacqueline-allen.webp`
+      url: `${siteUrl}/images/home/home-hero-ear-care.webp`
     },
-    inLanguage: "en-GB"
+    inLanguage: "en-GB",
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["#hero-heading", "#promedico-summary-lead"]
+    }
   },
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "@id": `${siteUrl}/#breadcrumb`,
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: `${siteUrl}/`
-      }
-    ]
+    "@type": "FAQPage",
+    "@id": `${siteUrl}/#faq`,
+    mainEntity: homeFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer }
+    }))
   }
 ];
-
-const pageImage = "/images/team/jacqueline-allen.webp";
-
-const pageSocialTitle =
-  "Promedico Wellness Group | Practitioner-Led Private Ear Care";
-
-const pageSocialDescription =
-  "Private ear care and earwax removal across Portsmouth and Southampton, with clinic appointments and local home visits in both areas.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} schema={homeSchema} ogTitle={pageSocialTitle} ogDescription={pageSocialDescription} ogImage={pageImage} preloadImage="/images/home/home-hero-ear-care.webp">
@@ -114,8 +164,8 @@ const pageSocialDescription =
           <p class="hero__eyebrow">Private Ear Care in Portsmouth & Southampton</p>
 
           <h1 class="hero__heading" id="hero-heading">
-            Practitioner-Led Ear Care,<br />
-            <span class="hero__heading-accent">at Home or in Clinic</span>
+            Practitioner-Led Ear Care<br />
+            <span class="hero__heading-accent">in Portsmouth & Southampton</span>
           </h1>
 
           <p class="hero__subheading">
@@ -149,7 +199,7 @@ const pageSocialDescription =
             What Does Promedico Provide?
           </h2>
 
-          <p class="section-header__lead">
+          <p class="section-header__lead" id="promedico-summary-lead">
             Promedico provides practitioner-led private ear care, including ear assessment and
             earwax removal where appropriate. Clinic appointments and home visits are available
             in Portsmouth and Southampton.
@@ -304,7 +354,7 @@ const pageSocialDescription =
               width="700"
               height="900"
               loading="lazy"
-              class="about-intro__panel--image"
+              class="about-section__image"
             />
           
         </div>
@@ -446,6 +496,51 @@ const pageSocialDescription =
         </ul>
       </div>
     </section>
+
+    <section class="faq-section faq-section--light" aria-labelledby="home-faq-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__heading" id="home-faq-heading">
+            Frequently Asked Questions
+          </h2>
+        </header>
+
+        <div class="faq-grid">
+          <dl class="faq-list">
+            {
+              homeFaqItems.map((item, index) => {
+                const questionId = `home-faq-question-${index}`;
+                const answerId = `home-faq-answer-${index}`;
+
+                return (
+                  <div class="faq-item">
+                    <dt class="faq-item__question">
+                      <button
+                        class="faq-item__trigger"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls={answerId}
+                        id={questionId}
+                      >
+                        <span>{item.question}</span>
+                        <span class="faq-item__icon" aria-hidden="true"></span>
+                      </button>
+                    </dt>
+
+                    <dd class="faq-item__answer" id={answerId} aria-labelledby={questionId} hidden>
+                      <div class="faq-item__answer-inner">
+                        <p>{item.answer}</p>
+                      </div>
+                    </dd>
+                  </div>
+                );
+              })
+            }
+          </dl>
+        </div>
+      </div>
+    </section>
+
     <section class="svc-booking" aria-labelledby="booking-heading">
       <div class="container">
         <div class="svc-booking__inner svc-booking__inner--no-map">
@@ -474,4 +569,22 @@ const pageSocialDescription =
         </div>
       </div>
     </section>
+
+    <script>
+      const faqTriggers = document.querySelectorAll(".faq-item__trigger");
+
+      faqTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const expanded = trigger.getAttribute("aria-expanded") === "true";
+          const answerId = trigger.getAttribute("aria-controls");
+          const answer = answerId ? document.getElementById(answerId) : null;
+
+          trigger.setAttribute("aria-expanded", String(!expanded));
+
+          if (answer) {
+            answer.hidden = expanded;
+          }
+        });
+      });
+    </script>
 </BaseLayout>

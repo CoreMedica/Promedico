@@ -88,7 +88,7 @@ const portsmouthSchema = [
         name: "Portsmouth clinic earwax removal appointment",
         price: "60",
         priceCurrency: "GBP",
-        availability: "https://schema.org/InStock",
+        availability: "https://schema.org/PreOrder",
         url: `${siteUrl}/services/ear-care/portsmouth`
       },
       {
@@ -104,9 +104,9 @@ const portsmouthSchema = [
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": `${siteUrl}/#organization`,
-    name: "Promedico Wellness Group",
-    url: siteUrl,
+    "@id": `${siteUrl}/services/ear-care/portsmouth#clinic`,
+    name: "Promedico Portsmouth Clinic",
+    url: `${siteUrl}/services/ear-care/portsmouth`,
     logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
     image: `${siteUrl}${pageImage}`,
     telephone: "+447777100716",
@@ -116,7 +116,7 @@ const portsmouthSchema = [
       "@type": "PostalAddress",
       streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
       addressLocality: "Southsea",
-      addressRegion: "Portsmouth",
+      addressRegion: "Hampshire",
       postalCode: "PO5 4JJ",
       addressCountry: "GB"
     },

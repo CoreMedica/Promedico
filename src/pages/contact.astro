@@ -8,6 +8,8 @@ const bookingUrl =
   "https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984";
 
 const siteUrl = "https://promedico.co.uk";
+const orgId = `${siteUrl}/#organization`;
+const websiteId = `${siteUrl}/#website`;
 
 const pageTitle =
   "Contact Promedico | Ear Care Appointments & Home Visits";
@@ -26,39 +28,25 @@ const contactSchema = [
     name: pageTitle,
     description: pageDescription,
     inLanguage: "en-GB",
+    isPartOf: {
+      "@id": websiteId
+    },
     about: {
-      "@id": `${siteUrl}/#organization`
+      "@id": orgId
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": `${siteUrl}/#organization`,
+    "@id": orgId,
     name: "Promedico Wellness Group",
     url: siteUrl,
+    image: `${siteUrl}/images/ProMedico-Logo-text.webp`,
     logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
-    image: `${siteUrl}${pageImage}`,
     telephone: "+447777100716",
     email: "reception@promedico.co.uk",
     priceRange: "££",
-    address: [
-      {
-        "@type": "PostalAddress",
-        streetAddress: "Somerstown Central Community Hub, Winston Churchill Avenue",
-        addressLocality: "Southsea",
-        addressRegion: "Portsmouth",
-        postalCode: "PO5 4JJ",
-        addressCountry: "GB"
-      },
-      {
-        "@type": "PostalAddress",
-        streetAddress: "4 Chessel Avenue",
-        addressLocality: "Bitterne",
-        addressRegion: "Southampton",
-        postalCode: "SO19 4AA",
-        addressCountry: "GB"
-      }
-    ],
+    medicalSpecialty: "Otolaryngologic",
     areaServed: [
       {
         "@type": "City",
@@ -67,6 +55,28 @@ const contactSchema = [
       {
         "@type": "City",
         name: "Southampton"
+      }
+    ],
+    department: [
+      { "@id": `${siteUrl}/services/ear-care/portsmouth#clinic` },
+      { "@id": `${siteUrl}/services/ear-care/southampton#clinic` }
+    ],
+    sameAs: [
+      "https://share.google/RWDPc31aOTjqvBc8F",
+      "https://www.facebook.com/promedicoearclinic/"
+    ],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Thursday",
+        opens: "14:00",
+        closes: "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "08:00",
+        closes: "12:00"
       }
     ],
     contactPoint: [
