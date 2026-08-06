@@ -261,6 +261,7 @@ $areaLabel = match ($area) {
 };
 
 $to = 'reception@promedico.co.uk';
+$cc = 'promedicoltd@outlook.com';
 $subject = 'New home visit request - Promedico Wellness Group';
 
 $body = "New home visit request\n\n";
@@ -277,6 +278,7 @@ $body .= "IP address: {$_SERVER['REMOTE_ADDR']}\n";
 $headers = [];
 $headers[] = 'From: Promedico Website <no-reply@promedico.co.uk>';
 $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
+$headers[] = 'Cc: ' . $cc;
 $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 
 $sent = mail($to, $subject, $body, implode("\r\n", $headers));

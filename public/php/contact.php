@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // ─────────────────────────────────────────────
 
 $to = 'reception@promedico.co.uk';
+$cc = 'promedicoltd@outlook.com';
 $siteName = 'Promedico Wellness Group';
 $subjectPrefix = 'Website enquiry';
 
@@ -350,6 +351,7 @@ $host = preg_replace('/[^a-zA-Z0-9.-]/', '', $host) ?: 'promedico.co.uk';
 $headers = [
     'From: ' . $siteName . ' <no-reply@' . $host . '>',
     'Reply-To: ' . $name . ' <' . $email . '>',
+    'Cc: ' . $cc,
     'Content-Type: text/plain; charset=UTF-8',
     'X-Mailer: PHP/' . phpversion(),
 ];
