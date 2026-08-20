@@ -327,3 +327,47 @@
     background-position: center;
   }
 }
+.hero--blog-post {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba($color-header-bg, 0.94) 0%,
+      rgba($color-header-bg, 0.84) 48%,
+      rgba($color-header-bg, 0.48) 100%
+    ),
+    var(--hero-image);
+  background-position: center right;
+
+  @include respond-to(tablet) {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba($color-header-bg, 0.94) 0%,
+        rgba($color-header-bg, 0.88) 100%
+      ),
+      var(--hero-image);
+    background-position: center;
+  }
+}
+.hero--blog {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba($color-header-bg, 0.94) 0%,
+      rgba($color-header-bg, 0.84) 48%,
+      rgba($color-header-bg, 0.48) 100%
+    ),
+    url("/images/blog/blog-hero.webp");
+  background-position: center right;
+
+  @include respond-to(tablet) {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba($color-header-bg, 0.94) 0%,
+        rgba($color-header-bg, 0.88) 100%
+      ),
+      url("/images/blog/blog-hero.webp");
+    background-position: center;
+  }
+}

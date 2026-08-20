@@ -13,6 +13,9 @@ draft: false
 serviceLink:
   label: "Book or View Portsmouth Ear Care"
   href: "/services/ear-care/portsmouth"
+image:
+  src: /images/blog/microsuction-what-to-expect.webp
+  alt: Earwax Microsuction - what to expect
 ---
 
 Microsuction is a commonly used method of earwax removal. It involves using controlled suction to remove wax from the ear canal where it is appropriate to do so.

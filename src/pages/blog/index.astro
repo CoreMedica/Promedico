@@ -10,7 +10,7 @@ const posts = (await getCollection("blog", ({ data }: { data: any }) => {
 const pageTitle = "Ear Care Articles | Promedico Wellness Group";
 const pageDescription =
   "Patient education articles from Promedico Wellness Group covering earwax build-up, blocked ears, microsuction and ear care appointment guidance.";
-
+const pageImage = "/images/blog/blog-hero.webp";
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
@@ -20,7 +20,7 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="hero" aria-labelledby="blog-hero-heading">
+  <section class="hero hero--image hero--blog" aria-labelledby="blog-hero-heading">
     <div class="hero__bg-pattern" aria-hidden="true"></div>
 
     <div class="container">
@@ -128,7 +128,7 @@ const formatDate = (date: Date) =>
           <div class="svc-booking__ctas">
             <a
               class="btn btn--primary"
-              href="https://promedico-ear-clinic.uk2.cliniko.com/bookings?business_id=1799806171821907984"
+              href="https://www.fresha.com/book-now/promedico-ear-clinic-ppaqx3l8/all-offer?share=true&pId=3035851"
               target="_blank"
               rel="noopener"
             >

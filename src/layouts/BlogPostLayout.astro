@@ -30,6 +30,9 @@ const articleSchema = {
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  image: post.data.image
+    ? 'https://promedico.co.uk${post.data.image.src}'
+    : "https://promedico.co.uk/images/ProMedico-Logo-text.webp",
   author: {
     "@type": "Organization",
     name: post.data.author,
@@ -54,13 +57,15 @@ const articleSchema = {
   description={pageDescription}
   ogTitle={pageTitle}
   ogDescription={pageDescription}
-  ogImage="/images/ProMedico-Logo-text.webp"
+  ogImage={post.data.image?.src ?? "/images/ProMedico-Logo-text.webp"}
   ogType="article"
   schema={articleSchema}
 >
 
   <article class="blog-post">
-    <header class="hero" aria-labelledby="blog-post-heading">
+    <header class:list={["hero", post.data.image && "hero--image hero--blog-post"]}
+      style={post.data.image ? `--hero-image: url(${post.data.image.src})` : undefined}
+      aria-labelledby="blog-post-heading">
       <div class="hero__bg-pattern" aria-hidden="true"></div>
 
       <div class="container">

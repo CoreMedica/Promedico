@@ -25,6 +25,12 @@ const blog = defineCollection({
         href: z.string(),
       })
       .optional(),
+    image: z
+      .object({
+        src: z.string(),
+        alt: z.string(),
+      })
+      .optional(),
   }),
 });
 
