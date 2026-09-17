@@ -45,13 +45,56 @@
     color: rgba(30, 30, 30, 0.78);
   }
 
-  ul,
+    ul,
   ol {
-    padding-left: 1.4rem;
+    padding-left: 1.5rem;
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  li::marker {
+    color: $color-teal;
   }
 
   li + li {
     margin-top: $space-sm;
+  }
+
+  ul ul,
+  ul ol,
+  ol ul,
+  ol ol {
+    margin-top: $space-sm;
+    margin-bottom: 0;
+  }
+
+  // Tables (e.g. Microsuction vs. Ear Syringing)
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    display: block;
+    overflow-x: auto;         // lets wide tables scroll on mobile
+  }
+
+  thead th {
+    background-color: $color-footer-light;
+    font-family: $font-heading;
+    font-weight: $font-weight-semibold;
+    text-align: left;
+  }
+
+  th,
+  td {
+    border: 1px solid $color-border-light;
+    padding: $space-sm $space-md;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  tbody tr:nth-child(even) td {
+    background-color: rgba(30, 30, 30, 0.03);
   }
 
   a {

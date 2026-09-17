@@ -1,0 +1,742 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/pages/_earwax.scss";
+
+import BuildingIcon from "../../../assets/icons/fontawesome/building.svg?raw";
+import ClipboardMedicalIcon from "../../../assets/icons/fontawesome/clipboard-medical.svg?raw";
+import EarListenIcon from "../../../assets/icons/fontawesome/ear-listen.svg?raw";
+import CommentMedicalIcon from "../../../assets/icons/fontawesome/comment-medical.svg?raw";
+import LocationDotIcon from "../../../assets/icons/fontawesome/location-dot.svg?raw";
+import CarSideIcon from "../../../assets/icons/fontawesome/car-side.svg?raw";
+import EarDeafIcon from "../../../assets/icons/fontawesome/ear-deaf.svg?raw";
+import VolumeLowIcon from "../../../assets/icons/fontawesome/volume-low.svg?raw";
+import CircleInfoIcon from "../../../assets/icons/fontawesome/circle-info.svg?raw";
+import UserDoctorIcon from "../../../assets/icons/fontawesome/user-doctor.svg?raw";
+import HandHoldingMedicalIcon from "../../../assets/icons/fontawesome/hand-holding-medical.svg?raw";
+
+const bookingUrl =
+  "https://www.fresha.com/book-now/promedico-ear-clinic-ppaqx3l8/services?lid=3137814&oiid=sv%3A28399059&share=true&pId=3035851";
+
+const siteUrl = "https://promedico.co.uk";
+
+const pageTitle =
+  "Earwax Removal Eastleigh | Clinic Appointments | Promedico";
+
+const pageDescription =
+  "Earwax removal for Eastleigh patients at the Promedico clinic in Bitterne, a short drive from Eastleigh. Clinic appointments with assessment first, from £60.";
+
+const pageImage = "/images/team/jacqueline-allen.webp";
+
+const faqItems = [
+  {
+    question: "Do you offer earwax removal for Eastleigh patients?",
+    answer:
+      "Yes. Promedico provides clinic earwax removal appointments at 4 Chessel Avenue, Bitterne, Southampton, a short drive from Eastleigh. Appointments must be booked in advance."
+  },
+  {
+    question: "Where is the nearest Promedico earwax removal clinic to Eastleigh?",
+    answer:
+      "The nearest Promedico clinic is at 4 Chessel Avenue, Bitterne, Southampton, SO19 4AA. It is around 6 miles from Eastleigh town centre, typically 15 to 20 minutes by car."
+  },
+  {
+    question: "How do I get to the Bitterne clinic from Eastleigh?",
+    answer:
+      "By car, the clinic is reached from Eastleigh via the A335 and A3024, or via the M27. Bitterne railway station is a short walk from the clinic, with connections from Eastleigh via St Denys or Southampton Central, and local bus routes serve Bitterne district centre."
+  },
+  {
+    question: "How much does earwax removal cost?",
+    answer:
+      "Clinic appointments are priced at £60. Each appointment includes an ear assessment and earwax removal where appropriate."
+  },
+  {
+    question: "Which earwax removal methods are available?",
+    answer:
+      "Promedico may use clinically recognised methods such as microsuction or ear irrigation where appropriate. The method used depends on the ear assessment and suitability."
+  },
+  {
+    question: "Is earwax removal always carried out at the appointment?",
+    answer:
+      "No. Each appointment starts with an assessment. Earwax removal is only carried out where wax is present and treatment is suitable. If removal is not appropriate, you will be given clear advice."
+  },
+  {
+    question: "How do I book earwax removal near Eastleigh?",
+    answer:
+      "Clinic appointments at the Bitterne clinic can be booked online. If you are unsure whether your symptoms are caused by wax, an assessment appointment can help establish this."
+  }
+];
+
+const eastleighSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/services/ear-care/eastleigh#service`,
+    name: "Earwax Removal Eastleigh",
+    serviceType: "Ear assessment and earwax removal",
+    description: pageDescription,
+    provider: {
+      "@id": `${siteUrl}/services/ear-care/eastleigh#clinic`
+    },
+    areaServed: [
+      { "@type": "City", name: "Eastleigh" },
+      { "@type": "Place", name: "Bishopstoke" },
+      { "@type": "Place", name: "Fair Oak" },
+      { "@type": "Place", name: "Chandler's Ford" },
+      { "@type": "Place", name: "Boyatt Wood" },
+      { "@type": "Place", name: "Allbrook" },
+      { "@type": "Place", name: "North Stoneham" },
+      { "@type": "Place", name: "Horton Heath" }
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Clinic earwax removal appointment",
+        price: "60",
+        priceCurrency: "GBP",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/services/ear-care/eastleigh`
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/services/ear-care/eastleigh#clinic`,
+    name: "Promedico Ltd",
+    url: `${siteUrl}/services/ear-care/eastleigh`,
+    logo: `${siteUrl}/images/ProMedico-Logo-text.webp`,
+    image: `${siteUrl}${pageImage}`,
+    telephone: "+447777100716",
+    email: "reception@promedico.co.uk",
+    priceRange: "££",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "4 Chessel Avenue",
+      addressLocality: "Bitterne",
+      addressRegion: "Southampton",
+      postalCode: "SO19 4AA",
+      addressCountry: "GB"
+    },
+    areaServed: [
+      { "@type": "City", name: "Eastleigh" },
+      { "@type": "Place", name: "Bishopstoke" },
+      { "@type": "Place", name: "Fair Oak" },
+      { "@type": "Place", name: "Chandler's Ford" },
+      { "@type": "Place", name: "Boyatt Wood" },
+      { "@type": "Place", name: "Allbrook" },
+      { "@type": "Place", name: "North Stoneham" },
+      { "@type": "Place", name: "Horton Heath" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/services/ear-care/eastleigh#webpage`,
+    url: `${siteUrl}/services/ear-care/eastleigh`,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-GB",
+    about: {
+      "@id": `${siteUrl}/services/ear-care/eastleigh#service`
+    },
+    isPartOf: {
+      "@id": `${siteUrl}/#website`
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}/services/ear-care/eastleigh#faq`,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/services/ear-care/eastleigh#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Ear Care",
+        item: `${siteUrl}/services/ear-care`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Eastleigh",
+        item: `${siteUrl}/services/ear-care/eastleigh`
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={pageImage}
+  ogTitle="Earwax Removal Eastleigh | Clinic Appointments"
+  ogDescription="Earwax removal for Eastleigh patients at the Promedico clinic in Bitterne, a short drive from Eastleigh. Assessment first, from £60."
+  schema={eastleighSchema}
+  preloadImage="/images/services/ear-care/southampton-hero.webp"
+>
+  <section class="hero hero--image hero--eastleigh-ear-care" aria-labelledby="eastleigh-hero-heading">
+    <div class="hero__bg-pattern" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Eastleigh Ear Care</p>
+
+        <h1 class="hero__heading" id="eastleigh-hero-heading">
+          Earwax Removal<br />
+          <span class="hero__heading-accent">for Eastleigh</span>
+        </h1>
+
+        <p class="hero__subheading">
+          Practitioner-led earwax removal for Eastleigh patients at the Promedico clinic
+          in Bitterne, a short drive from Eastleigh, with assessment before treatment.
+        </p>
+
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+            Book Clinic Appointment
+          </a>
+
+          <a class="btn btn--outline-light" href="#clinic-location">
+            Clinic Location &amp; Directions
+          </a>
+        </div>
+
+        <ul class="hero__trust-list" aria-label="Eastleigh ear care appointment details">
+          <li class="hero__trust-item">Clinic appointments near Eastleigh</li>
+          <li class="hero__trust-item">Around 15 to 20 minutes by car</li>
+          <li class="hero__trust-item">Practitioner-led ear care</li>
+          <li class="hero__trust-item">Assessment before treatment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" id="appointment-options" aria-labelledby="appointment-options-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="appointment-options-heading">
+          Clinic Earwax Removal Near Eastleigh
+        </h2>
+
+        <p class="section-header__lead">
+          Promedico provides clinic earwax removal appointments at 4 Chessel Avenue in Bitterne,
+          the nearest Promedico clinic to Eastleigh.
+        </p>
+      </header>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={BuildingIcon}></span>
+              </div>
+
+              <h3 class="service-card__heading">Clinic Appointment</h3>
+            </div>
+
+            <p class="service-card__text">
+              Attend a booked appointment at the Bitterne clinic for ear assessment and earwax
+              removal where appropriate.
+            </p>
+
+            <ul class="service-card__features">
+              <li>Clinic-based ear care appointment</li>
+              <li>4 Chessel Avenue, Bitterne, Southampton</li>
+              <li>Assessment and treatment where appropriate</li>
+            </ul>
+
+            <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              Book Clinic Appointment
+            </a>
+          </div>
+        </li>
+
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={CircleInfoIcon}></span>
+              </div>
+
+              <h3 class="service-card__heading">Who It Is For</h3>
+            </div>
+
+            <p class="service-card__text">
+              Suitable for Eastleigh patients who want a nearby private clinic for earwax removal,
+              including anyone whose GP practice no longer provides wax removal.
+            </p>
+
+            <ul class="service-card__features">
+              <li>Blocked, full or reduced-hearing ears</li>
+              <li>History of wax build-up</li>
+              <li>Assessment if the cause is unclear</li>
+            </ul>
+
+            <a class="btn btn--outline service-card__link" href="/contact">
+              Ask a Question
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="assessment-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="assessment-heading">
+          Earwax Removal with Assessment First
+        </h2>
+
+        <p class="section-header__lead">
+          Earwax removal should start with a clear assessment. Your ears are checked
+          before treatment is considered, and removal is only carried out where suitable.
+        </p>
+      </header>
+
+      <div class="procedure-cards">
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Assessment</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={ClipboardMedicalIcon}></span>
+              </div>
+
+              <h3 class="procedure-card__title">Checking Suitability</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              Your symptoms are discussed and your ears are examined to check whether
+              wax is present and whether treatment is suitable.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Treatment</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={EarListenIcon}></span>
+              </div>
+
+              <h3 class="procedure-card__title">Removal Where Appropriate</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              If treatment is suitable, earwax removal may be carried out using an
+              appropriate method such as microsuction or ear irrigation.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Advice</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={CommentMedicalIcon}></span>
+              </div>
+
+              <h3 class="procedure-card__title">Clear Next Steps</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              You will receive aftercare advice and guidance on what to do if symptoms
+              persist or further support is needed.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-pricing" aria-labelledby="pricing-heading">
+    <div class="container">
+      <header class="section-header section-header--center">
+        <h2 class="section-header__heading" id="pricing-heading">
+          Earwax Removal Pricing
+        </h2>
+
+        <p class="section-header__lead">
+          Clear pricing for clinic appointments at the Bitterne clinic.
+        </p>
+      </header>
+
+      <div class="pricing-cards pricing-cards--two-col">
+        <article class="pricing-card pricing-card--featured">
+          <p class="pricing-card__label">Clinic</p>
+
+          <h3 class="pricing-card__name">Clinic Appointment</h3>
+
+          <div class="pricing-card__price">
+            <span class="price-currency">£</span>
+            <span class="price-amount">60</span>
+          </div>
+
+          <p class="pricing-card__description">
+            Ear assessment and earwax removal where appropriate at the Bitterne clinic.
+          </p>
+
+          <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+            Book Clinic Appointment
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" id="clinic-location" aria-labelledby="clinic-location-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="clinic-location-heading">
+          Getting to the Clinic from Eastleigh
+        </h2>
+
+        <p class="section-header__lead">
+          Clinic appointments are held at 4 Chessel Avenue in Bitterne, Southampton, around
+          6 miles from Eastleigh town centre.
+        </p>
+      </header>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={LocationDotIcon}></span>
+              </div>
+
+              <h3 class="service-card__heading">Clinic Address</h3>
+            </div>
+
+            <p class="service-card__text">
+              <strong>
+                Promedico Southampton Clinic<br />
+                4 Chessel Avenue<br />
+                Bitterne<br />
+                Southampton<br />
+                SO19 4AA
+              </strong>
+            </p>
+
+            <p class="service-card__text">
+              The clinic is used for scheduled ear care appointments only. Please book before
+              attending.
+            </p>
+
+            <a class="btn btn--primary service-card__link" href={bookingUrl} target="_blank" rel="noopener">
+              Book Clinic Appointment
+            </a>
+          </div>
+        </li>
+
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={CarSideIcon}></span>
+              </div>
+
+              <h3 class="service-card__heading">Travelling from Eastleigh</h3>
+            </div>
+
+            <p class="service-card__text">
+              The clinic is typically 15 to 20 minutes by car from Eastleigh, via the A335 and
+              A3024 or via the M27.
+            </p>
+
+            <ul class="service-card__features">
+              <li>Around 6 miles from Eastleigh town centre</li>
+              <li>Bitterne railway station a short walk away</li>
+              <li>Local bus routes serve Bitterne district centre</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="svc-areas" aria-labelledby="areas-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="areas-heading">
+          Serving Patients from Eastleigh and Nearby
+        </h2>
+
+        <p class="section-header__lead">
+          Patients travel to the Bitterne clinic from Eastleigh and the surrounding area.
+        </p>
+      </header>
+
+      <div class="area-grid" aria-label="Areas near Eastleigh served by the clinic">
+        <div class="area-item">Eastleigh</div>
+        <div class="area-item">Bishopstoke</div>
+        <div class="area-item">Fair Oak</div>
+        <div class="area-item">Chandler's Ford</div>
+        <div class="area-item">Boyatt Wood</div>
+        <div class="area-item">Allbrook</div>
+        <div class="area-item">North Stoneham</div>
+        <div class="area-item">Horton Heath</div>
+        <div class="area-item">Colden Common</div>
+        <div class="area-item">Twyford</div>
+        <div class="area-item">Otterbourne</div>
+        <div class="area-item">Hedge End</div>
+      </div>
+
+      <p class="svc-areas__note">
+        If you are unsure whether the clinic is convenient for you, contact us before booking.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light" aria-labelledby="symptoms-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="symptoms-heading">
+          When Earwax May Need Attention
+        </h2>
+
+        <p class="section-header__lead">
+          Earwax build-up can affect hearing, comfort and day-to-day life. Assessment is important
+          because not every ear symptom is caused by wax.
+        </p>
+      </header>
+
+      <div class="procedure-cards">
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Common concern</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={EarDeafIcon}></span>
+              </div>
+
+              <h3 class="procedure-card__title">Blocked or Full Ears</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              A blocked or full sensation can be associated with wax build-up, but the ear should
+              be assessed before treatment is carried out.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Common concern</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={VolumeLowIcon}></span>
+              </div>
+
+              <h3 class="procedure-card__title">Reduced Hearing</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              Wax can sometimes reduce hearing clarity. Assessment helps confirm whether wax is
+              present and whether removal is appropriate.
+            </p>
+          </div>
+        </article>
+
+        <article class="procedure-card">
+          <div class="procedure-card__body">
+            <p class="procedure-card__eyebrow">Common concern</p>
+
+            <div class="procedure-card__header">
+              <div class="procedure-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={CircleInfoIcon}></span>
+              </div>
+
+              <h3 class="procedure-card__title">Ongoing Discomfort</h3>
+            </div>
+
+            <p class="procedure-card__text">
+              If symptoms persist or treatment is not suitable, you will be advised on the next
+              appropriate step.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="why-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="why-heading">
+          Why Choose Promedico for Earwax Removal Near Eastleigh?
+        </h2>
+
+        <p class="section-header__lead">
+          Promedico provides practitioner-led ear care with a clinical, conservative and
+          patient-centred approach.
+        </p>
+      </header>
+
+      <ul class="service-cards">
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={UserDoctorIcon}></span>
+              </div>
+
+              <h3 class="service-card__heading">Practitioner-Led Care</h3>
+            </div>
+
+            <p class="service-card__text">
+              Appointments are delivered by trained practitioners working within their scope,
+              with clinical leadership from an experienced Advanced Clinical Practitioner.
+            </p>
+          </div>
+        </li>
+
+        <li class="service-card">
+          <div class="service-card__body">
+            <div class="service-card__header">
+              <div class="service-card__icon-wrap" aria-hidden="true">
+                <span aria-hidden="true" set:html={HandHoldingMedicalIcon}></span>
+              </div>
+
+              <h3 class="service-card__heading">Appropriate Treatment</h3>
+            </div>
+
+            <p class="service-card__text">
+              Treatment is only carried out where suitable. If removal is not appropriate, you will
+              be given clear advice on the next step.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq-section faq-section--light" aria-labelledby="eastleigh-faq-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="eastleigh-faq-heading">
+          Eastleigh Earwax Removal FAQs
+        </h2>
+
+        <p class="section-header__lead">
+          Clear answers to common questions about clinic appointments, directions from Eastleigh
+          and earwax removal methods.
+        </p>
+      </header>
+
+      <div class="faq-grid">
+        <dl class="faq-list">
+          {
+            faqItems.map((item, index) => {
+              const questionId = `eastleigh-faq-question-${index}`;
+              const answerId = `eastleigh-faq-answer-${index}`;
+
+              return (
+                <div class="faq-item">
+                  <dt class="faq-item__question">
+                    <button
+                      class="faq-item__trigger"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls={answerId}
+                      id={questionId}
+                    >
+                      <span>{item.question}</span>
+                      <span class="faq-item__icon" aria-hidden="true"></span>
+                    </button>
+                  </dt>
+
+                  <dd
+                    class="faq-item__answer"
+                    id={answerId}
+                    aria-labelledby={questionId}
+                    hidden
+                  >
+                    <div class="faq-item__answer-inner">
+                      <p>{item.answer}</p>
+                    </div>
+                  </dd>
+                </div>
+              );
+            })
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-booking" aria-labelledby="booking-heading">
+    <div class="container">
+      <div class="svc-booking__inner svc-booking__inner--no-map">
+        <div class="svc-booking__content">
+          <p class="svc-booking__eyebrow">Book an appointment</p>
+
+          <h2 class="svc-booking__heading" id="booking-heading">
+            Book Earwax Removal Near Eastleigh
+          </h2>
+
+          <p class="svc-booking__text">
+            Book online for a clinic appointment at 4 Chessel Avenue in Bitterne, the nearest
+            Promedico clinic to Eastleigh.
+          </p>
+
+          <ul class="svc-booking__meta">
+            <li>Clinic appointments at 4 Chessel Avenue, Bitterne</li>
+            <li>Around 15 to 20 minutes by car from Eastleigh</li>
+            <li><a href="/contact">Questions? Contact us</a></li>
+          </ul>
+
+          <div class="svc-booking__ctas">
+            <a class="btn btn--primary" href={bookingUrl} target="_blank" rel="noopener">
+              Book Clinic Appointment
+            </a>
+
+            <a class="btn btn--outline" href="/contact">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const faqTriggers = document.querySelectorAll(".faq-item__trigger");
+
+    faqTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const expanded = trigger.getAttribute("aria-expanded") === "true";
+        const answerId = trigger.getAttribute("aria-controls");
+        const answer = answerId ? document.getElementById(answerId) : null;
+
+        trigger.setAttribute("aria-expanded", String(!expanded));
+
+        if (answer) {
+          answer.hidden = expanded;
+        }
+      });
+    });
+  </script>
+</BaseLayout>

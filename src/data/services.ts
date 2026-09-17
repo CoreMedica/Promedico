@@ -14,6 +14,11 @@ export const services = [
         slug: "southampton",
         status: "live",
       },
+      {
+        name: "Eastleigh",
+        slug: "eastleigh",
+        status: "live",
+      }
     ],
   },
   {

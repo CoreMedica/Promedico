@@ -171,7 +171,19 @@
     color: $color-teal;
   }
 }
+a.area-item {
+  text-decoration: none;
+  color: $color-text-dark;
 
+  &:visited {
+    color: $color-text-dark;
+  }
+
+  // optional: subtle affordance so users know it's clickable
+  transition: border-color 0.15s ease;
+  &:hover,
+  &:focus-visible { border-color: $color-teal; }
+}
 .svc-areas__note {
   margin-top: $space-xl;
   font-size: 0.875rem;

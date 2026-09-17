@@ -2,6 +2,7 @@
 title: "What Causes Earwax Build-Up?"
 description: "A clear guide to why earwax can build up, common symptoms it may cause, and when an ear assessment may be appropriate."
 pubDate: 2026-05-17
+updatedDate: 2026-08-20
 author: "Promedico Wellness Group"
 category: "Ear Care"
 tags:
@@ -13,6 +14,9 @@ draft: false
 serviceLink:
   label: "View Ear Care Services"
   href: "/services/ear-care"
+image: 
+  src: /images/blog/what-causes-earwax-build-up.webp
+  alt: What Causes Earwax Build-Up?
 ---
 
 Earwax is normal. It helps protect the ear canal by trapping dust, debris and small particles. In many people, wax gradually moves out of the ear naturally. Problems can start when wax does not clear as expected or becomes compacted.
@@ -54,17 +58,22 @@ You should consider arranging an ear assessment if symptoms are persistent, affe
 
 An assessment helps confirm whether wax is present and whether removal is suitable. If wax is not the cause, you can be advised on the next appropriate step.
 
-Promedico provides [ear care services in Portsmouth and Southampton](/services/ear-care), including clinic appointments in Portsmouth and home visits across Portsmouth and Southampton.
+Promedico provides [ear care services in Portsmouth and Southampton](/services/ear-care), including clinic appointments in Southampton, and home visits across both Portsmouth and Southampton.
 
-## Portsmouth clinic and home visit options
+## Southampton clinic and home visit options
 
-For patients in Portsmouth, Promedico offers both [clinic appointments and home visits for earwax removal](/services/ear-care/portsmouth).
+For patients in Southampton, Promedico offers both [clinic appointments and home visits for earwax removal](/services/ear-care/southampton), with clinic appointments at:
 
-Clinic appointments are suitable if you are happy to attend the Portsmouth clinic. Home visits may be more suitable if travelling is difficult or you prefer to be seen at home.
+4 Chessel Avenue  
+Bitterne  
+Southampton  
+SO19 4AA
 
-## Southampton home visit ear care
+Clinic appointments are suitable if you are happy to attend the Southampton clinic. Home visits may be more suitable if travelling is difficult or you prefer to be seen at home.
 
-For patients in Southampton, Promedico currently provides [home visit earwax removal](/services/ear-care/southampton).
+## Portsmouth home visit ear care
+
+For patients in Portsmouth, Promedico currently provides [home visit earwax removal](/services/ear-care/portsmouth). Clinic appointments in Portsmouth are coming soon.
 
 This can be useful for patients who prefer care in a familiar environment or who find travel less convenient.
 

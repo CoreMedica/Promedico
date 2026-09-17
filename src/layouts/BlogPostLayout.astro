@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
+import "../styles/pages/_blog.scss";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -31,7 +32,7 @@ const articleSchema = {
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   image: post.data.image
-    ? 'https://promedico.co.uk${post.data.image.src}'
+    ? `https://promedico.co.uk${post.data.image.src}`
     : "https://promedico.co.uk/images/ProMedico-Logo-text.webp",
   author: {
     "@type": "Organization",

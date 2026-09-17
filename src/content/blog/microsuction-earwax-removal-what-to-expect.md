@@ -2,6 +2,7 @@
 title: "Microsuction Earwax Removal: What to Expect"
 description: "What usually happens before, during and after a microsuction earwax removal appointment, including assessment, suitability checks and aftercare."
 pubDate: 2026-05-17
+updatedDate: 2026-08-20
 author: "Promedico Wellness Group"
 category: "Ear Care"
 tags:
@@ -11,8 +12,8 @@ tags:
 featured: true
 draft: false
 serviceLink:
-  label: "Book or View Portsmouth Ear Care"
-  href: "/services/ear-care/portsmouth"
+  label: "Book or View Ear Care Services"
+  href: "/services/ear-care"
 image:
   src: /images/blog/microsuction-what-to-expect.webp
   alt: Earwax Microsuction - what to expect
@@ -58,21 +59,20 @@ You may be advised to soften the wax before your appointment, depending on your 
 
 If you have pain, discharge, sudden hearing loss, severe dizziness or concerning symptoms, earwax removal may not be the right first step. You should seek appropriate medical advice.
 
-## Portsmouth clinic appointments
+## Southampton clinic and home visits
 
-Promedico provides [microsuction earwax removal in Portsmouth](/services/ear-care/portsmouth), with clinic appointments at:
+Promedico provides [microsuction earwax removal in Southampton](/services/ear-care/southampton), with clinic appointments at:
 
-Somerstown Central Community Hub  
-Winston Churchill Avenue  
-Southsea  
-Portsmouth  
-PO5 4JJ
+4 Chessel Avenue  
+Bitterne  
+Southampton  
+SO19 4AA
 
-Home visits are also available across Portsmouth.
+Home visits are also available across Southampton.
 
-## Southampton home visits
+## Portsmouth home visits
 
-Promedico also provides [home visit earwax removal in Southampton](/services/ear-care/southampton). This may be suitable if you prefer to be seen at home or find travelling to a clinic difficult.
+Promedico currently provides [home visit earwax removal in Portsmouth](/services/ear-care/portsmouth). This may be suitable if you prefer to be seen at home or find travelling to a clinic difficult. Clinic appointments in Portsmouth are coming soon.
 
 ## The key point
 
