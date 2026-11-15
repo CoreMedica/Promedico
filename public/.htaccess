@@ -1,8 +1,87 @@
+# ==========================================================================
+# Promedico public site
+# ==========================================================================
+
+# ------------------------------------------------------------------
+# Force HTTPS (skipped for local Laragon .test hosts)
+# Loop-safe: redirects only when both signals say the request
+# reached the server unencrypted (handles IONOS proxy setups)
+# ------------------------------------------------------------------
 RewriteEngine On
 
-# Do not rewrite existing files or directories
+RewriteCond %{HTTP_HOST} !\.(test|localhost)$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://promedico.co.uk/$1 [R=301,L]
+
+# ------------------------------------------------------------------
+# Canonical URLs: send direct .html requests to the clean URL
+# ------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# ------------------------------------------------------------------
+# Clean URLs for Astro's directory-style output (about/ -> about/index.html)
+# ------------------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Rewrite clean URLs to .html
 RewriteRule ^([^.]+)$ $1.html [L]
+
+# ------------------------------------------------------------------
+# 404 handler: 301s uppercase URLs to lowercase (see /404.php).
+# mod_rewrite can't lowercase in .htaccess on shared hosting.
+# ------------------------------------------------------------------
+ErrorDocument 404 /404.php
+
+# ------------------------------------------------------------------
+# Security headers
+# ------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+    # Only send HSTS over HTTPS
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" "expr=%{HTTPS} == 'on'"
+
+    # GA4 + Clarity are the only external script hosts (loaded after consent).
+    # Update this if you embed the Fresha widget rather than linking to it.
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://region1.google-analytics.com https://*.clarity.ms; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+</IfModule>
+
+# ------------------------------------------------------------------
+# Caching
+# ------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # HTML must revalidate so changes go out immediately
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+
+    # /_astro/ files are content-hashed: cache them hard
+    SetEnvIf Request_URI "^/_astro/" hashed_asset
+    Header set Cache-Control "public, max-age=31536000, immutable" env=hashed_asset
+
+    # Unhashed scripts: let browsers check hourly
+    <FilesMatch "cookie-consent\.js$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+</IfModule>
+
+# ------------------------------------------------------------------
+# Compression
+# ------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/ld+json image/svg+xml
+</IfModule>

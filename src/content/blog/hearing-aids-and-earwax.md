@@ -1,8 +1,10 @@
 ---
-title: "Hearing Aids and Earwax: Why Build-Up Happens Faster and What to Do About It"
+title: "Hearing Aids and Earwax: Why Build-Up Happens"
 description: "If you wear a hearing aid, you've probably noticed earwax build-up becomes more of an issue than it used to be - here's why, and what to do about it."
 pubDate: 2026-09-17
-author: "Promedico Wellness Group"
+updatedDate: 2026-11-15
+author: "David Cadwallader"
+reviewedBy: "Jacqueline Allen, Advanced Clinical Practitioner and HCPC Registered Paramedic"
 category: "Ear Care"
 tags:
   - Hearing aids

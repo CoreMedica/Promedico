@@ -7,7 +7,7 @@ const posts = (await getCollection("blog", ({ data }: { data: any }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 })).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const pageTitle = "Ear Care Articles | Promedico Wellness Group";
+const pageTitle = "Ear Care Articles | Promedico";
 const pageDescription =
   "Patient education articles from Promedico Wellness Group covering earwax build-up, blocked ears, microsuction and ear care appointment guidance.";
 const pageImage = "/images/blog/blog-hero.webp";

@@ -12,7 +12,8 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    author: z.string().default("Promedico Wellness Group"),
+    author: z.string().default("David Cadwallader"),
+    reviewedBy: z.string().optional(),
     category: z
       .enum(["Ear Care", "Portsmouth Ear Care", "Southampton Ear Care"])
       .default("Ear Care"),

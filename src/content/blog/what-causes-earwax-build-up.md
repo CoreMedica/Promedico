@@ -3,7 +3,8 @@ title: "What Causes Earwax Build-Up?"
 description: "A clear guide to why earwax can build up, common symptoms it may cause, and when an ear assessment may be appropriate."
 pubDate: 2026-05-17
 updatedDate: 2026-08-20
-author: "Promedico Wellness Group"
+author: "David Cadwallader"
+reviewedBy: "Jacqueline Allen, Advanced Clinical Practitioner and HCPC Registered Paramedic"
 category: "Ear Care"
 tags:
   - Earwax build-up

@@ -2,7 +2,9 @@
 title: "Ear Wax Removal Southampton: Your Complete Guide"
 description: "Everything you need to know about earwax removal in Southampton, including microsuction, clinic appointments in Bitterne, home visits, and what to expect."
 pubDate: 2026-08-20
-author: "Promedico Wellness Group"
+updatedDate: 2026-11-15
+author: "David Cadwallader"
+reviewedBy: "Jacqueline Allen, Advanced Clinical Practitioner and HCPC Registered Paramedic"
 category: "Southampton Ear Care"
 tags:
   - Earwax removal

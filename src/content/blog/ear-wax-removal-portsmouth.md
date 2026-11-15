@@ -2,7 +2,9 @@
 title: "Ear Wax Removal Portsmouth: Your Complete Guide"
 description: "Everything you need to know about earwax removal in Portsmouth, including microsuction home visits across PO1–PO9 and what to expect from your appointment."
 pubDate: 2026-08-20
-author: "Promedico Wellness Group"
+updatedDate: 2026-11-15
+author: "David Cadwallader"
+reviewedBy: "Jacqueline Allen, Advanced Clinical Practitioner and HCPC Registered Paramedic"
 category: "Portsmouth Ear Care"
 tags:
   - Earwax removal

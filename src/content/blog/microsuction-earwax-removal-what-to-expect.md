@@ -3,7 +3,8 @@ title: "Microsuction Earwax Removal: What to Expect"
 description: "What usually happens before, during and after a microsuction earwax removal appointment, including assessment, suitability checks and aftercare."
 pubDate: 2026-05-17
 updatedDate: 2026-08-20
-author: "Promedico Wellness Group"
+author: "David Cadwallader"
+reviewedBy: "Jacqueline Allen, Advanced Clinical Practitioner and HCPC Registered Paramedic"
 category: "Ear Care"
 tags:
   - Microsuction

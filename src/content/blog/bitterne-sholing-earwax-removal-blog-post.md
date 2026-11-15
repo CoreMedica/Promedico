@@ -1,8 +1,10 @@
 ---
-title: "Earwax Removal in Bitterne & Sholing: What Southampton Residents Need to Know"
+title: "Earwax Removal in Bitterne & Sholing, Southampton"
 description: "If you're searching for earwax removal near Bitterne or Sholing, you're not alone."
 pubDate: 2026-09-08
-author: "Promedico Wellness Group"
+updatedDate: 2026-11-15
+author: "David Cadwallader"
+reviewedBy: "Jacqueline Allen, Advanced Clinical Practitioner and HCPC Registered Paramedic"
 category: "Southampton Ear Care"
 tags:
   - Earwax removal
