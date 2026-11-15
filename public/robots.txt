@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: /clinical
-
 Sitemap: https://promedico.co.uk/sitemap-index.xml

@@ -14,7 +14,7 @@ function clinical_db(): PDO
         return $pdo;
     }
 
-    $configPath = __DIR__ . '/../../php/config/database.php';
+    $configPath = __DIR__ . '/../../public/php/config/database.php';
 
     if (!file_exists($configPath)) {
         clinical_fail_securely('Clinical database configuration is unavailable.');

@@ -1,7 +1,8 @@
 (function () {
   const CONSENT_KEY = "promedico_cookie_consent";
 
-  const GOOGLE_TAG_ID = "G-XXXXXXXXXX";
+  const GOOGLE_TAG_ID = "G-B8V2LDDND1";
+  const CLARITY_ID = "xxiyuvmr68";
   const GOOGLE_ADS_ID = "AW-XXXXXXXXXX";
   const BING_UET_ID = "XXXXXXXXX";
 
@@ -81,8 +82,21 @@
     })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
   }
 
+  function loadClarity() {
+    if (!CLARITY_ID) return;
+
+    window.clarity =
+      window.clarity ||
+      function () {
+        (window.clarity.q = window.clarity.q || []).push(arguments);
+      };
+
+    loadScript(`https://www.clarity.ms/tag/${CLARITY_ID}?ref=bwt`, "msft-clarity");
+  }
+
   function loadTracking() {
     loadGoogleTags();
+    loadClarity();
     loadBingUet();
   }
 
