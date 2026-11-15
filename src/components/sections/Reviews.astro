@@ -1,0 +1,112 @@
+---
+import { reviews } from "../../data/reviews";
+
+interface Props {
+  initialCount?: number; // grid cards shown before "Show more"
+}
+
+const { initialCount = 6 } = Astro.props;
+
+const [featured, ...rest] = reviews;
+
+const stars = (rating: number) => "★".repeat(rating) + "☆".repeat(5 - rating);
+const paragraphs = (text: string) => text.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+
+const average = reviews.length
+  ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+  : null;
+---
+
+{featured && (
+  <section class="section" aria-labelledby="reviews-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-header__heading" id="reviews-heading">
+          What Our Patients Say
+        </h2>
+
+        <p class="section-header__lead">
+          Reviews from patients who have visited Promedico, shared on Google and Fresha.
+        </p>
+      </header>
+
+      <div class="reviews-layout">
+        <figure class="review-featured">
+          <div class="review-featured__stars" role="img" aria-label={`Rated ${featured.rating} out of 5`}>
+            {stars(featured.rating)}
+          </div>
+
+          <svg class="review-featured__quote" viewBox="0 0 32 24" aria-hidden="true">
+            <path d="M0 24V14.4C0 6.4 4.8 1.6 12 0l1.6 3.2C9.6 4.8 7.6 7.6 7.2 11.2H12V24H0zm18 0V14.4C18 6.4 22.8 1.6 30 0l1.6 3.2c-4 1.6-6 4.4-6.4 8H30V24H18z" />
+          </svg>
+
+          <blockquote class="review-featured__text">
+            {paragraphs(featured.text).map((p) => <p>{p}</p>)}
+          </blockquote>
+
+          <figcaption class="review-featured__cite">
+            <cite>{featured.name}</cite>
+            <span class="review-featured__source">via {featured.source}</span>
+          </figcaption>
+
+          <p class="review-featured__badge">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.7 5.7-4.5 4.5a.8.8 0 0 1-1.1 0L4.3 8.4a.8.8 0 1 1 1.1-1.1l1.2 1.2 4-4a.8.8 0 1 1 1.1 1.1z" />
+            </svg>
+            {average} average from 24 reviews on Google and Fresha
+          </p>
+        </figure>
+
+        {rest.length > 0 && (
+          <div class="reviews-grid-wrap">
+            <ul class="reviews-grid" id="reviews-grid">
+              {rest.map((review, index) => (
+                <li class:list={["review-card", { "review-card--hidden": index >= initialCount }]}>
+                  <div class="review-card__stars" role="img" aria-label={`Rated ${review.rating} out of 5`}>
+                    {stars(review.rating)}
+                  </div>
+
+                  <blockquote class="review-card__text">
+                    <div>
+                      {paragraphs(review.text).map((p) => <p>{p}</p>)}
+                    </div>
+
+                    <footer class="review-card__cite">
+                      <cite>{review.name}</cite>
+                      <span class="review-card__source">via {review.source}</span>
+                    </footer>
+                  </blockquote>
+                </li>
+              ))}
+            </ul>
+
+            {rest.length > initialCount && (
+              <div class="reviews-grid__more">
+                <button
+                  class="btn btn--outline"
+                  type="button"
+                  id="reviews-more"
+                  aria-controls="reviews-grid"
+                >
+                  Show more reviews
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  const moreButton = document.getElementById("reviews-more");
+
+  moreButton?.addEventListener("click", () => {
+    document
+      .querySelectorAll("#reviews-grid .review-card--hidden")
+      .forEach((card) => card.classList.add("is-visible"));
+
+    moreButton.parentElement?.remove();
+  });
+</script>
