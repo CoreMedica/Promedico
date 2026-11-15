@@ -122,6 +122,16 @@
     loadTracking();
   });
 
+  const resetButton = document.querySelector("[data-cookie-reset]");
+
+  resetButton?.addEventListener("click", function () {
+    localStorage.removeItem(CONSENT_KEY);
+
+    if (banner) {
+      banner.hidden = false;
+    }
+  });
+
   rejectButton?.addEventListener("click", function () {
     localStorage.setItem(CONSENT_KEY, "rejected");
 

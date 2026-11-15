@@ -67,7 +67,7 @@ const cookieSchema = [
   <section class="section" aria-label="Cookie policy content">
     <div class="container">
       <div class="blog-post__content">
-        <p><strong>Last updated:</strong> 22 May, 2026</p>
+        <p><strong>Last updated:</strong> 15 November 2026</p>
 
         <h2>What cookies are</h2>
         <p>
@@ -103,20 +103,38 @@ const cookieSchema = [
               <td>Stores whether you accepted or rejected non-essential cookies.</td>
               <td>Stored in your browser until cleared or changed.</td>
             </tr>
+            <tr>
+              <td>_ga</td>
+              <td>Google Analytics 4: distinguishes visitors for traffic reporting.</td>
+              <td>Up to 2 years</td>
+            </tr>
+            <tr>
+              <td>_clck</td>
+              <td>Microsoft Clarity: remembers a visitor for usage analysis.</td>
+              <td>Up to 1 year</td>
+            </tr>
+            <tr>
+              <td>_clsk</td>
+              <td>Microsoft Clarity: links page views in a session.</td>
+              <td>Up to 1 day</td>
+            </tr>
           </tbody>
         </table>
 
         <h2>Analytics cookies</h2>
         <p>
-          If you accept non-essential cookies, we may use Google analytics tools to understand
-          website traffic, page views and how visitors interact with the website.
+          If you accept non-essential cookies, we use Google Analytics 4 ("GA4") and Microsoft
+          Clarity. GA4 helps us understand website traffic, such as which pages are viewed and
+          how long visits last. Microsoft Clarity helps us understand how pages are used, such
+          as scroll and click patterns, so we can improve the site. Clarity is configured to
+          mask text typed into forms.
         </p>
 
         <h2>Advertising and measurement cookies</h2>
         <p>
-          If you accept non-essential cookies, we may use Google and Microsoft/Bing advertising
-          tags to measure advertising performance and understand whether marketing activity leads
-          to website visits or enquiries.
+          We do not currently use advertising tags on this website. If we add them in future,
+          they would only load after you accept non-essential cookies, and we would update
+          this page.
         </p>
 
         <h2>Your cookie choices</h2>
@@ -127,7 +145,7 @@ const cookieSchema = [
         </p>
 
         <p>
-          <button class="btn btn--outline" type="button" onclick="window.PromedicoCookieConsent?.reset()">
+          <button class="btn btn--outline" type="button" data-cookie-reset>
             Change cookie choice
           </button>
         </p>
